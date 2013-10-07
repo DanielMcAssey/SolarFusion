@@ -14,15 +14,18 @@ namespace SolarFusion
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Game : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
+        GraphicsDeviceManager _obj_graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        public Game()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            this.Window.Title = "SolarFusion - Development Build (64dde1d)";
+            this.Content.RootDirectory = "Content";
+
+            this._obj_graphics = new GraphicsDeviceManager(this);
+            
         }
 
         /// <summary>

@@ -8,8 +8,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SolarFusion")]
 [assembly: AssemblyProduct("SolarFusion")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCompany("Dimensional Wave LTD")]
+[assembly: AssemblyCopyright("Copyright © Dimensional Wave LTD 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

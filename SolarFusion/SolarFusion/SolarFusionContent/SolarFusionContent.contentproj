@@ -42,8 +42,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\UI\" />
-    <Folder Include="System\Fonts\" />
+    <Folder Include="Audio\" />
+    <Folder Include="Core\Data\" />
+    <Folder Include="Core\Shaders\" />
+    <Folder Include="Levels\level_0\" />
+    <Folder Include="Sprites\Characters\" />
+    <Folder Include="Sprites\Misc\" />
+    <Folder Include="Sprites\Objects\" />
+    <Folder Include="System\UI\Backgrounds\" />
+    <Folder Include="System\UI\Fonts\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
