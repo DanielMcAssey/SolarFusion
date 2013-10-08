@@ -9,6 +9,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+using SolarFusion.Core;
+using SolarFusion.Core.Config;
+using SolarFusion.Screen;
+using SolarFusion.Screen.System;
+
 namespace SolarFusion
 {
     /// <summary>
@@ -17,28 +22,25 @@ namespace SolarFusion
     public class Game : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager _obj_graphics;
-        SpriteBatch spriteBatch;
+        ConfigManager _obj_config;
+        ScreenManager _obj_screenmanager;
 
         public Game()
         {
-            this.Window.Title = "SolarFusion - Development Build (64dde1d)";
-            this.Content.RootDirectory = "Content";
+            this._obj_config = new ConfigManager();
+
+            this.Window.Title = SysConfig.CONFIG_GAME_NAME;
+            this.Content.RootDirectory = SysConfig.CONFIG_CONTENT_ROOT;
 
             this._obj_graphics = new GraphicsDeviceManager(this);
-            
-        }
+            this._obj_graphics.PreferredBackBufferWidth = this._obj_config.Settings.VIDEO_RES_WIDTH;
+            this._obj_graphics.PreferredBackBufferHeight = this._obj_config.Settings.VIDEO_RES_HEIGHT;
+            this._obj_graphics.IsFullScreen = this._obj_config.Settings.VIDEO_FULLSCREEN;
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize()
-        {
-            // TODO: Add your initialization logic here
+            this._obj_screenmanager = new ScreenManager(this);
+            this.Components.Add(this._obj_screenmanager);
 
-            base.Initialize();
+            this._obj_screenmanager.addScreen(new ScreenBG(), null);
         }
 
         /// <summary>
@@ -47,9 +49,6 @@ namespace SolarFusion
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // TODO: use this.Content to load your game content here
         }
 
@@ -60,35 +59,6 @@ namespace SolarFusion
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-        }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
-        {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
-            // TODO: Add your update logic here
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
-            base.Draw(gameTime);
         }
     }
 }

@@ -108,12 +108,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Config\ConfigManager.cs" />
+    <Compile Include="Core\Config\SystemSettings.cs" />
     <Compile Include="Core\SysConfig.cs" />
     <Compile Include="Input\InputHelper.cs" />
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\SolarFusion.cs" />
     <Compile Include="Core\Game.cs" />
+    <Compile Include="Screen\ScreenBG.cs" />
     <Compile Include="Screen\System\BaseScreen.cs" />
     <Compile Include="Screen\System\ScreenManager.cs" />
   </ItemGroup>

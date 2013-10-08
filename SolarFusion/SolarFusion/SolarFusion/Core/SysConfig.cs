@@ -10,13 +10,15 @@ namespace SolarFusion.Core
     public class SysConfig
     {
         //General Configuration
-        public const string CONFIG_GAME_BUILD = "64dde1d";
+        public const string CONFIG_GAME_BUILD = "66843e9";
         public const string CONFIG_GAME_BUILD_TYPE = "Development";
         public const string CONFIG_GAME_NAME = "SolarFusion - Development Build (" + CONFIG_GAME_BUILD + ")";
         public const string CONFIG_GAME_NAME_CLEAN = "SolarFusion";
 
         //Debug Settings
         public const string CONFIG_DEBUG_JIRA = "jira.blackholedev.net";
+        public const string CONFIG_DEBUG_JIRA_METHOD = "POST";
+        public const string CONFIG_DEBUG_JIRA_KEY = "pAG7zeZ16AY1Ht3924QsC1rup8T3x8pC";
 
         //Directory Mappings
         public const string CONFIG_CONTENT_ROOT = "Content";
@@ -33,13 +35,7 @@ namespace SolarFusion.Core
         public const string ASSET_CONFIG_BLANK_BG = CONFIG_DATA_DIR_GUI_BG + "texture_BLANK";
 
         //Settings
-#if WINDOWS
-        public string ASSET_CONFIG_SETTINGS_DIR = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), CONFIG_GAME_NAME_CLEAN);
-#else
-        public IsolatedStorageFile ASSET_CONFIG_SETTINGS_DIR_X360 = IsolatedStorageFile.GetUserStoreForApplication();
-#endif
-        public const string ASSET_CONFIG_SETTINGS_CORE = "base.xml";
-        public const string ASSET_CONFIG_SETTINGS_INPUT = "base.xml";
+        public const string ASSET_CONFIG_SETTINGS_FILE = "base.config";
 
         //Default Strings
         public const string ASSET_ENGINE_STRING_MSG_BOX_USAGE = "\n Pad A button, Space, Enter = ok \nB button, Esc = cancel";
