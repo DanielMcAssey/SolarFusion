@@ -61,17 +61,9 @@
     <Folder Include="Core\Data\" />
     <Folder Include="Core\Shaders\" />
     <Folder Include="Levels\level_0\" />
-    <Folder Include="Sprites\Characters\" />
+    <Folder Include="Sprites\Characters\Jumpista\" />
     <Folder Include="Sprites\Misc\" />
-    <Folder Include="Sprites\Objects\" />
-    <Folder Include="System\UI\Fonts\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="System\UI\Backgrounds\bg.png">
-      <Name>bg</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
+    <Folder Include="Sprites\Objects\Static\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -94,6 +86,45 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Objects\Animated\anim_grandfather_clock.png">
+      <Name>anim_grandfather_clock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Characters\characters.xml">
+      <Name>characters</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="System\UI\Backgrounds\bg.png">
+      <Name>bg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="System\UI\Fonts\font_DEBUG.spritefont">
+      <Name>font_DEBUG</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="System\UI\Fonts\font_GUI.spritefont">
+      <Name>font_GUI</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="System\UI\Fonts\font_HUD.spritefont">
+      <Name>font_HUD</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

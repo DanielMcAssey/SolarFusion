@@ -5,7 +5,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+
 using SolarFusion.Input;
+using SolarFusion.Core;
 
 namespace SolarFusion.Screen.System
 {
@@ -226,10 +228,10 @@ namespace SolarFusion.Screen.System
             this._obj_input = new InputManager();
 
             this._obj_sprite_batch = new SpriteBatch(GraphicsDevice);
-            //this._obj_default_guifont = this._obj_content.Load<SpriteFont>(LJMUXNAEngineConstants.ASSET_ENGINE_GUI_FONT);
-            //this._obj_default_gamefont = this._obj_content.Load<SpriteFont>(LJMUXNAEngineConstants.ASSET_ENGINE_HUD_FONT);
-            //this._obj_default_debugfont = this._obj_content.Load<SpriteFont>(LJMUXNAEngineConstants.ASSET_ENGINE_DEBUG_FONT);
-            //this._obj_tex_blank = this._obj_content.Load<Texture2D>(LJMUXNAEngineConstants.ASSET_ENGINE_BLANK_BG);
+            this._obj_default_guifont = this._obj_content.Load<SpriteFont>(SysConfig.ASSET_CONFIG_GUI_FONT);
+            this._obj_default_gamefont = this._obj_content.Load<SpriteFont>(SysConfig.ASSET_CONFIG_HUD_FONT);
+            this._obj_default_debugfont = this._obj_content.Load<SpriteFont>(SysConfig.ASSET_CONFIG_DEBUG_FONT);
+            //this._obj_tex_blank = this._obj_content.Load<Texture2D>(SysConfig.ASSET_CONFIG_BLANK_BG);
 
             // Tell each of the screens to load their content.
             foreach (BaseScreen tscreen in this._list_screens_master)
@@ -283,7 +285,7 @@ namespace SolarFusion.Screen.System
                 // Update the screen.
                 tscreen.masterUpdate(totherfocused, tcovered);
 
-                if (tscreen.CurrentScreenMode == EnumScreenMode.MODE_TRANSITION_ON || tscreen.CurrentScreenMode == EnumScreenMode.MODE_ACTIVE)
+                if (tscreen.CurrentScreenMode == ScreenMode.MODE_TRANSITION_ON || tscreen.CurrentScreenMode == ScreenMode.MODE_ACTIVE)
                 {
                     // If this is the first active screen we came across,
                     // give it a chance to handle input.
@@ -311,7 +313,7 @@ namespace SolarFusion.Screen.System
         {
             foreach (BaseScreen mScreen in this._list_screens_master)
             {
-                if (mScreen.CurrentScreenMode == EnumScreenMode.MODE_TRANSITION_HIDDEN)
+                if (mScreen.CurrentScreenMode == ScreenMode.MODE_TRANSITION_HIDDEN)
                     continue;
                 mScreen.render();
             }

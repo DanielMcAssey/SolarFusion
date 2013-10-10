@@ -5,10 +5,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SolarFusion.Core;
 using SolarFusion.Input;
+using SolarFusion.Screen.System.Events;
 
 namespace SolarFusion.Screen.System
 {
-    public enum EnumScreenMode
+    public enum ScreenMode
     {
         MODE_TRANSITION_ON,
         MODE_ACTIVE,
@@ -16,7 +17,7 @@ namespace SolarFusion.Screen.System
         MODE_TRANSITION_HIDDEN,
     }
 
-    public enum EnumTransitionDir
+    public enum TransitionDirection
     {
         POSITIVE = 1,
         NEGATIVE = -1,
@@ -29,7 +30,7 @@ namespace SolarFusion.Screen.System
         protected ContentManager _local_content = null;
         protected TimeSpan _trans_on_time = TimeSpan.Zero;
         protected TimeSpan _trans_off_time = TimeSpan.Zero;
-        protected EnumScreenMode _screen_mode = EnumScreenMode.MODE_TRANSITION_ON;
+        protected ScreenMode _screen_mode = ScreenMode.MODE_TRANSITION_ON;
         protected PlayerIndex? _primary_player = null;
         protected float _trans_position = 1;
         protected bool _is_exiting = false;
@@ -75,7 +76,7 @@ namespace SolarFusion.Screen.System
         /// <summary>
         /// 
         /// </summary>
-        public EnumScreenMode CurrentScreenMode
+        public ScreenMode CurrentScreenMode
         {
             get { return _screen_mode; }
         }
@@ -103,7 +104,7 @@ namespace SolarFusion.Screen.System
         {
             get
             {
-                return !_not_primary && (_screen_mode == EnumScreenMode.MODE_TRANSITION_ON || _screen_mode == EnumScreenMode.MODE_ACTIVE);
+                return !_not_primary && (_screen_mode == ScreenMode.MODE_TRANSITION_ON || _screen_mode == ScreenMode.MODE_ACTIVE);
             }
         }
 
@@ -179,25 +180,25 @@ namespace SolarFusion.Screen.System
 
             if (this._is_exiting)
             {
-                this._screen_mode = EnumScreenMode.MODE_TRANSITION_OFF;
-                if (!internUpdateTrans(this._trans_off_time, EnumTransitionDir.POSITIVE))
+                this._screen_mode = ScreenMode.MODE_TRANSITION_OFF;
+                if (!internUpdateTrans(this._trans_off_time, TransitionDirection.POSITIVE))
                 {
                     ScreenManager.removeScreen(this);
                 }
             }
             else if (poverlaid)
             {
-                if (internUpdateTrans(this._trans_off_time, EnumTransitionDir.POSITIVE))
-                    this._screen_mode = EnumScreenMode.MODE_TRANSITION_OFF;
+                if (internUpdateTrans(this._trans_off_time, TransitionDirection.POSITIVE))
+                    this._screen_mode = ScreenMode.MODE_TRANSITION_OFF;
                 else
-                    this._screen_mode = EnumScreenMode.MODE_TRANSITION_HIDDEN;
+                    this._screen_mode = ScreenMode.MODE_TRANSITION_HIDDEN;
             }
             else
             {
-                if (internUpdateTrans(this._trans_on_time, EnumTransitionDir.NEGATIVE))
-                    this._screen_mode = EnumScreenMode.MODE_TRANSITION_ON;
+                if (internUpdateTrans(this._trans_on_time, TransitionDirection.NEGATIVE))
+                    this._screen_mode = ScreenMode.MODE_TRANSITION_ON;
                 else
-                    this._screen_mode = EnumScreenMode.MODE_ACTIVE;
+                    this._screen_mode = ScreenMode.MODE_ACTIVE;
             }
 
             this.bgUpdate(potherfocused, poverlaid);
@@ -268,7 +269,7 @@ namespace SolarFusion.Screen.System
         /// <param name="ptranstime"></param>
         /// <param name="pdir"></param>
         /// <returns></returns>
-        bool internUpdateTrans(TimeSpan ptranstime, EnumTransitionDir pdir)
+        bool internUpdateTrans(TimeSpan ptranstime, TransitionDirection pdir)
         {
             float ttransdelta;
             if (ptranstime == TimeSpan.Zero)
@@ -276,7 +277,7 @@ namespace SolarFusion.Screen.System
             else
                 ttransdelta = (float)(this.GlobalGameTimer.ElapsedGameTime.TotalMilliseconds / ptranstime.TotalMilliseconds);
             this._trans_position += ttransdelta * (int)pdir;
-            if ((pdir.Equals(EnumTransitionDir.NEGATIVE) && _trans_position <= 0) || (pdir.Equals(EnumTransitionDir.POSITIVE) && _trans_position >= 1))
+            if ((pdir.Equals(TransitionDirection.NEGATIVE) && _trans_position <= 0) || (pdir.Equals(TransitionDirection.POSITIVE) && _trans_position >= 1))
             {
                 this._trans_position = MathHelper.Clamp(_trans_position, 0, 1);
                 return false;

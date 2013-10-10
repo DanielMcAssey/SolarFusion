@@ -13,6 +13,8 @@ using SolarFusion.Core;
 using SolarFusion.Core.Config;
 using SolarFusion.Screen;
 using SolarFusion.Screen.System;
+using SolarFusion.Screen.DefaultScreens;
+using SolarFusion.Screen.GUIScreens;
 
 namespace SolarFusion
 {
@@ -32,15 +34,45 @@ namespace SolarFusion
             this.Window.Title = SysConfig.CONFIG_GAME_NAME;
             this.Content.RootDirectory = SysConfig.CONFIG_CONTENT_ROOT;
 
-            this._obj_graphics = new GraphicsDeviceManager(this);
-            this._obj_graphics.PreferredBackBufferWidth = this._obj_config.Settings.VIDEO_RES_WIDTH;
-            this._obj_graphics.PreferredBackBufferHeight = this._obj_config.Settings.VIDEO_RES_HEIGHT;
-            this._obj_graphics.IsFullScreen = this._obj_config.Settings.VIDEO_FULLSCREEN;
-
+            try
+            {
+                this._obj_graphics = new GraphicsDeviceManager(this);
+                this._obj_graphics.PreferredBackBufferWidth = this._obj_config.Settings.VIDEO_RES_WIDTH;
+                this._obj_graphics.PreferredBackBufferHeight = this._obj_config.Settings.VIDEO_RES_HEIGHT;
+                this._obj_graphics.IsFullScreen = this._obj_config.Settings.VIDEO_FULLSCREEN;
+                this._obj_graphics.PreferMultiSampling = this._obj_config.Settings.VIDEO_ANTIALIASING;
+                this._obj_graphics.SynchronizeWithVerticalRetrace = this._obj_config.Settings.VIDEO_VSYNC;
+                this._obj_graphics.PreferredDepthStencilFormat = (DepthFormat)this._obj_config.Settings.VIDEO_DEPTH_STENCIL_BUFFER;
+                this._obj_graphics.ApplyChanges();
+            }
+            catch (Exception ex)
+            {
+#if WINDOWS
+                this._obj_config.WIN32_CreateNewFile();
+#elif XBOX
+                this._obj_config.X360_CreateNewFile();
+                this._obj_config.Settings.VIDEO_RES_WIDTH = 1280;
+                this._obj_config.Settings.VIDEO_RES_HEIGHT = 720;
+                this._obj_config.Settings.VIDEO_FULLSCREEN = true;
+                this._obj_config.Settings.VIDEO_ANTIALIASING = true;
+                this._obj_config.Settings.VIDEO_VSYNC = true;
+                this._obj_config.Settings.VIDEO_DEPTH_STENCIL_BUFFER = (int)DepthFormat.Depth24Stencil8;
+#endif
+                this._obj_graphics = new GraphicsDeviceManager(this);
+                this._obj_graphics.PreferredBackBufferWidth = this._obj_config.Settings.VIDEO_RES_WIDTH;
+                this._obj_graphics.PreferredBackBufferHeight = this._obj_config.Settings.VIDEO_RES_HEIGHT;
+                this._obj_graphics.IsFullScreen = this._obj_config.Settings.VIDEO_FULLSCREEN;
+                this._obj_graphics.PreferMultiSampling = this._obj_config.Settings.VIDEO_ANTIALIASING;
+                this._obj_graphics.SynchronizeWithVerticalRetrace = this._obj_config.Settings.VIDEO_VSYNC;
+                this._obj_graphics.PreferredDepthStencilFormat = (DepthFormat)this._obj_config.Settings.VIDEO_DEPTH_STENCIL_BUFFER;
+                this._obj_graphics.ApplyChanges();
+            }
+            
             this._obj_screenmanager = new ScreenManager(this);
             this.Components.Add(this._obj_screenmanager);
 
             this._obj_screenmanager.addScreen(new ScreenBG(), null);
+            this._obj_screenmanager.addScreen(new ScreenMenuRoot(), PlayerIndex.One);
         }
 
         /// <summary>

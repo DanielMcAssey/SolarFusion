@@ -62,43 +62,51 @@ namespace SolarFusion.Core.Config
                     }
                     else
                     {
-                        WIN32_CreateNewFile();
+                        WIN32_CreateNewFile(); // Creates a new file.
                     }
                 }
             }
-            catch (InvalidOperationException ex01)
+            catch (InvalidOperationException ex01) // Error reading and deserializing the file, so creates a new one.
             {
                 if (_stream != null)
-                    _stream.Close();
+                    _stream.Close(); // Closes the stream if it exists.
 
-                WIN32_CreateNewFile();
+                WIN32_CreateNewFile(); // Creates a new file.
             }
-            catch (Exception ex)
+            catch (Exception ex) // Catches any exception.
             {
+                // Toggles the _LOADED variable.
                 this._LOADED = false;
                 return;
             }
         }
 
-        private void WIN32_CreateNewFile()
+        public void WIN32_CreateNewFile()
         {
             try
             {
+                // Since this function create's a new file, it checks if it already exists, and delete's it.
                 if (File.Exists(WIN32_data_system_dir + "/" + SysConfig.ASSET_CONFIG_SETTINGS_FILE))
                 {
                     File.Delete(WIN32_data_system_dir + "/" + SysConfig.ASSET_CONFIG_SETTINGS_FILE);
                 }
 
+                // Opens a file stream, when the file is created.
                 FileStream _stream = File.Create(WIN32_data_system_dir + "/" + SysConfig.ASSET_CONFIG_SETTINGS_FILE);
+
+                // Creates a new XML serializer object.
                 XmlSerializer serializer = new XmlSerializer(typeof(SystemSettings));
 
+                // Serializes the class to the file and closes the stream.
                 serializer.Serialize(_stream, _obj_settings);
                 _stream.Close();
 
+                // Toggles the _LOADED variable.
                 this._LOADED = true;
             }
-            catch (Exception ex)
+            catch (Exception ex) // Catches any type of exception.
             {
+                // Toggles the _LOADED variable.
                 this._LOADED = false;
                 return;
             }
@@ -111,7 +119,7 @@ namespace SolarFusion.Core.Config
 
         }
 
-        private void X360_CreateNewFile()
+        public void X360_CreateNewFile()
         {
             using (X360_data_file)
             {

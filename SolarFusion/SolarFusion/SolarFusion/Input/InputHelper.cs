@@ -12,8 +12,8 @@ namespace SolarFusion.Input
         Dictionary<Keys, bool> mKeyboard = new Dictionary<Keys, bool>();
         Dictionary<Buttons, bool> mGamepad = new Dictionary<Buttons, bool>();
 
-        static public Dictionary<PlayerIndex, GamePadState> CurrentGamePadState = new Dictionary<PlayerIndex, GamePadState>();
-        static public Dictionary<PlayerIndex, GamePadState> PreviousGamePadState = new Dictionary<PlayerIndex, GamePadState>();
+        static public Dictionary<PlayerIndex?, GamePadState> CurrentGamePadState = new Dictionary<PlayerIndex?, GamePadState>();
+        static public Dictionary<PlayerIndex?, GamePadState> PreviousGamePadState = new Dictionary<PlayerIndex?, GamePadState>();
         static public KeyboardState CurrentKeyboardState;
         static public KeyboardState PreviousKeyboardState;
 
@@ -71,7 +71,7 @@ namespace SolarFusion.Input
             mGamepad.Add(buttonPressed, isReleased);
         }
 
-        public bool IsPressed(PlayerIndex playerIndex)
+        public bool IsPressed(PlayerIndex? playerIndex)
         {
             foreach (Keys aKey in mKeyboard.Keys)
             {

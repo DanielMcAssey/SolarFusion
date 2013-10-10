@@ -10,19 +10,25 @@ using Microsoft.Xna.Framework.Graphics;
 using SolarFusion.Core;
 using SolarFusion.Screen.System;
 
-namespace SolarFusion.Screen
+namespace SolarFusion.Screen.DefaultScreens
 {
     class ScreenBG : BaseScreen
     {
-        public const float DEFAULT_TRANS_TIME = 0.5f;
+        public float DEFAULT_TRANS_TIME = 0.5f;
 
         ContentManager _content;
         Texture2D _bg_texture;
 
-        public ScreenBG(float mTransTime = DEFAULT_TRANS_TIME)
+        public ScreenBG()
         {
-            this._trans_on_time = TimeSpan.FromSeconds(mTransTime);
-            this._trans_off_time = TimeSpan.FromSeconds(mTransTime);
+            this._trans_on_time = TimeSpan.FromSeconds(DEFAULT_TRANS_TIME);
+            this._trans_off_time = TimeSpan.FromSeconds(DEFAULT_TRANS_TIME);
+        }
+
+        public float TransitionTime
+        {
+            get { return this.DEFAULT_TRANS_TIME; }
+            set { DEFAULT_TRANS_TIME = value; }
         }
 
         public override void loadContent()
@@ -70,7 +76,7 @@ namespace SolarFusion.Screen
             Viewport mViewport = ScreenManager.GameViewport;
 
             mSpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
-            mSpriteBatch.Draw(this._bg_texture, new Rectangle(0, 0, mViewport.Width, mViewport.Height), new Color(CurrentTransitionAlpha, CurrentTransitionAlpha, CurrentTransitionAlpha));
+            mSpriteBatch.Draw(this._bg_texture, Vector2.Zero, new Rectangle(0, 0, mViewport.Width, mViewport.Height), new Color(CurrentTransitionAlpha, CurrentTransitionAlpha, CurrentTransitionAlpha), 0, Vector2.Zero, 1, SpriteEffects.None, 0);
             mSpriteBatch.End();
         }
 

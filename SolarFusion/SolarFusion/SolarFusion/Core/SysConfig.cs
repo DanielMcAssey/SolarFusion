@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.IO.IsolatedStorage;
+using Microsoft.Xna.Framework.Input;
 
 namespace SolarFusion.Core
 {
     public class SysConfig
     {
         //General Configuration
-        public const string CONFIG_GAME_BUILD = "66843e9";
+        public const string CONFIG_GAME_BUILD = "0bcb97e";
         public const string CONFIG_GAME_BUILD_TYPE = "Development";
         public const string CONFIG_GAME_NAME = "SolarFusion - Development Build (" + CONFIG_GAME_BUILD + ")";
         public const string CONFIG_GAME_NAME_CLEAN = "SolarFusion";
@@ -40,5 +41,29 @@ namespace SolarFusion.Core
         //Default Strings
         public const string ASSET_ENGINE_STRING_MSG_BOX_USAGE = "\n Pad A button, Space, Enter = ok \nB button, Esc = cancel";
         public const string ASSET_ENGINE_STRING_LOADING = "Loading...";
+
+        //Default GamePad Controls
+        public const Buttons INPUT_GAMEPAD_UP_DPAD = Buttons.DPadUp;
+        public const Buttons INPUT_GAMEPAD_UP_STICK = Buttons.LeftThumbstickUp;
+        public const Buttons INPUT_GAMEPAD_DOWN_DPAD = Buttons.DPadDown;
+        public const Buttons INPUT_GAMEPAD_DOWN_STICK = Buttons.LeftThumbstickDown;
+        public const Buttons INPUT_GAMEPAD_LEFT_DPAD = Buttons.DPadLeft;
+        public const Buttons INPUT_GAMEPAD_LEFT_STICK = Buttons.LeftThumbstickLeft;
+        public const Buttons INPUT_GAMEPAD_RIGHT_DPAD = Buttons.DPadRight;
+        public const Buttons INPUT_GAMEPAD_RIGHT_STICK = Buttons.LeftThumbstickRight;
+
+        public const Buttons INPUT_GAMEPAD_START = Buttons.Start;
+        public const Buttons INPUT_GAMEPAD_SELECT = Buttons.A;
+        public const Buttons INPUT_GAMEPAD_CANCEL = Buttons.B;
+
+        //Default Keyboard Controls
+        public const Keys INPUT_KEYBOARD_UP = Keys.Up;
+        public const Keys INPUT_KEYBOARD_DOWN = Keys.Down;
+        public const Keys INPUT_KEYBOARD_LEFT = Keys.Left;
+        public const Keys INPUT_KEYBOARD_RIGHT = Keys.Right;
+
+        public const Keys INPUT_KEYBOARD_START = Keys.Escape;
+        public const Keys INPUT_KEYBOARD_SELECT = Keys.Enter;
+        public const Keys INPUT_KEYBOARD_CANCEL = Keys.Escape;
     }
 }

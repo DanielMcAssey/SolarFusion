@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace SolarFusion.Core.Config
@@ -15,10 +16,13 @@ namespace SolarFusion.Core.Config
     public class SystemSettings
     {
         //Video Settings
-        public int VIDEO_RES_WIDTH = 1024;
+        public int VIDEO_RES_WIDTH = 1280;
         public int VIDEO_RES_HEIGHT = 768;
         public bool VIDEO_FULLSCREEN = false;
         public float VIDEO_BRIGHTNESS = 0.5f;
+        public bool VIDEO_ANTIALIASING = false;
+        public bool VIDEO_VSYNC = false;
+        public int VIDEO_DEPTH_STENCIL_BUFFER = (int)DepthFormat.Depth24Stencil8;
 
         //Audio Settings
         public float AUDIO_MAIN_VOLUME = 1.0f;
