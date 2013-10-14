@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 using SolarFusion.Core;
-using SolarFusion.Core.Config;
 using SolarFusion.Screen;
 using SolarFusion.Screen.System;
 using SolarFusion.Screen.DefaultScreens;

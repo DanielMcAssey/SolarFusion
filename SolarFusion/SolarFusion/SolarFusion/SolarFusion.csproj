@@ -115,6 +115,7 @@
     <Compile Include="Entities\EntityManager.cs" />
     <Compile Include="Input\InputHelper.cs" />
     <Compile Include="Input\InputManager.cs" />
+    <Compile Include="Level\LevelManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\SolarFusion.cs" />
     <Compile Include="Core\Game.cs" />
@@ -131,6 +132,10 @@
     <Content Include="Core\GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\GameData\GameData.csproj">
+      <Project>{B0F3E94A-5C55-4C29-B90A-3CD054601594}</Project>
+      <Name>GameData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SolarFusionContent\SolarFusionContent.contentproj">
       <Name>SolarFusionContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>

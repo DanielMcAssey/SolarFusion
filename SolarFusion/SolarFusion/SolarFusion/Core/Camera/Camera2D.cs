@@ -6,7 +6,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SolarFusion.Core.Camera
+namespace SolarFusion.Core
 {
     public class Camera2D
     {

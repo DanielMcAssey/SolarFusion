@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace SolarFusion.Core.Config
+namespace SolarFusion.Core
 {
     public enum ControlType
     {
