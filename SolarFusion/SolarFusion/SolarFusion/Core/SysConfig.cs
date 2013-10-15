@@ -11,7 +11,7 @@ namespace SolarFusion.Core
     public class SysConfig
     {
         //General Configuration
-        public const string CONFIG_GAME_BUILD = "0bcb97e";
+        public const string CONFIG_GAME_BUILD = "05bec39";
         public const string CONFIG_GAME_BUILD_TYPE = "Development";
         public const string CONFIG_GAME_NAME = "SolarFusion - Development Build (" + CONFIG_GAME_BUILD + ")";
         public const string CONFIG_GAME_NAME_CLEAN = "SolarFusion";

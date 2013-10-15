@@ -46,11 +46,11 @@ namespace SolarFusion.Screen.GUIScreens
 
             mAnimatedBGObjects = new List<AnimatedBGEntity>();
 
+            bool IsSelectedUnique = false;  
+
             for (int i = 0; i < 20; i++)
             {
-                int randItem = _obj_random.Next(0, 1);
-
-                randItem = 0; //temporary
+                int randItem = _obj_random.Next(0, 2);
 
                 int randDirX = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
                 int randDirY = _obj_random.Next(0, 2); // 0 = Up to Down, 1 = Down to Up
@@ -67,12 +67,37 @@ namespace SolarFusion.Screen.GUIScreens
                 switch (randItem)
                 {
                     case 0: //Grandfather clock
-                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_grandfather_clock"), 4, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 3), 4, 1f, 1f, randDirX, randDirY));
+                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_grandfather_clock"), 4, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 4), 4, 1f, 1f, randDirX, randDirY));
                         break;
                     case 1: //Other items
-
+                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_coin"), 9, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 10), 20, 1f, 1f, randDirX, randDirY));
                         break;
                 }
+
+                if (IsSelectedUnique == false)
+                {
+                    IsSelectedUnique = true;
+                    int randItemUnique = _obj_random.Next(0, 1);
+                    int randDirXUnique = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
+                    int randDirYUnique = _obj_random.Next(0, 2); // 0 = Up to Down, 1 = Down to Up
+                    float randPosXUnique = 0f;
+                    float randPosYUnique = 0f;
+
+                    if (randPosXUnique == 0)
+                        randPosXUnique = (float)(_obj_random.Next(-300, ScreenManager.GraphicsDevice.Viewport.Width) - ScreenManager.GraphicsDevice.Viewport.Width);
+                    else
+                        randPosXUnique = (float)(_obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Width) + ScreenManager.GraphicsDevice.Viewport.Width);
+
+                    randPosYUnique = (float)_obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Height);
+
+                    switch (randItemUnique)
+                    {
+                        case 0: //Megaman
+                            mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Unique/anim_megaman"), 8, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosXUnique, randPosYUnique), _obj_random.Next(0, 9), 24, 1f, 1f, randDirXUnique, randDirYUnique));
+                            break;
+                    }
+                }
+
             }
 
             base.loadContent();
@@ -118,7 +143,7 @@ namespace SolarFusion.Screen.GUIScreens
                         }
                         else
                         {
-                            entity.Animation.Position = new Vector2(entity.Animation.Position.X, entity.Animation.Position.Y - entity.GetSpeedY);
+                            //entity.Animation.Position = new Vector2(entity.Animation.Position.X, entity.Animation.Position.Y - entity.GetSpeedY);
                         }
                     }
                     else //Down to Up
@@ -129,7 +154,7 @@ namespace SolarFusion.Screen.GUIScreens
                         }
                         else
                         {
-                            entity.Animation.Position = new Vector2(entity.Animation.Position.X, entity.Animation.Position.Y + entity.GetSpeedY);
+                            //entity.Animation.Position = new Vector2(entity.Animation.Position.X, entity.Animation.Position.Y + entity.GetSpeedY);
                         }
                     }
                 }
