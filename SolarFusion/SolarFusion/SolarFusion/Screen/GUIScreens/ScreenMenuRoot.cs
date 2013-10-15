@@ -5,18 +5,24 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
+using SolarFusion.Core;
 using SolarFusion.Screen.System;
-using SolarFusion.Screen.System.Components;
-using SolarFusion.Screen.System.Events;
 
 namespace SolarFusion.Screen.GUIScreens
 {
     class ScreenMenuRoot : BaseGUIScreen
     {
+        List<AnimatedBGEntity> mAnimatedBGObjects = null;
+        ContentManager _content = null;
+        Random _obj_random = null;
+
         public ScreenMenuRoot()
             : base("Root_Menu")
         {
+            _obj_random = new Random();
+
             MenuItemBasic mi_play = new MenuItemBasic("Play");
             MenuItemBasic mi_options = new MenuItemBasic("Options");
             MenuItemBasic mi_credits = new MenuItemBasic("Credits");
@@ -31,6 +37,124 @@ namespace SolarFusion.Screen.GUIScreens
             this._list_menuitems.Add(mi_options);
             this._list_menuitems.Add(mi_credits);
             this._list_menuitems.Add(mi_exit);
+        }
+
+        public override void loadContent()
+        {
+            if (this._content == null)
+                this._content = new ContentManager(ScreenManager.Game.Services, SysConfig.CONFIG_CONTENT_ROOT);
+
+            mAnimatedBGObjects = new List<AnimatedBGEntity>();
+
+            for (int i = 0; i < 20; i++)
+            {
+                int randItem = _obj_random.Next(0, 1);
+
+                randItem = 0; //temporary
+
+                int randDirX = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
+                int randDirY = _obj_random.Next(0, 2); // 0 = Up to Down, 1 = Down to Up
+                float randPosX = 0f;
+                float randPosY = 0f;
+
+                if(randDirX == 0)
+                    randPosX = (float)(_obj_random.Next(-300, ScreenManager.GraphicsDevice.Viewport.Width) - ScreenManager.GraphicsDevice.Viewport.Width);
+                else
+                    randPosX = (float)(_obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Width) + ScreenManager.GraphicsDevice.Viewport.Width);
+
+                randPosY = (float)_obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Height);
+
+                switch (randItem)
+                {
+                    case 0: //Grandfather clock
+                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_grandfather_clock"), 4, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 3), 4, 1f, 1f, randDirX, randDirY));
+                        break;
+                    case 1: //Other items
+
+                        break;
+                }
+            }
+
+            base.loadContent();
+        }
+
+        public override void update()
+        {
+            if (mAnimatedBGObjects != null)
+            {
+                foreach (AnimatedBGEntity entity in mAnimatedBGObjects)
+                {
+                    entity.Update(GlobalGameTimer);
+                    entity.Animation.Rotation += 0.01f;
+
+                    if (entity.DirectionX == 0) //Left to Right
+                    {
+                        if (entity.Animation.Position.X > ScreenManager.GraphicsDevice.Viewport.Width + (entity.Animation.AnimationWidth + entity.Animation.AnimationHeight))
+                        {
+                            entity.Animation.Position = new Vector2(entity.Animation.Position.X - (ScreenManager.GraphicsDevice.Viewport.Width + entity.Animation.AnimationWidth + entity.Animation.AnimationHeight + 100), entity.Animation.Position.Y);
+                        }
+                        else
+                        {
+                            entity.Animation.Position = new Vector2(entity.Animation.Position.X + entity.GetSpeedX, entity.Animation.Position.Y);
+                        }
+                    }
+                    else //Right to Left
+                    {
+                        if (entity.Animation.Position.X < 0 - (entity.Animation.AnimationWidth + entity.Animation.AnimationHeight))
+                        {
+                            entity.Animation.Position = new Vector2(entity.Animation.Position.X + (ScreenManager.GraphicsDevice.Viewport.Width + entity.Animation.AnimationWidth + entity.Animation.AnimationHeight + 100), entity.Animation.Position.Y);
+                        }
+                        else
+                        {
+                            entity.Animation.Position = new Vector2(entity.Animation.Position.X - entity.GetSpeedX, entity.Animation.Position.Y);
+                        }
+                    }
+
+                    if (entity.DirectionY == 0) //Up to Down
+                    {
+                        if (entity.Animation.Position.Y > ScreenManager.GraphicsDevice.Viewport.Height + (entity.Animation.AnimationHeight + entity.Animation.AnimationWidth))
+                        {
+                            entity.DirectionY = 1;
+                        }
+                        else
+                        {
+                            entity.Animation.Position = new Vector2(entity.Animation.Position.X, entity.Animation.Position.Y - entity.GetSpeedY);
+                        }
+                    }
+                    else //Down to Up
+                    {
+                        if (entity.Animation.Position.Y < 0 - (entity.Animation.AnimationHeight + entity.Animation.AnimationWidth))
+                        {
+                            entity.DirectionY = 0;
+                        }
+                        else
+                        {
+                            entity.Animation.Position = new Vector2(entity.Animation.Position.X, entity.Animation.Position.Y + entity.GetSpeedY);
+                        }
+                    }
+                }
+            }
+
+            base.update();
+        }
+
+        public override void render()
+        {
+            GraphicsDevice tgd = ScreenManager.GraphicsDevice;
+            SpriteBatch tsb = ScreenManager.SpriteBatch;
+            tsb.Begin();
+
+            if (mAnimatedBGObjects != null)
+            {
+                foreach (AnimatedBGEntity entity in mAnimatedBGObjects)
+                {
+                    entity.Draw(tsb);
+                }
+            }
+
+            tsb.End();
+            
+            base.render();
         }
 
         //---------------EVENT HANDLERS-------------------------------------------------------------

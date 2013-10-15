@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace SolarFusion.Screen.System.Events
+namespace SolarFusion.Screen.System
 {
     public class EventPlayer : EventArgs
     {

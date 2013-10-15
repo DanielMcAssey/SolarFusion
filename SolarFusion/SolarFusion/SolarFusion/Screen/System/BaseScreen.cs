@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SolarFusion.Core;
 using SolarFusion.Input;
-using SolarFusion.Screen.System.Events;
+using SolarFusion.Screen.System;
 
 namespace SolarFusion.Screen.System
 {

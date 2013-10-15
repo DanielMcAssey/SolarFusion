@@ -53,44 +53,12 @@ namespace SolarFusion.Level
                 {
                     GameEntity goData = _obj_currentmap.tmGameEntityGroups[i].GameEntityData[j];
                     Vector2 position = new Vector2(goData.entPosition.Center.X, goData.entPosition.Center.Y);
-                    GameObjects go;
+                    //GameObjects go;
 
                     switch (goData.entCategory) //Swtich by object category.
                     {
                         case "PlayerStart":
-                            Vector2 newPos = new Vector2(position.X, position.Y + ((player.Height / 2) / 2));
-                            player.Position = newPos;
-                            player.floorHeight = position.Y + ((player.Height / 2) / 2);
-                            player.isSingleplayer = true;
-                            player.LayerDepth = CurrentMap.tmGameEntityGroups[i].LayerDepth;
-                            break;
-                        case "Powerup":
-                            go = mObjectManager.CreatePowerup((PowerupType)Enum.Parse(typeof(PowerupType), goData.entType), position);
-                            _obj_currentmap.tmGameEntityGroups[i].GameEntityData[j].entID = go.ID;
-                            go.LayerDepth = _obj_currentmap.tmGameEntityGroups[i].LayerDepth;
-                            break;
-                        case "Enemy":
-                            go = mObjectManager.CreateEnemy((EnemyType)Enum.Parse(typeof(EnemyType), goData.entType), position);
-                            _obj_currentmap.tmGameEntityGroups[i].GameEntityData[j].entID = go.ID;
-                            go.LayerDepth = _obj_currentmap.tmGameEntityGroups[i].LayerDepth;
-                            break;
-                        case "StartScroll":
-                            startScroll.Add(new Rectangle((int)goData.entPosition.X, goData.entPosition.Y, goData.entPosition.Width, goData.entPosition.Height));
-                            break;
-                        case "EndScroll":
-                            endScroll.Add(new Rectangle((int)goData.entPosition.X, goData.entPosition.Y, goData.entPosition.Width, goData.entPosition.Height));
-                            break;
-                        case "End_Area":
-                            endAreas.Add(new Rectangle((int)goData.entPosition.X, goData.entPosition.Y, goData.entPosition.Width, goData.entPosition.Height));
-                            break;
-                        case "Wall":
-                            wallAreas.Add(new Rectangle((int)goData.entPosition.X, goData.entPosition.Y, goData.entPosition.Width, goData.entPosition.Height));
-                            break;
-                        case "LevelObject":
-                            go = mObjectManager.CreateLevelObject((LevelObjectType)Enum.Parse(typeof(LevelObjectType), goData.entType), position);
-                            _obj_currentmap.tmGameEntityGroups[i].GameEntityData[j].entID = go.ID;
-                            go.defaultBounds = goData.entPosition;
-                            go.LayerDepth = _obj_currentmap.tmGameEntityGroups[i].LayerDepth;
+
                             break;
                     }
                 }

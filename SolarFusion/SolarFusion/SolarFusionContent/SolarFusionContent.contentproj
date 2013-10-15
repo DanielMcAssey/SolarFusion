@@ -62,7 +62,8 @@
     <Folder Include="Core\Shaders\" />
     <Folder Include="Levels\level_0\" />
     <Folder Include="Sprites\Characters\Jumpista\" />
-    <Folder Include="Sprites\Misc\" />
+    <Folder Include="Sprites\Misc\Static\" />
+    <Folder Include="Sprites\Objects\Animated\" />
     <Folder Include="Sprites\Objects\Static\" />
   </ItemGroup>
   <ItemGroup>
@@ -88,25 +89,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Objects\Animated\anim_grandfather_clock.png">
-      <Name>anim_grandfather_clock</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sprites\Characters\characters.xml">
       <Name>characters</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="System\UI\Backgrounds\bg.png">
-      <Name>bg</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +110,21 @@
       <Name>font_HUD</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\Animated\anim_grandfather_clock.png">
+      <Name>anim_grandfather_clock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="System\UI\Backgrounds\bg.png">
+      <Name>bg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

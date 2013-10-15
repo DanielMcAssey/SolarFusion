@@ -2,9 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using SolarFusion.Screen.System.Events;
-
-namespace SolarFusion.Screen.System.Components
+namespace SolarFusion.Screen.System
 {
     public class MenuItemBasic
     {

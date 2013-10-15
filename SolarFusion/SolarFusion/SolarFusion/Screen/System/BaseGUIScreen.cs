@@ -9,8 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 
 using SolarFusion.Input;
-using SolarFusion.Screen.System.Components;
-using SolarFusion.Screen.System.Events;
+using SolarFusion.Screen.System;
 
 namespace SolarFusion.Screen.System
 {

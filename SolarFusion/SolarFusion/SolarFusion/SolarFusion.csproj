@@ -110,6 +110,8 @@
     <Compile Include="Core\Camera\Camera2D.cs" />
     <Compile Include="Core\Config\ConfigManager.cs" />
     <Compile Include="Core\Config\SystemSettings.cs" />
+    <Compile Include="Core\Sprites\AnimatedSprite.cs" />
+    <Compile Include="Core\Sprites\Sprite.cs" />
     <Compile Include="Core\SysConfig.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\EntityManager.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Screen\GUIScreens\ScreenMenuRoot.cs" />
     <Compile Include="Screen\System\BaseGUIScreen.cs" />
     <Compile Include="Screen\System\BaseScreen.cs" />
+    <Compile Include="Screen\System\Components\AnimatedBGEntity.cs" />
     <Compile Include="Screen\System\Components\MenuItemBasic.cs" />
     <Compile Include="Screen\System\Events\EventPlayer.cs" />
     <Compile Include="Screen\System\ScreenManager.cs" />
@@ -169,9 +172,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\Animation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

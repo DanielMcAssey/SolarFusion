@@ -8,7 +8,7 @@ using GameData;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
-namespace DataPipeline.LevelPipeline
+namespace DataPipeline
 {
     [ContentSerializerRuntimeType("GameData.LevelTilemap, GameData")]
     public class PipelineTilemapContent
