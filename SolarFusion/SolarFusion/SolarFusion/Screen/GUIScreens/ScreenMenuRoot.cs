@@ -19,7 +19,7 @@ namespace SolarFusion.Screen.GUIScreens
         Random _obj_random = null;
 
         public ScreenMenuRoot()
-            : base("Root_Menu")
+            : base("Root_Menu", true, "System/UI/Logos/static_jumpista")
         {
             _obj_random = new Random();
 
@@ -56,6 +56,8 @@ namespace SolarFusion.Screen.GUIScreens
                 int randDirY = _obj_random.Next(0, 2); // 0 = Up to Down, 1 = Down to Up
                 float randPosX = 0f;
                 float randPosY = 0f;
+                int randRotDir = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
+                float randRotSpeed = (float)((_obj_random.NextDouble() * Math.Abs(0.04-0.01)) + 0.01); // Generate random rotation speed between 0.01 and 0.06 every frame.
 
                 if(randDirX == 0)
                     randPosX = (float)(_obj_random.Next(-300, ScreenManager.GraphicsDevice.Viewport.Width) - ScreenManager.GraphicsDevice.Viewport.Width);
@@ -67,10 +69,10 @@ namespace SolarFusion.Screen.GUIScreens
                 switch (randItem)
                 {
                     case 0: //Grandfather clock
-                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_grandfather_clock"), 4, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 4), 4, 1f, 1f, randDirX, randDirY));
+                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_grandfather_clock"), 4, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 4), 4, 1f, 1f, randDirX, randDirY, randRotDir, randRotSpeed));
                         break;
                     case 1: //Other items
-                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_coin"), 9, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 10), 20, 1f, 1f, randDirX, randDirY));
+                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_coin"), 9, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 10), 20, 1f, 1f, randDirX, randDirY, randRotDir, randRotSpeed));
                         break;
                 }
 
@@ -79,9 +81,10 @@ namespace SolarFusion.Screen.GUIScreens
                     IsSelectedUnique = true;
                     int randItemUnique = _obj_random.Next(0, 1);
                     int randDirXUnique = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
-                    int randDirYUnique = _obj_random.Next(0, 2); // 0 = Up to Down, 1 = Down to Up
                     float randPosXUnique = 0f;
                     float randPosYUnique = 0f;
+                    int randRotDirUnique = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
+                    float randRotSpeedUnique = (float)((_obj_random.NextDouble() * Math.Abs(0.04 - 0.01)) + 0.01); // Generate random rotation speed between 0.01 and 0.06 every frame.
 
                     if (randPosXUnique == 0)
                         randPosXUnique = (float)(_obj_random.Next(-300, ScreenManager.GraphicsDevice.Viewport.Width) - ScreenManager.GraphicsDevice.Viewport.Width);
@@ -93,7 +96,7 @@ namespace SolarFusion.Screen.GUIScreens
                     switch (randItemUnique)
                     {
                         case 0: //Megaman
-                            mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Unique/anim_megaman"), 8, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosXUnique, randPosYUnique), _obj_random.Next(0, 9), 24, 1f, 1f, randDirXUnique, randDirYUnique));
+                            mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Unique/anim_megaman"), 8, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosXUnique, randPosYUnique), _obj_random.Next(0, 9), 24, 1f, 1f, randDirXUnique, 0, randRotDirUnique, randRotSpeedUnique));
                             break;
                     }
                 }
@@ -110,7 +113,11 @@ namespace SolarFusion.Screen.GUIScreens
                 foreach (AnimatedBGEntity entity in mAnimatedBGObjects)
                 {
                     entity.Update(GlobalGameTimer);
-                    entity.Animation.Rotation += 0.01f;
+
+                    if (entity.RotationDirection == 0)
+                        entity.Animation.Rotation += entity.RotationSpeed; //Rotate Left to Right
+                    else
+                        entity.Animation.Rotation -= entity.RotationSpeed; //Rotate Right to Left
 
                     if (entity.DirectionX == 0) //Left to Right
                     {
@@ -132,29 +139,6 @@ namespace SolarFusion.Screen.GUIScreens
                         else
                         {
                             entity.Animation.Position = new Vector2(entity.Animation.Position.X - entity.GetSpeedX, entity.Animation.Position.Y);
-                        }
-                    }
-
-                    if (entity.DirectionY == 0) //Up to Down
-                    {
-                        if (entity.Animation.Position.Y > ScreenManager.GraphicsDevice.Viewport.Height + (entity.Animation.AnimationHeight + entity.Animation.AnimationWidth))
-                        {
-                            entity.DirectionY = 1;
-                        }
-                        else
-                        {
-                            //entity.Animation.Position = new Vector2(entity.Animation.Position.X, entity.Animation.Position.Y - entity.GetSpeedY);
-                        }
-                    }
-                    else //Down to Up
-                    {
-                        if (entity.Animation.Position.Y < 0 - (entity.Animation.AnimationHeight + entity.Animation.AnimationWidth))
-                        {
-                            entity.DirectionY = 0;
-                        }
-                        else
-                        {
-                            //entity.Animation.Position = new Vector2(entity.Animation.Position.X, entity.Animation.Position.Y + entity.GetSpeedY);
                         }
                     }
                 }

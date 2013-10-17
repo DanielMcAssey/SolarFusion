@@ -18,13 +18,17 @@ namespace SolarFusion.Screen.System
         protected float speedY = 0f;
         protected int directionX = 1;
         protected int directionY = 1;
+        protected int rotDirection = 0;
+        protected float rotSpeed = 0.01f;
 
-        public AnimatedBGEntity(Texture2D spriteTexture, int frameCount, int animCount, float initRotation, Vector2 initPosition, int initFrame, int fps, float xspeed, float yspeed, int dirX, int dirY)
+        public AnimatedBGEntity(Texture2D spriteTexture, int frameCount, int animCount, float initRotation, Vector2 initPosition, int initFrame, int fps, float xspeed, float yspeed, int dirX, int dirY, int rotDir, float rotSpd)
         {
             this.speedX = xspeed;
             this.speedY = yspeed;
             this.directionX = dirX;
             this.directionY = dirY;
+            this.rotDirection = rotDir;
+            this.rotSpeed = rotSpd;
             baseAnimation = new AnimatedSprite(spriteTexture, frameCount, animCount);
             baseAnimation.Rotation = initRotation;
             baseAnimation.Position = initPosition;
@@ -55,6 +59,18 @@ namespace SolarFusion.Screen.System
         {
             get { return directionY; }
             set { directionY = value; }
+        }
+
+        public int RotationDirection
+        {
+            get { return this.rotDirection; }
+            set { this.rotDirection = value; }
+        }
+
+        public float RotationSpeed
+        {
+            get { return this.rotSpeed; }
+            set { this.rotSpeed = value; }
         }
 
         public AnimatedSprite Animation

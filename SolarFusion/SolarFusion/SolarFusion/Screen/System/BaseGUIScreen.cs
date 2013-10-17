@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 
+using SolarFusion.Core;
 using SolarFusion.Input;
 using SolarFusion.Screen.System;
 
@@ -17,8 +19,8 @@ namespace SolarFusion.Screen.System
     {
         //----------------CLASS CONSTANTS------------------------------------------------------
         public float DEFAULT_TRANS_TIME  = 0.5f;
-        public int DEFAULT_TITLE_START   = 100;
-        public int DEFAULT_MENU_START    = 200;
+        public int DEFAULT_TITLE_START   = 200;
+        public int DEFAULT_MENU_START    = 350;
         public static readonly Color DEFAULT_MENU_COLOUR = new Color(192, 192, 192); 
 
         //----------------CLASS MEMBERS_-------------------------------------------------------
@@ -28,6 +30,9 @@ namespace SolarFusion.Screen.System
         protected Color                    _menu_title_clr      = Color.White;
         protected int                      _menu_title_start;
         protected int                      _menu_item_start;
+        protected string _menu_item_logo_location = "";
+        protected Texture2D _menu_item_logo = null;
+        protected ContentManager _content = null;
         
 
         //----------------CONSTRUCTORS---------------------------------------------------------
@@ -40,7 +45,7 @@ namespace SolarFusion.Screen.System
         /// <param name="ptitlestart">The Title vertical start position</param>
         /// <param name="ptranstime">The Transition on time</param>
         /// </summary>
-        public BaseGUIScreen(string pmenutitle, Color ptitleclr)
+        public BaseGUIScreen(string pmenutitle, Color ptitleclr, bool IsLogo, string logoLocation)
         {
             this._menu_title_txt    = pmenutitle;
             this._trans_on_time = TimeSpan.FromSeconds(DEFAULT_TRANS_TIME);
@@ -48,6 +53,9 @@ namespace SolarFusion.Screen.System
             this._menu_title_start = DEFAULT_TITLE_START;
             this._menu_item_start = DEFAULT_MENU_START;
             this._menu_title_clr    = ptitleclr;
+
+            if(IsLogo)
+                this._menu_item_logo_location = logoLocation;
         }
 
         public int TitleStart
@@ -73,8 +81,8 @@ namespace SolarFusion.Screen.System
         /// Partial Constructor which sets the title text.
         /// <param name="pmenutitle">The Menu Title Text</param>
         /// </summary>
-        public BaseGUIScreen(string pmenutitle)
-            : this(pmenutitle, DEFAULT_MENU_COLOUR)
+        public BaseGUIScreen(string pmenutitle, bool IsLogo, string logoLocation)
+            : this(pmenutitle, DEFAULT_MENU_COLOUR, IsLogo, logoLocation)
         {}
 
         //----------------METHOD OVERRIDES----------------------------------------------------
@@ -84,7 +92,11 @@ namespace SolarFusion.Screen.System
         /// </summary>
         public override void loadContent()
         {
+            if (this._content == null)
+                this._content = new ContentManager(ScreenManager.Game.Services, SysConfig.CONFIG_CONTENT_ROOT);
 
+            if (this._menu_item_logo_location != "")
+                this._menu_item_logo = this._content.Load<Texture2D>(_menu_item_logo_location);
         }
 
         /// <summary>
@@ -168,12 +180,34 @@ namespace SolarFusion.Screen.System
             }
 
             float   ttransoffset    = (float)Math.Pow(this._trans_position, 2);
-            Vector2 ttitlepos       = new Vector2(tgd.Viewport.Width / 2,this._menu_title_start);
-            Vector2 ttitleorigin    = tfont.MeasureString(this._menu_title_txt) / 2;
-            Color   ttitlecolour    = this._menu_title_clr * this.CurrentTransitionAlpha;
-            float   ttitlescale     = 1.25f;
+
+            Vector2 ttitlepos = Vector2.Zero;
+            Vector2 ttitleorigin = Vector2.Zero;
+            float ttitlescale = 1f;
+            Color ttitlecolour = Color.Black;
+
+            ttitleorigin = tfont.MeasureString(this._menu_title_txt) / 2;
+            ttitlecolour = this._menu_title_clr * this.CurrentTransitionAlpha;
+            ttitlescale = 1.25f;
             ttitlepos.Y -= ttransoffset * 100;
-            tsb.DrawString(tfont,this._menu_title_txt, ttitlepos, ttitlecolour, 0,ttitleorigin, ttitlescale, SpriteEffects.None, 0);
+
+            if (_menu_item_logo == null)
+                ttitlepos = new Vector2(tgd.Viewport.Width / 2, this._menu_title_start);
+            else
+            {
+                ttitlepos = new Vector2(tgd.Viewport.Width / 2, this._menu_title_start);
+                ttitlescale = 0.5f;
+                ttitleorigin = new Vector2(this._menu_item_logo.Width / 2, this._menu_item_logo.Height / 2);
+            }
+
+            if (_menu_item_logo == null)
+                tsb.DrawString(tfont, this._menu_title_txt, ttitlepos, ttitlecolour, 0, ttitleorigin, ttitlescale, SpriteEffects.None, 0);
+            else
+            {
+                Rectangle tlogorec = new Rectangle(tgd.Viewport.Width / 2, this._menu_title_start, _menu_item_logo.Width, _menu_item_logo.Height);
+                tsb.Draw(this._menu_item_logo, ttitlepos, null, ttitlecolour, 0f, ttitleorigin, ttitlescale, SpriteEffects.None, 0);
+            }
+
             tsb.End();
         }
 
