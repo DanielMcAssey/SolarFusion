@@ -91,6 +91,10 @@
     <Content Include="Core\GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\GameData\GameData %28Xbox 360%29.csproj">
+      <Project>{DB59E622-091A-46C2-92C7-9AE63A6655D5}</Project>
+      <Name>GameData %28Xbox 360%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SolarFusionContent\SolarFusionContent.contentproj">
       <Name>SolarFusionContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
@@ -141,6 +145,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

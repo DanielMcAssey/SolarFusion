@@ -44,63 +44,62 @@ namespace SolarFusion.Screen.GUIScreens
             if (this._content == null)
                 this._content = new ContentManager(ScreenManager.Game.Services, SysConfig.CONFIG_CONTENT_ROOT);
 
-            mAnimatedBGObjects = new List<AnimatedBGEntity>();
+            this.mAnimatedBGObjects = new List<AnimatedBGEntity>();
 
             bool IsSelectedUnique = false;  
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 2000; i++)
             {
-                int randItem = _obj_random.Next(0, 2);
+                int randItem = this._obj_random.Next(0, 2);
 
-                int randDirX = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
-                int randDirY = _obj_random.Next(0, 2); // 0 = Up to Down, 1 = Down to Up
+                int randDirX = this._obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
                 float randPosX = 0f;
                 float randPosY = 0f;
-                int randRotDir = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
-                float randRotSpeed = (float)((_obj_random.NextDouble() * Math.Abs(0.04-0.01)) + 0.01); // Generate random rotation speed between 0.01 and 0.06 every frame.
+                int randRotDir = this._obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
+                float randRotSpeed = (float)((this._obj_random.NextDouble() * Math.Abs(0.04 - 0.01)) + 0.01); // Generate random rotation speed between 0.01 and 0.06 every frame.
 
                 if(randDirX == 0)
-                    randPosX = (float)(_obj_random.Next(-300, ScreenManager.GraphicsDevice.Viewport.Width) - ScreenManager.GraphicsDevice.Viewport.Width);
+                    randPosX = (float)(this._obj_random.Next(-300, ScreenManager.GraphicsDevice.Viewport.Width) - ScreenManager.GraphicsDevice.Viewport.Width);
                 else
-                    randPosX = (float)(_obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Width) + ScreenManager.GraphicsDevice.Viewport.Width);
+                    randPosX = (float)(this._obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Width) + ScreenManager.GraphicsDevice.Viewport.Width);
 
-                randPosY = (float)_obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Height);
+                randPosY = (float)this._obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Height);
 
                 switch (randItem)
                 {
                     case 0: //Grandfather clock
-                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_grandfather_clock"), 4, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 4), 4, 1f, 1f, randDirX, randDirY, randRotDir, randRotSpeed));
+                        this.mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_grandfather_clock"), 4, 1, (float)((this._obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), this._obj_random.Next(0, 4), 4, 1f, 1f, randDirX, 0, randRotDir, randRotSpeed));
                         break;
                     case 1: //Other items
-                        mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_coin"), 9, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), _obj_random.Next(0, 10), 20, 1f, 1f, randDirX, randDirY, randRotDir, randRotSpeed));
+                        this.mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Animated/anim_coin"), 9, 1, (float)((this._obj_random.NextDouble() * 10) - 5), new Vector2(randPosX, randPosY), this._obj_random.Next(0, 10), 20, 1f, 1f, randDirX, 0, randRotDir, randRotSpeed));
                         break;
                 }
 
                 if (IsSelectedUnique == false)
                 {
                     IsSelectedUnique = true;
-                    int randItemUnique = _obj_random.Next(0, 1);
-                    int randDirXUnique = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
+
+                    int randItemUnique = this._obj_random.Next(0, 1);
+                    int randDirXUnique = this._obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
                     float randPosXUnique = 0f;
                     float randPosYUnique = 0f;
-                    int randRotDirUnique = _obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
-                    float randRotSpeedUnique = (float)((_obj_random.NextDouble() * Math.Abs(0.04 - 0.01)) + 0.01); // Generate random rotation speed between 0.01 and 0.06 every frame.
+                    int randRotDirUnique = this._obj_random.Next(0, 2); // 0 = Left to Right, 1 = Right to Left
+                    float randRotSpeedUnique = (float)((this._obj_random.NextDouble() * Math.Abs(0.04 - 0.01)) + 0.01); // Generate random rotation speed between 0.01 and 0.06 every frame.
 
                     if (randPosXUnique == 0)
-                        randPosXUnique = (float)(_obj_random.Next(-300, ScreenManager.GraphicsDevice.Viewport.Width) - ScreenManager.GraphicsDevice.Viewport.Width);
+                        randPosXUnique = (float)(this._obj_random.Next(-300, ScreenManager.GraphicsDevice.Viewport.Width) - ScreenManager.GraphicsDevice.Viewport.Width);
                     else
-                        randPosXUnique = (float)(_obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Width) + ScreenManager.GraphicsDevice.Viewport.Width);
+                        randPosXUnique = (float)(this._obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Width) + ScreenManager.GraphicsDevice.Viewport.Width);
 
-                    randPosYUnique = (float)_obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Height);
+                    randPosYUnique = (float)this._obj_random.Next(0, ScreenManager.GraphicsDevice.Viewport.Height);
 
                     switch (randItemUnique)
                     {
                         case 0: //Megaman
-                            mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Unique/anim_megaman"), 8, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosXUnique, randPosYUnique), _obj_random.Next(0, 9), 24, 1f, 1f, randDirXUnique, 0, randRotDirUnique, randRotSpeedUnique));
+                            this.mAnimatedBGObjects.Add(new AnimatedBGEntity(this._content.Load<Texture2D>("Sprites/Misc/Unique/anim_megaman"), 8, 1, (float)((_obj_random.NextDouble() * 10) - 5), new Vector2(randPosXUnique, randPosYUnique), _obj_random.Next(0, 9), 24, 1f, 1f, randDirXUnique, 0, randRotDirUnique, randRotSpeedUnique));
                             break;
                     }
                 }
-
             }
 
             base.loadContent();
@@ -108,9 +107,9 @@ namespace SolarFusion.Screen.GUIScreens
 
         public override void update()
         {
-            if (mAnimatedBGObjects != null)
+            if (this.mAnimatedBGObjects != null)
             {
-                foreach (AnimatedBGEntity entity in mAnimatedBGObjects)
+                foreach (AnimatedBGEntity entity in this.mAnimatedBGObjects)
                 {
                     entity.Update(GlobalGameTimer);
 

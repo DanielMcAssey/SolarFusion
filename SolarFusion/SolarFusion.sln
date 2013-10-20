@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameData", "GameData\GameDa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarFusion (Xbox 360)", "SolarFusion\SolarFusion\SolarFusion (Xbox 360).csproj", "{3FD16225-73A7-4902-9C37-979FF11B1B29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameData (Xbox 360)", "GameData\GameData (Xbox 360).csproj", "{DB59E622-091A-46C2-92C7-9AE63A6655D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -77,6 +79,16 @@ Global
 		{3FD16225-73A7-4902-9C37-979FF11B1B29}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
 		{3FD16225-73A7-4902-9C37-979FF11B1B29}.Release|Xbox 360.Build.0 = Release|Xbox 360
 		{3FD16225-73A7-4902-9C37-979FF11B1B29}.Release|Xbox 360.Deploy.0 = Release|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Debug|Mixed Platforms.ActiveCfg = Debug|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Debug|Mixed Platforms.Build.0 = Debug|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Debug|x86.ActiveCfg = Debug|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Debug|Xbox 360.ActiveCfg = Debug|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Debug|Xbox 360.Build.0 = Debug|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Release|Mixed Platforms.ActiveCfg = Release|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Release|Mixed Platforms.Build.0 = Release|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Release|x86.ActiveCfg = Release|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
+		{DB59E622-091A-46C2-92C7-9AE63A6655D5}.Release|Xbox 360.Build.0 = Release|Xbox 360
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

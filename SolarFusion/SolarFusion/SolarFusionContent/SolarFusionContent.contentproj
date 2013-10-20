@@ -60,7 +60,6 @@
     <Folder Include="Audio\" />
     <Folder Include="Core\Data\" />
     <Folder Include="Core\Shaders\" />
-    <Folder Include="Levels\level_0\" />
     <Folder Include="Sprites\Characters\Jumpista\" />
     <Folder Include="Sprites\Misc\Static\" />
     <Folder Include="Sprites\Objects\Animated\" />
@@ -147,6 +146,30 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Levels\level_0\tileset.png">
+      <Name>tileset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Levels\level_0\level.tmx">
+      <Name>level</Name>
+      <Importer>TMXImporter</Importer>
+      <Processor>TilemapProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataPipeline\DataPipeline.csproj">
+      <Project>{76759F8D-56DF-4803-97D9-DA895F0C0528}</Project>
+      <Name>DataPipeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GameData\GameData.csproj">
+      <Project>{B0F3E94A-5C55-4C29-B90A-3CD054601594}</Project>
+      <Name>GameData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
