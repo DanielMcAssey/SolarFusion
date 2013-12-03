@@ -7,7 +7,6 @@ namespace SolarFusion.Screen.System
     public class MenuItemBasic
     {
         //--------------CLASS CONSTANTS-------------------------------------------------------
-        public float DEFAULT_PULSE_RATE            = 4.0f;
         public static readonly Color DEF_COLOUR_NORMAL   = Color.White;
         public static readonly Color DEF_COLOUR_SELECTED = Color.Turquoise;
 
@@ -40,13 +39,6 @@ namespace SolarFusion.Screen.System
             this._item_text                 = pitemtext;
             this._item_colour_def           = pnormal;
             this._item_colour_selected      = pselected;
-            this._item_pulse_rate = DEFAULT_PULSE_RATE;
-        }
-
-        public float PulseRate
-        {
-            get { return DEFAULT_PULSE_RATE; }
-            set { DEFAULT_PULSE_RATE = value; }
         }
 
         /// <summary>
@@ -126,17 +118,11 @@ namespace SolarFusion.Screen.System
             // Draw the selected entry in yellow, otherwise white.
             Color tmenuitemclr = pselected ? this._item_colour_selected : this._item_colour_def;
 
-            // Pulsate the size of the selected menu entry.
-            double ttime = pscreen.GlobalGameTimer.TotalGameTime.TotalSeconds;
-            float tpulsate = (float)Math.Sin(ttime * 6) + 1;
-            float tscale = 1 + tpulsate * 0.05f * _item_fade;
-
-
             // Modify the alpha to fade text out during transitions.
             tmenuitemclr *= pscreen.CurrentTransitionAlpha;
             Vector2 textSize = pscreen.ScreenManager.DefaultGUIFont.MeasureString(this._item_text);
             Vector2 torigin = new Vector2(textSize.X / 2f, pscreen.ScreenManager.DefaultGUIFont.LineSpacing / 2);
-            pscreen.ScreenManager.SpriteBatch.DrawString(pscreen.ScreenManager.DefaultGUIFont, this._item_text, this._item_pos, tmenuitemclr, 0, torigin, tscale, SpriteEffects.None, 0);
+            pscreen.ScreenManager.SpriteBatch.DrawString(pscreen.ScreenManager.DefaultGUIFont, this._item_text, this._item_pos, tmenuitemclr, 0, torigin, 0.7f, SpriteEffects.None, 0);
         }
 
         //------------------PUBLIC METHODS-----------------------------------------------------------------------

@@ -48,7 +48,7 @@ namespace SolarFusion.Screen.GUIScreens
 
             bool IsSelectedUnique = false;  
 
-            for (int i = 0; i < 2000; i++)
+            for (int i = 0; i < 20; i++)
             {
                 int randItem = this._obj_random.Next(0, 2);
 
