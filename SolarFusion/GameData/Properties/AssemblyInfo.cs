@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GameData")]
+[assembly: AssemblyTitle("SolarFusion GameData Processor")]
 [assembly: AssemblyProduct("GameData")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("LJMU")]
-[assembly: AssemblyCopyright("Copyright © LJMU 2013")]
+[assembly: AssemblyCompany("Dimensional Wave LTD")]
+[assembly: AssemblyCopyright("Copyright © Dimensional Wave LTD 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

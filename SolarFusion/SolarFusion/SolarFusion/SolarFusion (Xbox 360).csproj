@@ -66,25 +66,33 @@
     <Compile Include="Core\Camera\Camera2D.cs" />
     <Compile Include="Core\Config\ConfigManager.cs" />
     <Compile Include="Core\Config\SystemSettings.cs" />
+    <Compile Include="Core\Entities\BaseEntity.cs" />
+    <Compile Include="Core\Entities\EntityManager.cs" />
+    <Compile Include="Core\Input\InputHelper.cs" />
+    <Compile Include="Core\Input\InputManager.cs" />
+    <Compile Include="Core\Level\LevelManager.cs" />
+    <Compile Include="Core\Screen\DefaultScreens\ScreenBG.cs" />
+    <Compile Include="Core\Screen\DefaultScreens\ScreenLoading.cs" />
+    <Compile Include="Core\Screen\DefaultScreens\ScreenMsgBox.cs" />
+    <Compile Include="Core\Screen\DefaultScreens\ScreenPause.cs" />
+    <Compile Include="Core\Screen\GameScreens\ScreenCharSelect.cs" />
+    <Compile Include="Core\Screen\GameScreens\ScreenGame.cs" />
+    <Compile Include="Core\Screen\GUIScreens\ScreenCredits.cs" />
+    <Compile Include="Core\Screen\GUIScreens\ScreenMenuRoot.cs" />
+    <Compile Include="Core\Screen\GUIScreens\ScreenOptions.cs" />
+    <Compile Include="Core\Screen\System\AppScreen.cs" />
+    <Compile Include="Core\Screen\System\BaseGUIScreen.cs" />
+    <Compile Include="Core\Screen\System\BaseScreen.cs" />
+    <Compile Include="Core\Screen\System\Components\AnimatedBGEntity.cs" />
+    <Compile Include="Core\Screen\System\Components\MenuItemBasic.cs" />
+    <Compile Include="Core\Screen\System\Events\EventPlayer.cs" />
+    <Compile Include="Core\Screen\System\ScreenManager.cs" />
     <Compile Include="Core\Sprites\AnimatedSprite.cs" />
     <Compile Include="Core\Sprites\Sprite.cs" />
     <Compile Include="Core\SysConfig.cs" />
-    <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\EntityManager.cs" />
-    <Compile Include="Input\InputHelper.cs" />
-    <Compile Include="Input\InputManager.cs" />
-    <Compile Include="Level\LevelManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\SolarFusion.cs" />
     <Compile Include="Core\Game.cs" />
-    <Compile Include="Screen\DefaultScreens\ScreenBG.cs" />
-    <Compile Include="Screen\GUIScreens\ScreenMenuRoot.cs" />
-    <Compile Include="Screen\System\BaseGUIScreen.cs" />
-    <Compile Include="Screen\System\BaseScreen.cs" />
-    <Compile Include="Screen\System\Components\AnimatedBGEntity.cs" />
-    <Compile Include="Screen\System\Components\MenuItemBasic.cs" />
-    <Compile Include="Screen\System\Events\EventPlayer.cs" />
-    <Compile Include="Screen\System\ScreenManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Core\Game.ico" />
@@ -128,7 +136,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Screen\DefaultScreens\" />
+    <Folder Include="Screen\GUIScreens\" />
+    <Folder Include="Screen\System\Components\" />
+    <Folder Include="Screen\System\Events\" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Avatar" />

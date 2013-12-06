@@ -11,9 +11,9 @@ namespace SolarFusion.Core
     public class SysConfig
     {
         //General Configuration
-        public const string CONFIG_GAME_BUILD = "f66e307";
+        public const string CONFIG_GAME_BUILD = "0.1.1dev-branch";
         public const string CONFIG_GAME_BUILD_TYPE = "Development";
-        public const string CONFIG_GAME_NAME = "SolarFusion - Development Build (" + CONFIG_GAME_BUILD + ")";
+        public const string CONFIG_GAME_NAME = "SolarFusion - " + CONFIG_GAME_BUILD_TYPE + " Build (" + CONFIG_GAME_BUILD + ")";
         public const string CONFIG_GAME_NAME_CLEAN = "SolarFusion";
 
         //Debug Settings
@@ -34,13 +34,16 @@ namespace SolarFusion.Core
         public const string ASSET_CONFIG_HUD_FONT = CONFIG_DATA_DIR_GUI_FONTS + "font_HUD";
         public const string ASSET_CONFIG_DEBUG_FONT = CONFIG_DATA_DIR_GUI_FONTS + "font_DEBUG";
         public const string ASSET_CONFIG_BLANK_BG = CONFIG_DATA_DIR_GUI_BG + "texture_BLANK";
+        public const string ASSET_CONFIG_BLACK_BG = CONFIG_DATA_DIR_GUI_BG + "texture_BLACK";
+        public const string ASSET_CONFIG_DEFAULT_BG = CONFIG_DATA_DIR_GUI_BG + "bg";
+        public const string ASSET_CONFIG_MSGBOX_BG = CONFIG_DATA_DIR_GUI_BG + "msgbox";
 
         //Settings
         public const string ASSET_CONFIG_SETTINGS_FILE = "base.config";
 
         //Default Strings
-        public const string ASSET_ENGINE_STRING_MSG_BOX_USAGE = "\n Pad A button, Space, Enter = ok \nB button, Esc = cancel";
-        public const string ASSET_ENGINE_STRING_LOADING = "Loading...";
+        public const string ASSET_CONFIG_MSG_LOADING = "-LOADING-";
+        public const string ASSET_CONFIG_MSG_BOX_USAGE = "\n'Enter' - Yes\n'Escape' - No";
 
         //Default GamePad Controls
         public const Buttons INPUT_GAMEPAD_UP_DPAD = Buttons.DPadUp;
