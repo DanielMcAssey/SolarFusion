@@ -63,14 +63,28 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\.NET\HashSet.cs" />
     <Compile Include="Core\Camera\Camera2D.cs" />
     <Compile Include="Core\Config\ConfigManager.cs" />
     <Compile Include="Core\Config\SystemSettings.cs" />
-    <Compile Include="Core\Entities\BaseEntity.cs" />
+    <Compile Include="Core\Entities\AI\AI.cs" />
+    <Compile Include="Core\Entities\AI\Enemy_MercBot.cs" />
     <Compile Include="Core\Entities\EntityManager.cs" />
+    <Compile Include="Core\Entities\GameObjects.cs" />
+    <Compile Include="Core\Entities\General\Player.cs" />
+    <Compile Include="Core\Entities\LevelObjects\LevelObject.cs" />
+    <Compile Include="Core\Entities\LevelObjects\LevelObject_Solid.cs" />
+    <Compile Include="Core\Entities\PowerUps\PowerUp.cs" />
+    <Compile Include="Core\Entities\PowerUps\PowerUp_Crate.cs" />
+    <Compile Include="Core\Entities\PowerUps\PowerUp_Crystal.cs" />
+    <Compile Include="Core\Entities\PowerUps\PowerUp_Dynamite.cs" />
+    <Compile Include="Core\Entities\PowerUps\PowerUp_EnergyBall.cs" />
     <Compile Include="Core\Input\InputHelper.cs" />
     <Compile Include="Core\Input\InputManager.cs" />
     <Compile Include="Core\Level\LevelManager.cs" />
+    <Compile Include="Core\Logic\Bound.cs" />
+    <Compile Include="Core\Logic\BoundingBoxes.cs" />
+    <Compile Include="Core\Logic\CollisionPair.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenBG.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenLoading.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenMsgBox.cs" />

@@ -15,7 +15,10 @@ namespace SolarFusion.Core.Screen
 
         public override void update()
         {
-
+            if (this.GlobalInput.IsPressed("NAV_CANCEL", this.ControllingPlayer)) //If player presses cancel button (Escape/B)
+            {
+                this.exitScreen(); //Exit the screen.
+            }
 
             base.update();
         }

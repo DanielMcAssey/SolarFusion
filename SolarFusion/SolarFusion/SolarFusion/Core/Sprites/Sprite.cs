@@ -14,7 +14,7 @@ namespace SolarFusion.Core
     {
         //Default Variables
         protected Texture2D mSpriteTexture;
-        protected Vector2 mSpritePosition = Vector2.Zero;
+        public Vector2 mSpritePosition = Vector2.Zero;
         protected Color mSpriteColor = Color.White;
         protected Vector2 mSpriteOrigin;
         protected float mSpriteRotation = 0f;
@@ -35,6 +35,12 @@ namespace SolarFusion.Core
         //!Animated Sprite
 
         // PROPERTIES
+        public string CurrentAnimation
+        {
+            get { return this.mCurrentAnimation; }
+            set { this.mCurrentAnimation = value; }
+        }
+
         public Texture2D Texture
         {
             get { return mSpriteTexture; }

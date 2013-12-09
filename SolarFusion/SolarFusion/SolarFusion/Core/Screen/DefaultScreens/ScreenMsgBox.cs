@@ -37,7 +37,7 @@ namespace SolarFusion.Core.Screen
         /// <param name="pcolour">The Message Text Colour</param>
         /// <param name="pusagetext">Whether the Usage Text is displayed</param>
         /// <param name="pusagetextmsg">The Usage Text Message</param>
-        public ScreenMsgBox(string ptexture, string pmessage, Color pcolour, bool pusagetext, string pusagetextmsg, float palpha = DEFAULT_ALPHA, float ptranstime = DEFAULT_TRANS_TIME, int ppaddingv = DEFAULT_PADDING_V, int ppaddingh = DEFAULT_PADDING_H)
+        public ScreenMsgBox(string ptexture, string pmessage, Color pcolour, bool pusagetext, string pusagetextmsg, float palpha, float ptranstime, int ppaddingv, int ppaddingh)
         {
             this._message_bg_file = ptexture;
             this._message_text = pusagetext ? pmessage + pusagetextmsg : pmessage;
@@ -58,7 +58,7 @@ namespace SolarFusion.Core.Screen
         /// <param name="pmessage">The Message Box Message Text</param>
         /// <param name="pusagetext">Whether the Usage Text is Displayed</param>
         public ScreenMsgBox(string ptexture, string pmessage, Color pcolour, bool pusagetext)
-            : this(ptexture, pmessage, pcolour, pusagetext, SysConfig.ASSET_CONFIG_MSG_BOX_USAGE)
+            : this(ptexture, pmessage, pcolour, pusagetext, SysConfig.ASSET_CONFIG_MSG_BOX_USAGE, DEFAULT_ALPHA, DEFAULT_TRANS_TIME, DEFAULT_PADDING_V, DEFAULT_PADDING_H)
         { }
 
         /// <summary>

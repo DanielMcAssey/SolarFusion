@@ -60,7 +60,6 @@
     <Folder Include="Audio\" />
     <Folder Include="Core\Data\" />
     <Folder Include="Core\Shaders\" />
-    <Folder Include="Sprites\Characters\Jumpista\" />
     <Folder Include="Sprites\Misc\Static\" />
     <Folder Include="Sprites\Objects\Animated\" />
     <Folder Include="Sprites\Objects\Static\" />
@@ -505,6 +504,37 @@
   <ItemGroup>
     <Compile Include="System\UI\Backgrounds\texture_BLACK.png">
       <Name>texture_BLACK</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Characters\Jumpista\spritesheet.png">
+      <Name>spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Levels\level_1\level.tmx">
+      <Name>level</Name>
+      <Importer>TMXImporter</Importer>
+      <Processor>TilemapProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Levels\level_1\tileset.png">
+      <Name>tileset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Levels\level_1\tileset_1.png">
+      <Name>tileset_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Levels\level_1\tileset_generic.png">
+      <Name>tileset_generic</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
