@@ -24,6 +24,7 @@ namespace SolarFusion.Core
             this.animation.CurrentAnimation = "idle";
             this.Score = 10;
             this.type = PowerUpType.Crate;
+            this.animation.Loop = true;
         }
     }
 }

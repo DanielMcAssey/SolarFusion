@@ -33,7 +33,7 @@ namespace SolarFusion.Core.Screen
             baseAnimation.AddAnimation("DEFAULT", 1, frameCount, fps);
             baseAnimation.Frame = initFrame;
             baseAnimation.mCurrentAnimation = "DEFAULT";
-            baseAnimation.IsLoopAnimation = true;
+            baseAnimation.Loop = true;
         }
 
         public float GetSpeedX

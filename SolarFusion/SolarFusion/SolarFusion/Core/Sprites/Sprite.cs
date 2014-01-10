@@ -118,9 +118,7 @@ namespace SolarFusion.Core
             Rectangle[] tmpRectangles = new Rectangle[frameCount];
 
             for (int i = 0; i < frameCount; i++)
-            {
                 tmpRectangles[i] = new Rectangle(i * AnimationWidth, (animRow - 1) * AnimationHeight, AnimationWidth, AnimationHeight);
-            }
 
             mSpriteAnimations.Add(animName, tmpRectangles);
             mSpriteFramesCount.Add(animName, frameCount);
@@ -132,16 +130,12 @@ namespace SolarFusion.Core
             if (mFrameIndex > (mSpriteAnimations[mCurrentAnimation].Length - 1))
             {
                 if (mSpriteTexture != null)
-                {
                     spriteBatch.Draw(mSpriteTexture, mSpritePosition, mSpriteAnimations[mCurrentAnimation][0], mSpriteColor, mSpriteRotation, mSpriteOrigin, mSpriteScale, mSpriteEffects, 0f);
-                }
             }
             else
             {
                 if (mSpriteTexture != null)
-                {
                     spriteBatch.Draw(mSpriteTexture, mSpritePosition, mSpriteAnimations[mCurrentAnimation][mFrameIndex], mSpriteColor, mSpriteRotation, mSpriteOrigin, mSpriteScale, mSpriteEffects, 0f);
-                }
             }
         }
         //!FUNCTIONS

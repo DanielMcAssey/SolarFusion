@@ -82,9 +82,7 @@ namespace SolarFusion.Core
             if (playerAnimation != null)
             {
                 if (isJumping == false)
-                {
                     moveDirection = MoveDirection.Left;
-                }
 
                 position.X -= moveSpeed;
                 playerAnimation.CurrentAnimation = "left";
@@ -96,9 +94,7 @@ namespace SolarFusion.Core
             if (playerAnimation != null)
             {
                 if (isJumping == false && isOnTop == false)
-                {
                     moveDirection = MoveDirection.Right;
-                }
                 
                 position.X += moveSpeed;
                 playerAnimation.CurrentAnimation = "right";
@@ -135,7 +131,7 @@ namespace SolarFusion.Core
 
         public override void Update(GameTime gameTime)
         {
-            if (isJumping == true)
+            if (isJumping)
             {
                 jumpDistance = (float)gameTime.ElapsedGameTime.TotalSeconds * jumpSpeed;
 

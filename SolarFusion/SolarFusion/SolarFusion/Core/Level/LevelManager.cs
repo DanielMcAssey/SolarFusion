@@ -66,7 +66,7 @@ namespace SolarFusion.Level
                     switch (goData.entCategory) //Swtich by object category.
                     {
                         case "PlayerStart":
-                            Vector2 newPos = new Vector2(position.X, position.Y + ((player.Height / 2) / 2));
+                            Vector2 newPos = new Vector2(position.X, (position.Y - ((player.Height / 2) / 2)));
                             player.Position = newPos;
                             player.floorHeight = position.Y + ((player.Height / 2) / 2);
                             player.isSingleplayer = true;
@@ -166,11 +166,12 @@ namespace SolarFusion.Level
                             }
                         }
                     }
-
                     go.Update(_gameTime); //Updates the object.
                     this._obj_entitymanager.UpdateGameObject(goID); //Updates the object within the object manager.
                 }
             }
+
+            player.Update(_gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -218,6 +219,8 @@ namespace SolarFusion.Level
                 if (go.Hidden == false)
                     go.Draw(spriteBatch); //Draws The Object.
             }
+
+            player.Draw(spriteBatch);
 
             spriteBatch.End();
         }

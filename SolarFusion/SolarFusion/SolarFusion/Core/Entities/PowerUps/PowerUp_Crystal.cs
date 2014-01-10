@@ -22,6 +22,7 @@ namespace SolarFusion.Core
             this.animation.Origin = new Vector2((tmpTexture.Width / 12f) / 2f, tmpTexture.Height / 2f);
             this.animation.Scale = 0.5f;
             this.animation.CurrentAnimation = "idle";
+            this.animation.Loop = true;
             this.Score = 10;
             this.type = PowerUpType.Crystal;
         }

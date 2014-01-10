@@ -13,8 +13,14 @@ namespace SolarFusion.Core
     public class AnimatedSprite : Sprite
     {
         private float mTimeElapsed;
-        public bool IsLoopAnimation = false;
+        private bool IsLoopAnimation = false;
         private float mTimeToUpdate = 0.05f;
+
+        public bool Loop
+        {
+            get { return this.IsLoopAnimation; }
+            set { this.IsLoopAnimation = value; }
+        }
 
         public int FramesPerSecond
         {
@@ -35,27 +41,19 @@ namespace SolarFusion.Core
             {
                 mTimeElapsed -= mTimeToUpdate;
 
-                if (IsAnimation == true)
+                if (IsAnimation)
                 {
                     if (mFrameIndex < (mSpriteFramesCount[mCurrentAnimation] - 1))
-                    {
                         mFrameIndex++;
-                    }
-                    else if (IsLoopAnimation == true)
-                    {
+                    else if (IsLoopAnimation)
                         mFrameIndex = 0;
-                    }
                 }
                 else
                 {
                     if (mFrameIndex < (mAnimationFrames - 1))
-                    {
                         mFrameIndex++;
-                    }
-                    else if (IsLoopAnimation == true)
-                    {
+                    else if (IsLoopAnimation)
                         mFrameIndex = 0;
-                    }
                 }
             }
         }

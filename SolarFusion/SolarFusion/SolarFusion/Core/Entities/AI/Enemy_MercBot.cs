@@ -25,6 +25,7 @@ namespace SolarFusion.Core
             this.animation.Origin = new Vector2((tmpTexture.Width / 3f) / 2f, (tmpTexture.Height / 3f) / 2f);
             this.animation.Scale = 1.5f;
             this.animation.CurrentAnimation = "idle";
+            this.animation.Loop = true;
 
             this.Health = 100;
             this.Speed = 1f;

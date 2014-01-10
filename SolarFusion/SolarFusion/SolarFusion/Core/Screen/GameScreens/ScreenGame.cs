@@ -29,9 +29,11 @@ namespace SolarFusion.Core.Screen
 
             //!Debug!
             AnimatedSprite _tmpPlayerAnim = new AnimatedSprite(this._local_content.Load<Texture2D>("Sprites/Characters/Jumpista/spritesheet"), 5, 3);
-            _tmpPlayerAnim.AddAnimation("right", 0, 5, 7);
-            _tmpPlayerAnim.AddAnimation("left", 1, 5, 7);
-            _tmpPlayerAnim.AddAnimation("idle", 2, 3, 5);
+            _tmpPlayerAnim.AddAnimation("right", 1, 5, 7);
+            _tmpPlayerAnim.AddAnimation("left", 2, 5, 7);
+            _tmpPlayerAnim.AddAnimation("idle", 3, 3, 5);
+            _tmpPlayerAnim.mCurrentAnimation = "idle";
+            _tmpPlayerAnim.Loop = true;
             //!Debug!
 
             this._obj_activeplayer = new Player(this._obj_entitymanager.NextID(), _tmpPlayerAnim, Vector2.Zero, 1.8f, 100, 280, this._obj_entitymanager);
@@ -54,8 +56,18 @@ namespace SolarFusion.Core.Screen
             GameTime _gameTimer = this.GlobalGameTimer;
             TimeSpan _elapsedTime = _gameTimer.ElapsedGameTime;
             TimeSpan _totalTime = _gameTimer.TotalGameTime;
-            
 
+            this._obj_levelmanager.Update(_gameTimer);
+
+            if (this.GlobalInput.IsPressed("PLAY_MOVE_LEFT", this.ControllingPlayer)) //If player presses cancel button (Escape/B)
+                this._obj_activeplayer.moveLeft();
+            else if (this.GlobalInput.IsPressed("PLAY_MOVE_RIGHT", this.ControllingPlayer)) //If player presses cancel button (Escape/B)
+                this._obj_activeplayer.moveRight();
+            else
+                this._obj_activeplayer.moveIdle();
+
+            if (this.GlobalInput.IsPressed("PLAY_MOVE_JUMP", this.ControllingPlayer)) //If player presses cancel button (Escape/B)
+                this._obj_activeplayer.jump();
 
             base.update();
         }
