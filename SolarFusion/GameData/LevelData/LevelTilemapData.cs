@@ -18,5 +18,7 @@ namespace GameData
         public float ScrollSpeed;
         public float LayerDepth;
         public LevelTileData[] TileData;
+
+
     }
 }
