@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace SolarFusion.Core.Screen
 {
     class ScreenCharSelect : BaseGUIScreen
     {
         public ScreenCharSelect()
-            : base("Character Select", false, null)
+            : base("Character Select", Color.Black, false, null)
         {
 
         }
