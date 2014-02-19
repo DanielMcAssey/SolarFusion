@@ -16,6 +16,12 @@ namespace SolarFusion.Core.Screen
 
         }
 
+        public override void loadContent()
+        {
+            base.loadContent();
+            //Load stuff
+        }
+
         public override void update()
         {
             if (this.GlobalInput.IsPressed("NAV_CANCEL", this.ControllingPlayer)) //If player presses cancel button (Escape/B)

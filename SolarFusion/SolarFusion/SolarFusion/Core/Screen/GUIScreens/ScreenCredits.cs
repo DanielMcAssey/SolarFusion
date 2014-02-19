@@ -14,7 +14,13 @@ namespace SolarFusion.Core.Screen
         public ScreenCredits()
             : base("CREDITS", Color.Black, false, null)
         {
+            
+        }
 
+        public override void loadContent()
+        {
+            base.loadContent();
+            //Load stuff
         }
 
         public override void update()
