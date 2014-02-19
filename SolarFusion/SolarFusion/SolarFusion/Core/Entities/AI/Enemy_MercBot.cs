@@ -26,7 +26,7 @@ namespace SolarFusion.Core
             this.animation.Scale = 1.5f;
             this.animation.CurrentAnimation = "idle";
             this.animation.Loop = true;
-
+            //MERCBOT
             this.Health = 100;
             this.Speed = 1f;
         }
