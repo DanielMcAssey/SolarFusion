@@ -77,7 +77,7 @@ namespace SolarFusion.Core.Screen
         /// </summary>
         public override void loadContent()
         {
-            this._message_bg = this.GlobalContentManager.Load<Texture2D>(this._message_bg_file);
+            this._message_bg = this.GlobalContentManager.Load<Texture2D>("Sprites/Misc/UI/Buttons/misc/blue_panel");
         }
 
         /// <summary>

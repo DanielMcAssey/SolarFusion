@@ -337,7 +337,7 @@ namespace SolarFusion.Core
             {
                 box = boundingBoxes[id];
             }
-            catch (KeyNotFoundException e)
+            catch (KeyNotFoundException ex)
             {
                 return;
             }

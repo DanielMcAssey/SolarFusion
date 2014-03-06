@@ -125,17 +125,20 @@ namespace SolarFusion.Core
             mSpriteFPS.Add(animName, spriteFPS);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float alpha)
         {
+            Color _alphaMixer = mSpriteColor;
+            _alphaMixer *= alpha;
+
             if (mFrameIndex > (mSpriteAnimations[mCurrentAnimation].Length - 1))
             {
                 if (mSpriteTexture != null)
-                    spriteBatch.Draw(mSpriteTexture, mSpritePosition, mSpriteAnimations[mCurrentAnimation][0], mSpriteColor, mSpriteRotation, mSpriteOrigin, mSpriteScale, mSpriteEffects, 0f);
+                    spriteBatch.Draw(mSpriteTexture, mSpritePosition, mSpriteAnimations[mCurrentAnimation][0], _alphaMixer, mSpriteRotation, mSpriteOrigin, mSpriteScale, mSpriteEffects, 0f);
             }
             else
             {
                 if (mSpriteTexture != null)
-                    spriteBatch.Draw(mSpriteTexture, mSpritePosition, mSpriteAnimations[mCurrentAnimation][mFrameIndex], mSpriteColor, mSpriteRotation, mSpriteOrigin, mSpriteScale, mSpriteEffects, 0f);
+                    spriteBatch.Draw(mSpriteTexture, mSpritePosition, mSpriteAnimations[mCurrentAnimation][mFrameIndex], _alphaMixer, mSpriteRotation, mSpriteOrigin, mSpriteScale, mSpriteEffects, 0f);
             }
         }
         //!FUNCTIONS

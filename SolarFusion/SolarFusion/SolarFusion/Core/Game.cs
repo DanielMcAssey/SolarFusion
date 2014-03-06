@@ -26,13 +26,20 @@ namespace SolarFusion
         public Game()
         {
             this._obj_config = new ConfigManager();
-
             this.Window.Title = SysConfig.CONFIG_GAME_NAME;
             this.Content.RootDirectory = SysConfig.CONFIG_CONTENT_ROOT;
 
             try
             {
                 this._obj_graphics = new GraphicsDeviceManager(this);
+            }
+            catch (Exception ex)
+            {
+                Environment.Exit(0);
+            }
+
+            try
+            {
                 this._obj_graphics.PreferredBackBufferWidth = this._obj_config.Settings.VIDEO_RES_WIDTH;
                 this._obj_graphics.PreferredBackBufferHeight = this._obj_config.Settings.VIDEO_RES_HEIGHT;
                 this._obj_graphics.IsFullScreen = this._obj_config.Settings.VIDEO_FULLSCREEN;
@@ -54,7 +61,6 @@ namespace SolarFusion
                 this._obj_config.Settings.VIDEO_VSYNC = true;
                 this._obj_config.Settings.VIDEO_DEPTH_STENCIL_BUFFER = (int)DepthFormat.Depth24Stencil8;
 #endif
-                this._obj_graphics = new GraphicsDeviceManager(this);
                 this._obj_graphics.PreferredBackBufferWidth = this._obj_config.Settings.VIDEO_RES_WIDTH;
                 this._obj_graphics.PreferredBackBufferHeight = this._obj_config.Settings.VIDEO_RES_HEIGHT;
                 this._obj_graphics.IsFullScreen = this._obj_config.Settings.VIDEO_FULLSCREEN;
