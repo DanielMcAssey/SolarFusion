@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace SolarFusion.Core.Screen
 {
@@ -8,7 +9,7 @@ namespace SolarFusion.Core.Screen
     {
         //--------------CLASS CONSTANTS-------------------------------------------------------
         public static readonly Color DEF_COLOUR_NORMAL   = Color.White;
-        public static readonly Color DEF_COLOUR_SELECTED = Color.Turquoise;
+        public static readonly Color DEF_COLOUR_SELECTED = new Color(46, 46, 46);
 
         //--------------CLASS MEMBERS---------------------------------------------------------
         protected string      _item_text;
@@ -17,7 +18,12 @@ namespace SolarFusion.Core.Screen
         protected Color       _item_colour_def;
         protected Color       _item_colour_selected;
         protected float       _item_pulse_rate;
-
+        protected Texture2D _item_background;
+        protected Texture2D _item_background_pressed;
+        protected Texture2D _item_background_selected;
+        protected float _item_press_time;
+        protected float _item_press_time_passed;
+        protected bool _item_pressed;
 
         //--------------CLASS EVENTS----------------------------------------------------------
         public event EventHandler<EventPlayer> OnSelected;
@@ -34,11 +40,16 @@ namespace SolarFusion.Core.Screen
         /// <param name="pselected">The selected colour of the menu</param>
         /// <param name="ppulserate">The pulse rate of the menu</param>
         /// </summary>
-        public MenuItemBasic(string pitemtext,Color pnormal,Color pselected)
+        public MenuItemBasic(string pitemtext, Color pnormal, Color pselected, ContentManager _content)
         {
             this._item_text                 = pitemtext;
             this._item_colour_def           = pnormal;
             this._item_colour_selected      = pselected;
+            this._item_background = _content.Load<Texture2D>("Sprites/Misc/UI/Buttons/rectangle/blue_01_btn");
+            this._item_background_pressed = _content.Load<Texture2D>("Sprites/Misc/UI/Buttons/rectangle/blue_01_btn_press");
+            this._item_background_selected = _content.Load<Texture2D>("Sprites/Misc/UI/Buttons/rectangle/yellow_01_btn");
+            this._item_press_time = 120; //Time in Miliseconds
+            
         }
 
         /// <summary>
@@ -47,7 +58,7 @@ namespace SolarFusion.Core.Screen
         /// and the pulse rate.
         /// <param name="pitemtext">The text of the menu item.</param>
         /// </summary>
-        public MenuItemBasic(string pitemtext) : this(pitemtext,DEF_COLOUR_NORMAL,DEF_COLOUR_SELECTED)
+        public MenuItemBasic(string pitemtext, ContentManager _content) : this(pitemtext,DEF_COLOUR_NORMAL,DEF_COLOUR_SELECTED, _content)
         {
 
         }
@@ -101,6 +112,16 @@ namespace SolarFusion.Core.Screen
         {
             float tfadespeed = (float)pscreen.GlobalGameTimer.ElapsedGameTime.TotalSeconds * this._item_pulse_rate;
 
+            if (this._item_pressed)
+            {
+                this._item_press_time_passed += (float)pscreen.GlobalGameTimer.ElapsedGameTime.TotalMilliseconds;
+                if (this._item_press_time_passed > this._item_press_time)
+                {
+                    this._item_pressed = false;
+                    this._item_press_time_passed = 0;
+                }
+            }
+            
             if (pselected)
                 this._item_fade = Math.Min(this._item_fade + tfadespeed, 1);
             else
@@ -117,12 +138,34 @@ namespace SolarFusion.Core.Screen
         {
             // Draw the selected entry in yellow, otherwise white.
             Color tmenuitemclr = pselected ? this._item_colour_selected : this._item_colour_def;
+            Color tmenuimgclr = this._item_colour_def;
+            Vector2 tmenuposaddition = Vector2.Zero;
 
             // Modify the alpha to fade text out during transitions.
             tmenuitemclr *= pscreen.CurrentTransitionAlpha;
+            tmenuimgclr *= pscreen.CurrentTransitionAlpha;
+
+            if (this._item_pressed)
+            {
+                pscreen.ScreenManager.SpriteBatch.Draw(this._item_background_pressed, this._item_pos, null, tmenuimgclr, 0f, new Vector2(this._item_background_pressed.Width / 2, (this._item_background_pressed.Height / 2) - 3), 0.8f, SpriteEffects.None, 0);
+                tmenuposaddition = new Vector2(0, 2);
+            }
+            else
+            {
+                if (pselected)
+                {
+                    pscreen.ScreenManager.SpriteBatch.Draw(this._item_background_selected, this._item_pos, null, tmenuimgclr, 0f, new Vector2(this._item_background_selected.Width / 2, (this._item_background_selected.Height / 2) - 3), 0.8f, SpriteEffects.None, 0);
+                }
+                else
+                {
+                    pscreen.ScreenManager.SpriteBatch.Draw(this._item_background, this._item_pos, null, tmenuimgclr, 0f, new Vector2(this._item_background.Width / 2, (this._item_background.Height / 2) - 3), 0.8f, SpriteEffects.None, 0);
+                }
+            }
+
+            
             Vector2 textSize = pscreen.ScreenManager.DefaultGUIFont.MeasureString(this._item_text);
             Vector2 torigin = new Vector2(textSize.X / 2f, pscreen.ScreenManager.DefaultGUIFont.LineSpacing / 2);
-            pscreen.ScreenManager.SpriteBatch.DrawString(pscreen.ScreenManager.DefaultGUIFont, this._item_text, this._item_pos, tmenuitemclr, 0, torigin, 0.7f, SpriteEffects.None, 0);
+            pscreen.ScreenManager.SpriteBatch.DrawString(pscreen.ScreenManager.DefaultGUIFont, this._item_text, this._item_pos + tmenuposaddition, tmenuitemclr, 0, torigin, 0.7f, SpriteEffects.None, 0);
         }
 
         //------------------PUBLIC METHODS-----------------------------------------------------------------------
@@ -154,7 +197,10 @@ namespace SolarFusion.Core.Screen
         protected internal virtual void OnSelectEntry(PlayerIndex? pplayerindex)
         {
             if (this.OnSelected != null)
+            {
                 this.OnSelected(this, new EventPlayer(pplayerindex));
+                this._item_pressed = true;
+            }
         }
 
         /// <summary>

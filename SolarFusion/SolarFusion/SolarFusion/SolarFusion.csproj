@@ -135,6 +135,8 @@
     <Compile Include="Core\Screen\GUIScreens\ScreenCredits.cs" />
     <Compile Include="Core\Screen\GUIScreens\ScreenOptions.cs" />
     <Compile Include="Core\Screen\System\AppScreen.cs" />
+    <Compile Include="Core\Screen\System\Components\MenuItemCharacterSelect.cs" />
+    <Compile Include="Core\Screen\System\Components\MenuItemSlider.cs" />
     <Compile Include="Core\Sprites\AnimatedSprite.cs" />
     <Compile Include="Core\Sprites\Sprite.cs" />
     <Compile Include="Core\SysConfig.cs" />

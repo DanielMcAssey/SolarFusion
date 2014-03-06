@@ -194,7 +194,7 @@ namespace SolarFusion.Core
             {
                 if (isHidden == false)
                 {
-                    playerAnimation.Draw(spriteBatch);
+                    playerAnimation.Draw(spriteBatch, 1f);
                 }
             }
         }

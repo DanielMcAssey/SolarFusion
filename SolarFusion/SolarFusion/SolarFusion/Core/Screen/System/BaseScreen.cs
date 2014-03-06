@@ -349,7 +349,7 @@ namespace SolarFusion.Core.Screen
         /// </summary>
         protected virtual void checkForPauseAction()
         {
-            if (this.GlobalInput.IsPressed("GAME_START", this.ControllingPlayer))
+            if (this.GlobalInput.IsPressed("GAME_PAUSE", this.ControllingPlayer))
                 ScreenManager.addScreen(new ScreenPause(), this.ControllingPlayer);
         }
 
