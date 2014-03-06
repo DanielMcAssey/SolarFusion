@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SolarFusion.Core.Screen
 {
     class ScreenOptions : BaseGUIScreen
     {
         public ScreenOptions()
-            : base("Options", false, null)
+            : base("OPTIONS", Color.White, false, null, true, 1f)
         {
 
         }

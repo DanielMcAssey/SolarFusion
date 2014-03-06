@@ -39,7 +39,7 @@ namespace SolarFusion.Core
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            animation.Draw(spriteBatch);
+            animation.Draw(spriteBatch, 1f);
         }
 
         public void moveLeft()

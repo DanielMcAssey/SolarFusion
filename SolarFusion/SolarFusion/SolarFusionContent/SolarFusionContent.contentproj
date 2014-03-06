@@ -171,319 +171,247 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerBack.tga">
-      <Name>xboxControllerBack</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerButtonA.tga">
-      <Name>xboxControllerButtonA</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerButtonB.tga">
-      <Name>xboxControllerButtonB</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerButtonGuide.tga">
-      <Name>xboxControllerButtonGuide</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerButtonX.tga">
-      <Name>xboxControllerButtonX</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerButtonY.tga">
-      <Name>xboxControllerButtonY</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerDPad.tga">
-      <Name>xboxControllerDPad</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerLeftShoulder.tga">
-      <Name>xboxControllerLeftShoulder</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerLeftThumbstick.tga">
-      <Name>xboxControllerLeftThumbstick</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerLeftTrigger.tga">
-      <Name>xboxControllerLeftTrigger</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerRightShoulder.tga">
-      <Name>xboxControllerRightShoulder</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerRightThumbstick.tga">
-      <Name>xboxControllerRightThumbstick</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerRightTrigger.tga">
-      <Name>xboxControllerRightTrigger</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Gamepad\xboxControllerStart.tga">
-      <Name>xboxControllerStart</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\0.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\0.png">
       <Name>0</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\1.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\1.png">
       <Name>1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\2.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\2.png">
       <Name>2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\3.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\3.png">
       <Name>3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\4.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\4.png">
       <Name>4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\5.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\5.png">
       <Name>5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\6.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\6.png">
       <Name>6</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\7.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\7.png">
       <Name>7</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\8.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\8.png">
       <Name>8</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\9.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\9.png">
       <Name>9</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\a.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\a.png">
       <Name>a</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\alt.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\alt.png">
       <Name>alt</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\b.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\b.png">
       <Name>b</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\c.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\c.png">
       <Name>c</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\ctrl.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\ctrl.png">
       <Name>ctrl</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\d.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\d.png">
       <Name>d</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\del.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\del.png">
       <Name>del</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\down.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\down.png">
       <Name>down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\e.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\e.png">
       <Name>e</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\enter.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\enter.png">
       <Name>enter</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\esc.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\esc.png">
       <Name>esc</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\f.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\f.png">
       <Name>f</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\g.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\g.png">
       <Name>g</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\h.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\h.png">
       <Name>h</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\i.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\i.png">
       <Name>i</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\j.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\j.png">
       <Name>j</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\k.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\k.png">
       <Name>k</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\l.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\l.png">
       <Name>l</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\left.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\left.png">
       <Name>left</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\m.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\m.png">
       <Name>m</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\meta.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\meta.png">
       <Name>meta</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\n.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\n.png">
       <Name>n</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\o.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\o.png">
       <Name>o</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\p.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\p.png">
       <Name>p</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\q.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\q.png">
       <Name>q</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\r.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\r.png">
       <Name>r</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\right.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\right.png">
       <Name>right</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\s.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\s.png">
       <Name>s</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\shift.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\shift.png">
       <Name>shift</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\space.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\space.png">
       <Name>space</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\t.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\t.png">
       <Name>t</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\tab.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\tab.png">
       <Name>tab</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\u.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\u.png">
       <Name>u</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\up.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\up.png">
       <Name>up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\v.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\v.png">
       <Name>v</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\w.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\w.png">
       <Name>w</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\x.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\x.png">
       <Name>x</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\y.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\y.png">
       <Name>y</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Misc\UI\Buttons\Keyboard\z.png">
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Keyboard\z.png">
       <Name>z</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -535,6 +463,577 @@
     </Compile>
     <Compile Include="Levels\level_1\tileset_generic.png">
       <Name>tileset_generic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\blue_01_btn.png">
+      <Name>blue_01_btn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\blue_01_btn_press.png">
+      <Name>blue_01_btn_press</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\blue_02_btn.png">
+      <Name>blue_02_btn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\blue_02_btn_press.png">
+      <Name>blue_02_btn_press</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\blue_03_btn.png">
+      <Name>blue_03_btn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\blue_03_btn_press.png">
+      <Name>blue_03_btn_press</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\blue_btn_disabled.png">
+      <Name>blue_btn_disabled</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\UI\Buttons\square\blue_01_btn.png">
+      <Name>blue_01_btn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\square\blue_01_btn_press.png">
+      <Name>blue_01_btn_press</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\square\blue_02_btn.png">
+      <Name>blue_02_btn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\square\blue_02_btn_press.png">
+      <Name>blue_02_btn_press</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\square\blue_03_btn.png">
+      <Name>blue_03_btn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\square\blue_03_btn_press.png">
+      <Name>blue_03_btn_press</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\square\blue_btn_disabled.png">
+      <Name>blue_btn_disabled</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\blue_circle.png">
+      <Name>blue_circle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\blue_panel.png">
+      <Name>blue_panel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\green_circle.png">
+      <Name>green_circle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\green_panel.png">
+      <Name>green_panel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\grey_circle.png">
+      <Name>grey_circle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\grey_panel.png">
+      <Name>grey_panel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\red_circle.png">
+      <Name>red_circle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\red_panel.png">
+      <Name>red_panel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\yellow_circle.png">
+      <Name>yellow_circle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\yellow_panel.png">
+      <Name>yellow_panel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_boxCheckmark.png">
+      <Name>blue_boxCheckmark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_boxCross.png">
+      <Name>blue_boxCross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_boxTick.png">
+      <Name>blue_boxTick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_checkmark.png">
+      <Name>blue_checkmark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_cross.png">
+      <Name>blue_cross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_sliderDown.png">
+      <Name>blue_sliderDown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_sliderLeft.png">
+      <Name>blue_sliderLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_sliderRight.png">
+      <Name>blue_sliderRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_sliderUp.png">
+      <Name>blue_sliderUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\blue_tick.png">
+      <Name>blue_tick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\dropdownBottom.png">
+      <Name>dropdownBottom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\dropdownMid.png">
+      <Name>dropdownMid</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\dropdownTop.png">
+      <Name>dropdownTop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_boxCheckmark.png">
+      <Name>green_boxCheckmark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_boxCross.png">
+      <Name>green_boxCross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_boxTick.png">
+      <Name>green_boxTick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_checkmark.png">
+      <Name>green_checkmark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_cross.png">
+      <Name>green_cross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_sliderDown.png">
+      <Name>green_sliderDown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_sliderLeft.png">
+      <Name>green_sliderLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_sliderRight.png">
+      <Name>green_sliderRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_sliderUp.png">
+      <Name>green_sliderUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\green_tick.png">
+      <Name>green_tick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_arrowDownGrey.png">
+      <Name>grey_arrowDownGrey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_arrowDownWhite.png">
+      <Name>grey_arrowDownWhite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_arrowUpGrey.png">
+      <Name>grey_arrowUpGrey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_arrowUpWhite.png">
+      <Name>grey_arrowUpWhite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_box.png">
+      <Name>grey_box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_boxCheckmark.png">
+      <Name>grey_boxCheckmark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_boxCross.png">
+      <Name>grey_boxCross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_boxTick.png">
+      <Name>grey_boxTick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_checkmarkGrey.png">
+      <Name>grey_checkmarkGrey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_checkmarkWhite.png">
+      <Name>grey_checkmarkWhite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_crossGrey.png">
+      <Name>grey_crossGrey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_crossWhite.png">
+      <Name>grey_crossWhite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_sliderDown.png">
+      <Name>grey_sliderDown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_sliderEnd.png">
+      <Name>grey_sliderEnd</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_sliderHorizontal.png">
+      <Name>grey_sliderHorizontal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_sliderLeft.png">
+      <Name>grey_sliderLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_sliderRight.png">
+      <Name>grey_sliderRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_sliderUp.png">
+      <Name>grey_sliderUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_sliderVertical.png">
+      <Name>grey_sliderVertical</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_tickGrey.png">
+      <Name>grey_tickGrey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\grey_tickWhite.png">
+      <Name>grey_tickWhite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_boxCheckmark.png">
+      <Name>red_boxCheckmark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_boxCross.png">
+      <Name>red_boxCross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_boxTick.png">
+      <Name>red_boxTick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_checkmark.png">
+      <Name>red_checkmark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_cross.png">
+      <Name>red_cross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_sliderDown.png">
+      <Name>red_sliderDown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_sliderLeft.png">
+      <Name>red_sliderLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_sliderRight.png">
+      <Name>red_sliderRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_sliderUp.png">
+      <Name>red_sliderUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\red_tick.png">
+      <Name>red_tick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_boxCheckmark.png">
+      <Name>yellow_boxCheckmark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_boxCross.png">
+      <Name>yellow_boxCross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_boxTick.png">
+      <Name>yellow_boxTick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_checkmark.png">
+      <Name>yellow_checkmark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_cross.png">
+      <Name>yellow_cross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_sliderDown.png">
+      <Name>yellow_sliderDown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_sliderLeft.png">
+      <Name>yellow_sliderLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_sliderRight.png">
+      <Name>yellow_sliderRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_sliderUp.png">
+      <Name>yellow_sliderUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\elements\yellow_tick.png">
+      <Name>yellow_tick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerBack.png">
+      <Name>xboxControllerBack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerButtonA.png">
+      <Name>xboxControllerButtonA</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerButtonB.png">
+      <Name>xboxControllerButtonB</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerButtonGuide.png">
+      <Name>xboxControllerButtonGuide</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerButtonX.png">
+      <Name>xboxControllerButtonX</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerButtonY.png">
+      <Name>xboxControllerButtonY</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerDPad.png">
+      <Name>xboxControllerDPad</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerLeftShoulder.png">
+      <Name>xboxControllerLeftShoulder</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerLeftThumbstick.png">
+      <Name>xboxControllerLeftThumbstick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerLeftTrigger.png">
+      <Name>xboxControllerLeftTrigger</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerRightShoulder.png">
+      <Name>xboxControllerRightShoulder</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerRightThumbstick.png">
+      <Name>xboxControllerRightThumbstick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerRightTrigger.png">
+      <Name>xboxControllerRightTrigger</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\ControlButtons\Gamepad\xboxControllerStart.png">
+      <Name>xboxControllerStart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\yellow_01_btn.png">
+      <Name>yellow_01_btn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\yellow_01_btn_press.png">
+      <Name>yellow_01_btn_press</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\yellow_02_btn.png">
+      <Name>yellow_02_btn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\yellow_02_btn_press.png">
+      <Name>yellow_02_btn_press</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\yellow_03_btn.png">
+      <Name>yellow_03_btn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\yellow_03_btn_press.png">
+      <Name>yellow_03_btn_press</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Misc\UI\Buttons\rectangle\yellow_btn_disabled.png">
+      <Name>yellow_btn_disabled</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\UI\Buttons\misc\blank_panel.png">
+      <Name>blank_panel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="System\UI\Logos\static_dimensionalwave.png">
+      <Name>static_dimensionalwave</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

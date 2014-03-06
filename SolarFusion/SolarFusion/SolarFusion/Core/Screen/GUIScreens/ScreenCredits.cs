@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SolarFusion.Core.Screen
 {
     class ScreenCredits : BaseGUIScreen
     {
         public ScreenCredits()
-            : base("CREDITS", false, null)
+            : base("CREDITS", Color.White, true, "System/UI/Logos/static_dimensionalwave", true, 1f)
         {
 
+        }
+
+        public override void loadContent()
+        {
+            base.loadContent();
+            //load credits
         }
 
         public override void update()

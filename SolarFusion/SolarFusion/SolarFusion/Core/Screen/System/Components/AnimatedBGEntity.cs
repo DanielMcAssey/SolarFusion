@@ -81,9 +81,9 @@ namespace SolarFusion.Core.Screen
             baseAnimation.Update(gt);
         }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, float alpha)
         {
-            baseAnimation.Draw(sb);
+            baseAnimation.Draw(sb, alpha);
         }
     }
 }

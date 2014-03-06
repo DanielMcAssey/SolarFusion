@@ -99,6 +99,8 @@
     <Compile Include="Core\Screen\System\BaseScreen.cs" />
     <Compile Include="Core\Screen\System\Components\AnimatedBGEntity.cs" />
     <Compile Include="Core\Screen\System\Components\MenuItemBasic.cs" />
+    <Compile Include="Core\Screen\System\Components\MenuItemCharacterSelect.cs" />
+    <Compile Include="Core\Screen\System\Components\MenuItemSlider.cs" />
     <Compile Include="Core\Screen\System\Events\EventPlayer.cs" />
     <Compile Include="Core\Screen\System\ScreenManager.cs" />
     <Compile Include="Core\Sprites\AnimatedSprite.cs" />
