@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using SolarFusion.Core;
 using SolarFusion.Input;
 using SolarFusion.Level;
+using SolarFusion.Core.PostProcessing;
 
 namespace SolarFusion.Core.Screen
 {
@@ -24,7 +25,7 @@ namespace SolarFusion.Core.Screen
         {
             base.loadContent();
             this.BGColour = Color.Black;
-            this._obj_levelmanager = new LevelManager(this.GlobalContentManager, this.ScreenManager.GraphicsDevice.Viewport);
+            this._obj_levelmanager = new LevelManager(this.GlobalContentManager, this.ScreenManager.GraphicsDevice, this.GlobalInput, this.ControllingPlayer);
             this._obj_entitymanager = new EntityManager(this.GlobalContentManager);
 
             //!Debug!
@@ -38,6 +39,7 @@ namespace SolarFusion.Core.Screen
 
             this._obj_activeplayer = new Player(this._obj_entitymanager.NextID(), _tmpPlayerAnim, Vector2.Zero, 1.8f, 100, 280, this._obj_entitymanager);
             this._obj_levelmanager.LoadLevel(1, this._obj_activeplayer, this._obj_entitymanager); //Load Test Level 0
+            this.BGColour = Color.Blue;
         }
 
         public override void unloadContent()
@@ -59,14 +61,14 @@ namespace SolarFusion.Core.Screen
 
             this._obj_levelmanager.Update(_gameTimer);
 
-            if (this.GlobalInput.IsPressed("PLAY_MOVE_LEFT", this.ControllingPlayer)) //If player presses cancel button (Escape/B)
+            if (this.GlobalInput.IsPressed("PLAY_MOVE_LEFT", this.ControllingPlayer)) //If player presses left button (Left Arrow/Left DPAD)
                 this._obj_activeplayer.moveLeft();
-            else if (this.GlobalInput.IsPressed("PLAY_MOVE_RIGHT", this.ControllingPlayer)) //If player presses cancel button (Escape/B)
+            else if (this.GlobalInput.IsPressed("PLAY_MOVE_RIGHT", this.ControllingPlayer)) //If player presses left button (Right Arrow/Right DPAD)
                 this._obj_activeplayer.moveRight();
             else
                 this._obj_activeplayer.moveIdle();
 
-            if (this.GlobalInput.IsPressed("PLAY_MOVE_JUMP", this.ControllingPlayer)) //If player presses cancel button (Escape/B)
+            if (this.GlobalInput.IsPressed("PLAY_MOVE_JUMP", this.ControllingPlayer)) //If player presses the jump button (Spacebar/A)
                 this._obj_activeplayer.jump();
 
             base.update();

@@ -35,7 +35,7 @@ namespace SolarFusion
             }
             catch (Exception ex)
             {
-                Environment.Exit(0);
+                this.Exit();
             }
 
             try

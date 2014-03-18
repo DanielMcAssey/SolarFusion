@@ -85,6 +85,13 @@
     <Compile Include="Core\Logic\Bound.cs" />
     <Compile Include="Core\Logic\BoundingBoxes.cs" />
     <Compile Include="Core\Logic\CollisionPair.cs" />
+    <Compile Include="Core\PostProcessing\BasePostProcess.cs" />
+    <Compile Include="Core\PostProcessing\BasePostProcessEffect.cs" />
+    <Compile Include="Core\PostProcessing\Effects\CrepuscularRays.cs" />
+    <Compile Include="Core\PostProcessing\Engine\LightRay.cs" />
+    <Compile Include="Core\PostProcessing\Engine\LightSourceMask.cs" />
+    <Compile Include="Core\PostProcessing\PostProcessingManager.cs" />
+    <Compile Include="Core\PostProcessing\ScreenQuad.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenBG.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenLoading.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenMsgBox.cs" />

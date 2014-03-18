@@ -59,7 +59,6 @@
   <ItemGroup>
     <Folder Include="Audio\" />
     <Folder Include="Core\Data\" />
-    <Folder Include="Core\Shaders\" />
     <Folder Include="Sprites\Misc\Static\" />
     <Folder Include="Sprites\Objects\Animated\" />
     <Folder Include="Sprites\Objects\Static\" />
@@ -1037,6 +1036,40 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Textures\sun_flare.png">
+      <Name>sun_flare</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Shaders\PostProcessing\BrightPass.fx">
+      <Name>BrightPass</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Core\Shaders\PostProcessing\LightSourceMask.fx">
+      <Name>LightSourceMask</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Core\Shaders\PostProcessing\LigthRays.fx">
+      <Name>LigthRays</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Core\Shaders\PostProcessing\SceneBlend.fx">
+      <Name>SceneBlend</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Shaders\PostProcessing\PPVertexShader.fxh">
+      <Name>PPVertexShader</Name>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
