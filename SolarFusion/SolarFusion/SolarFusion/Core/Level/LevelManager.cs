@@ -122,7 +122,7 @@ namespace SolarFusion.Level
 
             this._obj_camera = new Camera2D(this._obj_viewport);
             this._obj_camera.Position = new Vector2(this._obj_viewport.Width / 2f, this._obj_viewport.Height / 2f);
-            this._obj_camera.Zoom = 1.0f;
+            this._obj_camera.Zoom = 1f;
             this._obj_camera.Speed = 60f;
             this._obj_entitymanager.camera = this._obj_camera;
             this._obj_gui.Load(this._obj_contentmanager);

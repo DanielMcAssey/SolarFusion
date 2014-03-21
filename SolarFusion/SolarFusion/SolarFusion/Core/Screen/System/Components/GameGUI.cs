@@ -46,7 +46,7 @@ namespace SolarFusion.Core.Screen
 
         public GameGUI(GraphicsDevice _graphics)
         {
-
+            this._obj_graphics = _graphics;
         }
 
         public void Load(ContentManager _content)
@@ -56,7 +56,7 @@ namespace SolarFusion.Core.Screen
 
         public void Unload()
         {
-
+            this._obj_graphics = null;
         }
 
         public void Update(GameTime _elapsedTime)
