@@ -30,6 +30,7 @@ namespace SolarFusion.Level
         private EntityManager _obj_entitymanager = null;
         private RenderTarget2D _obj_scene = null;
         private Player _obj_player = null;
+        private GameGUI _obj_gui = null;
 
         private uint _current_level_id = 0;
         private PlayerIndex? mControllingPlayer;
@@ -62,6 +63,7 @@ namespace SolarFusion.Level
             this._obj_graphics = _graphics;
             this._obj_input = _input;
             this._obj_ppmanager = new PostProcessingManager(this._obj_graphics);
+            this._obj_gui = new GameGUI(this._obj_graphics);
             this.mControllingPlayer = _controllingPlayer;
         }
 
@@ -123,6 +125,7 @@ namespace SolarFusion.Level
             this._obj_camera.Zoom = 1.0f;
             this._obj_camera.Speed = 60f;
             this._obj_entitymanager.camera = this._obj_camera;
+            this._obj_gui.Load(this._obj_contentmanager);
 
 
             this.isScrolling = true;
@@ -135,6 +138,7 @@ namespace SolarFusion.Level
             this._obj_entitymanager = null;
             this._obj_scene = null;
             this._obj_player = null;
+            this._obj_gui.Unload();
         }
 
         public void Update(GameTime _gameTime)
@@ -216,6 +220,7 @@ namespace SolarFusion.Level
                 this._obj_entitymanager.DestroyObject(goID); //Delets the object if its in the bounds.
 
             this._obj_player.Update(_gameTime);
+            this._obj_gui.Update(_gameTime);
         }
 
         public void Draw(SpriteBatch _sb)
@@ -223,7 +228,7 @@ namespace SolarFusion.Level
             //Create a mask for the occlusion ray
             this._obj_graphics.SetRenderTarget(this._obj_scene);
             this._obj_graphics.Clear(Color.White);
-            _sb.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            _sb.Begin(SpriteSortMode.BackToFront, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
             this.DrawLevel(_sb);
             this._obj_player.Draw(_sb);
             _sb.End();
@@ -235,7 +240,7 @@ namespace SolarFusion.Level
             //Draw Scene in Colour
             this._obj_graphics.SetRenderTarget(this._obj_scene);
             this._obj_graphics.Clear(this._effect_sky_color); //Background Colour
-            _sb.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            _sb.Begin(SpriteSortMode.BackToFront, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
             this.DrawLevel(_sb);
             this._obj_player.Draw(_sb);
             _sb.End();
@@ -243,9 +248,13 @@ namespace SolarFusion.Level
             this._obj_graphics.Clear(Color.Black);
 
             //Draw the post processing effects
-            _sb.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            _sb.Begin(SpriteSortMode.BackToFront, BlendState.Additive, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
             _sb.Draw(this._obj_ppmanager.mScene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
             _sb.Draw(this._obj_scene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
+            _sb.End();
+
+            _sb.Begin();
+            this._obj_gui.Draw(_sb);
             _sb.End();
         }
 

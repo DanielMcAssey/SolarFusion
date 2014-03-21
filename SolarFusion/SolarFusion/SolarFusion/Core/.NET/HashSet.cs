@@ -27,7 +27,8 @@ namespace Containers
         #region "Methods"
         public void Add(T item)
         {
-            this.mDict.Add(item, 0);
+            if(!this.Contains(item))
+                this.mDict.Add(item, 0);
         }
 
         public void Clear()

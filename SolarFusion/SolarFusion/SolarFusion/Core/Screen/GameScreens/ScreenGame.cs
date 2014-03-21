@@ -71,11 +71,6 @@ namespace SolarFusion.Core.Screen
         public override void appRender() //Render per frame
         {
             this.internResetRenderStatesFor2D(); //Reset 2D states
-
-            this.ScreenManager.SpriteBatch.Begin();
-            //Render HUD
-            this.ScreenManager.SpriteBatch.End();
-
             this._obj_levelmanager.Draw(this.ScreenManager.SpriteBatch);
         }
     }

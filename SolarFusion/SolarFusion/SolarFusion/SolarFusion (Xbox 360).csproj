@@ -105,6 +105,7 @@
     <Compile Include="Core\Screen\System\BaseGUIScreen.cs" />
     <Compile Include="Core\Screen\System\BaseScreen.cs" />
     <Compile Include="Core\Screen\System\Components\AnimatedBGEntity.cs" />
+    <Compile Include="Core\Screen\System\Components\GameGUI.cs" />
     <Compile Include="Core\Screen\System\Components\MenuItemBasic.cs" />
     <Compile Include="Core\Screen\System\Components\MenuItemCharacterSelect.cs" />
     <Compile Include="Core\Screen\System\Components\MenuItemSlider.cs" />

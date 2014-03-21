@@ -127,8 +127,7 @@ namespace SolarFusion.Core
                 maxHorizontalIndex = ~maxHorizontalIndex;
 
             for (int i = minHorizontalIndex; i < maxHorizontalIndex; i++)
-                if (!queryMatches.Contains(horizontalAxis[i].Box.GameObjectID))
-                    queryMatches.Add(horizontalAxis[i].Box.GameObjectID);
+                queryMatches.Add(horizontalAxis[i].Box.GameObjectID);
 
             return queryMatches.ToArray();
         }
