@@ -9,32 +9,32 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SolarFusion.Core.Screen
 {
-    class ScreenMenuRoot : BaseGUIScreen
+    class ScreenStart : BaseGUIScreen
     {
-        public ScreenMenuRoot()
-            : base("Root_Menu", true, "System/UI/Logos/static_jumpista", true, 0.5f)
+        public ScreenStart()
+            : base("Start_Screen", true, "System/UI/Logos/static_jumpista", true, 0.5f)
         {
         }
 
         public override void loadContent()
         {
-            MenuItemBasic mi_play = new MenuItemBasic("PLAY", this.GlobalContentManager);
-            MenuItemBasic mi_credits = new MenuItemBasic("CREDITS", this.GlobalContentManager);
-            MenuItemBasic mi_exit = new MenuItemBasic("EXIT", this.GlobalContentManager);
-
-            mi_play.OnSelected += EventTriggerGoToCharSelect;
-            mi_credits.OnSelected += EventTriggerGoToCredits;
-            mi_exit.OnSelected += DefaultTriggerMenuBack;
-
-            this._list_menuitems.Add(mi_play);
-            this._list_menuitems.Add(mi_credits);
-            this._list_menuitems.Add(mi_exit);
-
+            MenuItemBasic mi_start = new MenuItemBasic("PRESS START", this.GlobalContentManager);
+            this._list_menuitems.Add(mi_start);
             base.loadContent();
         }
 
         public override void update()
         {
+            for (int i = 0; i < 4; i++)
+            {
+                if (this.GlobalInput.IsPressed("GLOBAL_START", (PlayerIndex)i))
+                {
+                    this.ControllingPlayer = (PlayerIndex)i;
+                    this.EventTriggerGoToMenu(this.ControllingPlayer);
+                    return;
+                }
+            }
+
             base.update();
         }
 
@@ -48,17 +48,9 @@ namespace SolarFusion.Core.Screen
         /// <summary>
         /// Event Handler to Go to character select screen.
         /// </summary>
-        void EventTriggerGoToCharSelect(object sender, EventPlayer e)
+        void EventTriggerGoToMenu(PlayerIndex? _player)
         {
-            ScreenManager.addScreen(new ScreenCharSelect(), e.PlayerIndex);
-        }
-
-        /// <summary>
-        /// Event Handler to Go to the Credits Screen.
-        /// </summary>
-        void EventTriggerGoToCredits(object sender, EventPlayer e)
-        {
-            ScreenManager.addScreen(new ScreenCredits(), e.PlayerIndex);
+            ScreenManager.addScreen(new ScreenMenuRoot(), _player);
         }
 
         /// <summary>

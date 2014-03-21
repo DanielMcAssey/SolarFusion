@@ -15,7 +15,6 @@ sampler2D orgScene = sampler_state
 	AddressV = CLAMP;
 };
 
-
 float4 BlendPS(float2 texCoord : TEXCOORD0 ) : COLOR0
 {
 	texCoord -= halfPixel;

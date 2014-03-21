@@ -19,6 +19,7 @@ namespace SolarFusion.Core
         protected Vector2 mSpriteOrigin;
         protected float mSpriteRotation = 0f;
         protected float mSpriteScale = 1f;
+        protected float mSpriteScaleOriginal = 1f;
         protected SpriteEffects mSpriteEffects;
         //!Default Variables
         
@@ -43,44 +44,50 @@ namespace SolarFusion.Core
 
         public Texture2D Texture
         {
-            get { return mSpriteTexture; }
-            set { mSpriteTexture = value; }
+            get { return this.mSpriteTexture; }
+            set { this.mSpriteTexture = value; }
         }
 
         public Vector2 Position
         {
-            get { return mSpritePosition; }
-            set { mSpritePosition = value; }
+            get { return this.mSpritePosition; }
+            set { this.mSpritePosition = value; }
         }
 
         public Color Colour
         {
-            get { return mSpriteColor; }
-            set { mSpriteColor = value; }
+            get { return this.mSpriteColor; }
+            set { this.mSpriteColor = value; }
         }
 
         public Vector2 Origin
         {
-            get { return mSpriteOrigin; }
-            set { mSpriteOrigin = value; }
+            get { return this.mSpriteOrigin; }
+            set { this.mSpriteOrigin = value; }
         }
 
         public float Rotation
         {
-            get { return mSpriteRotation; }
-            set { mSpriteRotation = value; }
+            get { return this.mSpriteRotation; }
+            set { this.mSpriteRotation = value; }
         }
 
         public float Scale
         {
-            get { return mSpriteScale; }
-            set { mSpriteScale = value; }
+            get { return this.mSpriteScale; }
+            set { this.mSpriteScale = value; }
+        }
+
+        public float OriginalScale
+        {
+            get { return this.mSpriteScaleOriginal; }
+            set { this.mSpriteScaleOriginal = value; }
         }
 
         public SpriteEffects Effects
         {
-            get { return mSpriteEffects; }
-            set { mSpriteEffects = value; }
+            get { return this.mSpriteEffects; }
+            set { this.mSpriteEffects = value; }
         }
 
         public int Frame
@@ -91,23 +98,23 @@ namespace SolarFusion.Core
 
         public int AnimationHeight
         {
-            get { return mAnimationHeight; }
+            get { return this.mAnimationHeight; }
         }
 
         public int AnimationWidth
         {
-            get { return mAnimationWidth; }
+            get { return this.mAnimationWidth; }
         }
         //!PROPERTIES
 
         // FUNCTIONS
-
         public Sprite(Texture2D spriteTexture, int maxFrameCount, int animationCount)
         {
             mSpriteTexture = spriteTexture; //Assign the appropriate data.
             mAnimationFrames = maxFrameCount;
             mAnimationWidth = mSpriteTexture.Width / maxFrameCount;
             mAnimationHeight = mSpriteTexture.Height / animationCount;
+            mSpriteOrigin = new Vector2(mAnimationWidth / 2, mAnimationHeight / 2);
         }
 
         public void AddAnimation(string animName, int animRow, int frameCount, int spriteFPS)

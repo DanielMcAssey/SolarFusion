@@ -33,6 +33,7 @@ namespace SolarFusion.Level
 
         private uint _current_level_id = 0;
         private PlayerIndex? mControllingPlayer;
+        private bool isScrolling = false;
 
         // Effects
         private CrepuscularRays _effect_sun = null;
@@ -84,7 +85,7 @@ namespace SolarFusion.Level
                     switch (goData.entCategory) //Swtich by object category.
                     {
                         case "PlayerStart":
-                            Vector2 newPos = new Vector2(position.X, (position.Y - ((this._obj_player.Height / 2) / 2)));
+                            Vector2 newPos = new Vector2(position.X, position.Y + ((this._obj_player.Height / 2) / 2));
                             this._obj_player.Position = newPos;
                             this._obj_player.floorHeight = position.Y + ((this._obj_player.Height / 2) / 2);
                             this._obj_player.isSingleplayer = true;
@@ -111,8 +112,8 @@ namespace SolarFusion.Level
             }
             // !Load Level Objects
 
-            this._effect_sun = new CrepuscularRays(this._obj_graphics, this._effect_sun_pos, 2.5f, 0.97f, 0.97f, 0.7f, 0.25f, this._obj_contentmanager.Load<Effect>("Core/Shaders/PostProcessing/LightSourceMask"), this._obj_contentmanager.Load<Texture2D>("Core/Textures/sun_flare"), this._obj_contentmanager.Load<Effect>("Core/Shaders/PostProcessing/LigthRays"));
-            this._effect_sun_pos = new Vector2(0.2f, 0.38f);
+            this._effect_sun = new CrepuscularRays(this._obj_graphics, this._effect_sun_pos, 1.5f, 0.97f, 0.97f, 0.1f, 0.25f, this._obj_contentmanager.Load<Effect>("Core/Shaders/PostProcessing/LightSourceMask"), this._obj_contentmanager.Load<Texture2D>("Core/Textures/sun_flare"), this._obj_contentmanager.Load<Effect>("Core/Shaders/PostProcessing/LigthRays"));
+            this._effect_sun_pos = new Vector2(0.2f, 0.35f);
             this._obj_ppmanager.AddEffect(this._effect_sun);
             this._obj_scene = new RenderTarget2D(this._obj_graphics, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height, false, SurfaceFormat.Color, DepthFormat.None);
             this._effect_sky_color = new Color(135, 206, 250);
@@ -122,6 +123,9 @@ namespace SolarFusion.Level
             this._obj_camera.Zoom = 1.0f;
             this._obj_camera.Speed = 60f;
             this._obj_entitymanager.camera = this._obj_camera;
+
+
+            this.isScrolling = true;
         }
 
         public void UnloadLevel()
@@ -137,6 +141,16 @@ namespace SolarFusion.Level
         {
             float timeDiff = (float)_gameTime.ElapsedGameTime.TotalSeconds;
             this._effect_sun.LightSource = this._effect_sun_pos;
+            this._obj_entitymanager.Update(_gameTime);
+
+            if ((this._obj_camera.Position.X + (this._obj_viewport.Width / 2)) >= ((this._obj_map.tmWidth * this._obj_map.tmTileWidth) - 10))
+                this.isScrolling = false; //If player reaches the end of the map, stop the scrolling.
+
+            if (this.isScrolling) //If the map is scrolling, do the following:
+            {
+                float scrollDelta = (float)_gameTime.ElapsedGameTime.TotalSeconds * this._obj_camera.Speed; //Gets delta to increment camera position.
+                this._obj_camera.Position += new Vector2(scrollDelta, 0); //Increments the camera speed.
+            }
 
             foreach (uint goID in this._obj_entitymanager.dynamicObjects) //Checks all the dynamic objects in the level, and loops through updating them.
             {
@@ -197,6 +211,10 @@ namespace SolarFusion.Level
                 }
             }
 
+            Rectangle deleteBounds = new Rectangle((int)((this._obj_camera.Position.X - (this._obj_viewport.Width / 2f)) - 50), 0, -4480, this._obj_map.tmHeight * this._obj_map.tmTileHeight); //Sets bounds for deleting objects.
+            foreach (uint goID in this._obj_entitymanager.QueryRegion(deleteBounds)) //Checks if any objects are in the bounds, and loops through deleting them.
+                this._obj_entitymanager.DestroyObject(goID); //Delets the object if its in the bounds.
+
             this._obj_player.Update(_gameTime);
         }
 
@@ -226,8 +244,8 @@ namespace SolarFusion.Level
 
             //Draw the post processing effects
             _sb.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
-            _sb.Draw(this._obj_ppmanager.mScene, new Rectangle(0, 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
-            _sb.Draw(this._obj_scene, new Rectangle(0, 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
+            _sb.Draw(this._obj_ppmanager.mScene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
+            _sb.Draw(this._obj_scene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
             _sb.End();
         }
 

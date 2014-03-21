@@ -25,8 +25,9 @@ namespace SolarFusion.Core.Screen
         /// Constructor.
         /// </summary>
         public ScreenPause()
-            : base("- PAUSED -", false, null, false, 1f)
+            : base("PAUSED", Color.White, false, null, false, 1f)
         {
+            this._is_popup = true;
             this._message_alpha = DEFAULT_ALPHA;
         }
 

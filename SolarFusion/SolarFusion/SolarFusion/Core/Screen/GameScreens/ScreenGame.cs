@@ -21,24 +21,18 @@ namespace SolarFusion.Core.Screen
         private LevelManager _obj_levelmanager = null;
         private Player _obj_activeplayer = null;
 
+        public ScreenGame(Player _player, EntityManager _entitym)
+        {
+            this._obj_activeplayer = _player;
+            this._obj_entitymanager = _entitym;
+        }
+
         public override void loadContent()
         {
             base.loadContent();
             this.BGColour = Color.Black;
             this._obj_levelmanager = new LevelManager(this.GlobalContentManager, this.ScreenManager.GraphicsDevice, this.GlobalInput, this.ControllingPlayer);
-            this._obj_entitymanager = new EntityManager(this.GlobalContentManager);
-
-            //!Debug!
-            AnimatedSprite _tmpPlayerAnim = new AnimatedSprite(this._local_content.Load<Texture2D>("Sprites/Characters/Jumpista/spritesheet"), 5, 3);
-            _tmpPlayerAnim.AddAnimation("right", 1, 5, 7);
-            _tmpPlayerAnim.AddAnimation("left", 2, 5, 7);
-            _tmpPlayerAnim.AddAnimation("idle", 3, 3, 5);
-            _tmpPlayerAnim.mCurrentAnimation = "idle";
-            _tmpPlayerAnim.Loop = true;
-            //!Debug!
-
-            this._obj_activeplayer = new Player(this._obj_entitymanager.NextID(), _tmpPlayerAnim, Vector2.Zero, 1.8f, 100, 280, this._obj_entitymanager);
-            this._obj_levelmanager.LoadLevel(1, this._obj_activeplayer, this._obj_entitymanager); //Load Test Level 0
+            this._obj_levelmanager.LoadLevel(1, this._obj_activeplayer, this._obj_entitymanager); //Load Level
             this.BGColour = Color.Blue;
         }
 

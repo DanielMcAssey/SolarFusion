@@ -74,7 +74,7 @@ namespace SolarFusion
             this.Components.Add(this._obj_screenmanager);
 
             this._obj_screenmanager.addScreen(new ScreenBG(), null);
-            this._obj_screenmanager.addScreen(new ScreenMenuRoot(), PlayerIndex.One);
+            this._obj_screenmanager.addScreen(new ScreenStart(), PlayerIndex.One);
         }
 
         /// <summary>

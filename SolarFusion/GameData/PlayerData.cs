@@ -11,7 +11,7 @@ namespace GameData
         public string playerName = "";
 
         //Animation
-        public string playerAsset = "";
+        public string playerRef = "";
         public string defaultAnimation = "";
         public float playerScale = 1f;
         public int maxFrameCount = 1;

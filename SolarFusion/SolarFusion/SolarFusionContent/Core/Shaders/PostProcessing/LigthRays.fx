@@ -3,12 +3,8 @@
 #define NUM_SAMPLES 64
 
 float2 lightScreenPosition;
-
-
 float4x4 matVP;
-
 float2 halfPixel;
-
 float Density = .5f;
 float Decay = .95f;
 float Weight = 1.0f;
@@ -19,18 +15,12 @@ sampler2D Scene: register(s0){
 	AddressV = Clamp;
 };
 
-
 float4 lightRayPS( float2 texCoord : TEXCOORD0 ) : COLOR0
 {
-	// Find light pixel position
-	
 	float2 TexCoord = texCoord - halfPixel;
-
 	float2 DeltaTexCoord = (TexCoord - lightScreenPosition);
 	DeltaTexCoord *= (1.0f / NUM_SAMPLES * Density);
-
 	DeltaTexCoord = DeltaTexCoord ;
-
 	float3 col = tex2D(Scene,TexCoord);
 	float IlluminationDecay = 1.0;
 	float3 Sample;
@@ -45,7 +35,6 @@ float4 lightRayPS( float2 texCoord : TEXCOORD0 ) : COLOR0
 	}
 
 	return float4(col * Exposure,1);
-	
 }
 
 technique LightRayFX

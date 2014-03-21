@@ -140,7 +140,7 @@
     <Compile Include="Core\Screen\GameScreens\ScreenCharSelect.cs" />
     <Compile Include="Core\Screen\GameScreens\ScreenGame.cs" />
     <Compile Include="Core\Screen\GUIScreens\ScreenCredits.cs" />
-    <Compile Include="Core\Screen\GUIScreens\ScreenOptions.cs" />
+    <Compile Include="Core\Screen\GUIScreens\ScreenStart.cs" />
     <Compile Include="Core\Screen\System\AppScreen.cs" />
     <Compile Include="Core\Screen\System\Components\MenuItemCharacterSelect.cs" />
     <Compile Include="Core\Screen\System\Components\MenuItemSlider.cs" />

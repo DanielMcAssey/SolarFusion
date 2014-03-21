@@ -58,8 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />
-    <Folder Include="Core\Data\" />
     <Folder Include="Sprites\Misc\Static\" />
+    <Folder Include="Sprites\Misc\UI\Other\" />
     <Folder Include="Sprites\Objects\Animated\" />
     <Folder Include="Sprites\Objects\Static\" />
   </ItemGroup>
@@ -84,13 +84,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Characters\characters.xml">
-      <Name>characters</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="System\UI\Fonts\font_DEBUG.spritefont">
@@ -436,7 +429,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Characters\Jumpista\spritesheet.png">
+    <Compile Include="Sprites\Characters\dr_jumpista\spritesheet.png">
       <Name>spritesheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -1070,6 +1063,43 @@
     <None Include="Core\Shaders\PostProcessing\PPVertexShader.fxh">
       <Name>PPVertexShader</Name>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Data\players.xml">
+      <Name>players</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Data\Players\dr_jumpista.xml">
+      <Name>dr_jumpista</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Data\Players\asterix.xml">
+      <Name>asterix</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\Animated\anim_loading.png">
+      <Name>anim_loading</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Characters\asterix\spritesheet.png">
+      <Name>spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

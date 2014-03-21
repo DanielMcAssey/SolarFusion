@@ -114,31 +114,23 @@ namespace SolarFusion.Core
 
         public uint[] QueryRegion(Rectangle bounds)
         {
-            HashSet<uint> horizontalMatches = new HashSet<uint>(); //Create a new HashSet to compare matches
-            HashSet<uint> verticalMatches = new HashSet<uint>();
+            HashSet<uint> queryMatches = new HashSet<uint>(); //Create a new HashSet to compare matches
 
             Bound left = new Bound(null, bounds.Left, BoundType.Min); //Creates a new bound for left.
             int minHorizontalIndex = horizontalAxis.BinarySearch(left); //Searches the axis for the bound and sets it as the minimum amount..
-
             if (minHorizontalIndex < 0) //If its less than zero
-            {
                 minHorizontalIndex = ~minHorizontalIndex; //NOT the number
-            }
 
             Bound right = new Bound(null, bounds.Right, BoundType.Max);
             int maxHorizontalIndex = horizontalAxis.BinarySearch(right);
-
             if (maxHorizontalIndex < 0)
-            {
                 maxHorizontalIndex = ~maxHorizontalIndex;
-            }
 
             for (int i = minHorizontalIndex; i < maxHorizontalIndex; i++)
-            {
-                horizontalMatches.Add(horizontalAxis[i].Box.GameObjectID); //NEED TO DO
-            }
+                if (!queryMatches.Contains(horizontalAxis[i].Box.GameObjectID))
+                    queryMatches.Add(horizontalAxis[i].Box.GameObjectID);
 
-            return horizontalMatches.ToArray();
+            return queryMatches.ToArray();
         }
 
         public uint NextID()

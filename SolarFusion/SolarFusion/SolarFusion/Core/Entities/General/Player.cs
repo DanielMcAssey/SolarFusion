@@ -11,7 +11,7 @@ namespace SolarFusion.Core
 {
     public class Player : GameObjects
     {
-                public bool isSingleplayer = false;
+        public bool isSingleplayer = false;
         public bool isMultiplayer = false;
         public bool isHidden = false;
         public bool inControl = false;
@@ -61,6 +61,12 @@ namespace SolarFusion.Core
             set { this.Health = value; }
         }
 
+        public AnimatedSprite PlayerAnimation
+        {
+            get { return this.playerAnimation; }
+            set { this.playerAnimation = value; }
+        }
+
         public override Rectangle Bounds
         {
             get { return new Rectangle((int)(Position.X - ((playerAnimation.AnimationWidth * playerAnimation.Scale) / 2f)), (int)(Position.Y - ((playerAnimation.AnimationHeight * playerAnimation.Scale) / 2f)), (int)(playerAnimation.AnimationWidth * playerAnimation.Scale), (int)(playerAnimation.AnimationHeight * playerAnimation.Scale)); }
@@ -95,7 +101,7 @@ namespace SolarFusion.Core
             {
                 if (isJumping == false && isOnTop == false)
                     moveDirection = MoveDirection.Right;
-                
+
                 position.X += moveSpeed;
                 playerAnimation.CurrentAnimation = "right";
             }
@@ -143,7 +149,7 @@ namespace SolarFusion.Core
                 {
                     jumpSpeed = jumpSpeed * 1.2f;
                 }
-                
+
                 if (position.Y <= maxHeight || jumpDirection == 1)
                 {
                     if (jumpDirection != 1)

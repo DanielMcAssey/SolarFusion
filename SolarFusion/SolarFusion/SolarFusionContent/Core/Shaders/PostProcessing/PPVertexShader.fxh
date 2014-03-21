@@ -19,4 +19,3 @@ VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
     
     return output;
 }
-

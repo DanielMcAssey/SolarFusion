@@ -11,9 +11,9 @@ namespace SolarFusion.Core
     public class SysConfig
     {
         //General Configuration
-        public const string CONFIG_GAME_BUILD = "0.1dev-branch";
-        public const string CONFIG_GAME_BUILD_TYPE = "Development";
-        public const string CONFIG_GAME_NAME_CLEAN = "SolarFusion";
+        public const string CONFIG_GAME_BUILD = "0.8-alpha-branch";
+        public const string CONFIG_GAME_BUILD_TYPE = "Alpha";
+        public const string CONFIG_GAME_NAME_CLEAN = "Jumpista";
         public const string CONFIG_GAME_NAME = CONFIG_GAME_NAME_CLEAN + " - " + CONFIG_GAME_BUILD_TYPE + " Build (" + CONFIG_GAME_BUILD + ")";
 
         //Debug Settings
@@ -45,8 +45,8 @@ namespace SolarFusion.Core
         public const string ASSET_CONFIG_SETTINGS_FILE = "base.config";
 
         //Default Strings
-        public const string ASSET_CONFIG_MSG_LOADING = "-LOADING-";
-        public const string ASSET_CONFIG_MSG_BOX_USAGE = "\n'Enter' - Yes\n'Escape' - No";
+        public const string ASSET_CONFIG_MSG_LOADING = "LOADING";
+        public const string ASSET_CONFIG_MSG_BOX_USAGE = "\n'OK' - Yes\n'CANCEL' - No";
 
         //Default GamePad Controls
         public const Buttons INPUT_GAMEPAD_UP_DPAD = Buttons.DPadUp;
@@ -70,7 +70,7 @@ namespace SolarFusion.Core
         public const Keys INPUT_KEYBOARD_LEFT = Keys.Left;
         public const Keys INPUT_KEYBOARD_RIGHT = Keys.Right;
 
-        public const Keys INPUT_KEYBOARD_START = Keys.Escape;
+        public const Keys INPUT_KEYBOARD_START = Keys.Enter;
         public const Keys INPUT_KEYBOARD_SELECT = Keys.Enter;
         public const Keys INPUT_KEYBOARD_CANCEL = Keys.Escape;
 

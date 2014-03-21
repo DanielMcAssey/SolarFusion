@@ -38,6 +38,7 @@ namespace SolarFusion.Core.Screen
         protected String _screen_name = String.Empty;
         protected float _pause_alpha;
         protected Color _bgcolour = Color.Black;
+        protected bool _game_paused = false;
 
         public BaseScreen()
         {
@@ -143,6 +144,7 @@ namespace SolarFusion.Core.Screen
         public PlayerIndex? ControllingPlayer
         {
             get { return _primary_player; }
+            set { _primary_player = value; }
         }
 
         /// <summary>
@@ -350,7 +352,10 @@ namespace SolarFusion.Core.Screen
         protected virtual void checkForPauseAction()
         {
             if (this.GlobalInput.IsPressed("GAME_PAUSE", this.ControllingPlayer))
+            {
+                this._game_paused = true;
                 ScreenManager.addScreen(new ScreenPause(), this.ControllingPlayer);
+            }
         }
 
         /// <summary>

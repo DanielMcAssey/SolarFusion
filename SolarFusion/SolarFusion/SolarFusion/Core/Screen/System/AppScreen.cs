@@ -66,11 +66,7 @@ namespace SolarFusion.Core.Screen
         /// </summary>
         public override void render()
         {
-            //Clear the Graphics Device
-            this.ScreenManager.GraphicsDevice.Clear(this._bgcolour);
-
             this.appRender();
-
             //Draw our overlay screen fade.
             this.renderScreenFade();
         }
