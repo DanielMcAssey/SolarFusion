@@ -66,6 +66,9 @@ namespace SolarFusion.Core.Screen
         /// </summary>
         public override void render()
         {
+            //Clear Screen Black
+            this.ScreenManager.GraphicsDevice.Clear(Color.Black);
+            //Render the screen
             this.appRender();
             //Draw our overlay screen fade.
             this.renderScreenFade();

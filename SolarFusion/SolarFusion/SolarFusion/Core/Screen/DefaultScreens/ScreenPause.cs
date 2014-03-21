@@ -64,7 +64,7 @@ namespace SolarFusion.Core.Screen
         /// <param name="e"></param>
         void EventTriggerGoToMain(object sender, EventPlayer e)
         {
-            const string tmessage = "Are you sure you want to exit the simulation?";
+            const string tmessage = "Are you sure you want to exit the game?";
             ScreenMsgBox tmsgboxconfirmquit = new ScreenMsgBox(SysConfig.ASSET_CONFIG_MSGBOX_BG, tmessage);
             tmsgboxconfirmquit.onAccepted += EventTriggerConfirmGoToMain;
             ScreenManager.addScreen(tmsgboxconfirmquit, ControllingPlayer);
