@@ -119,12 +119,13 @@
     <Compile Include="Core\Entities\GameObjects.cs" />
     <Compile Include="Core\Entities\General\Player.cs" />
     <Compile Include="Core\Entities\LevelObjects\LevelObject.cs" />
+    <Compile Include="Core\Entities\LevelObjects\LevelObject_Crate.cs" />
+    <Compile Include="Core\Entities\LevelObjects\LevelObject_NonSolid.cs" />
     <Compile Include="Core\Entities\LevelObjects\LevelObject_Solid.cs" />
     <Compile Include="Core\Entities\PowerUps\PowerUp.cs" />
-    <Compile Include="Core\Entities\PowerUps\PowerUp_Crate.cs" />
     <Compile Include="Core\Entities\PowerUps\PowerUp_Crystal.cs" />
-    <Compile Include="Core\Entities\PowerUps\PowerUp_Dynamite.cs" />
     <Compile Include="Core\Entities\PowerUps\PowerUp_EnergyBall.cs" />
+    <Compile Include="Core\Entities\PowerUps\PowerUp_Warp.cs" />
     <Compile Include="Core\Logic\Bound.cs" />
     <Compile Include="Core\Logic\BoundingBoxes.cs" />
     <Compile Include="Core\Logic\CollisionPair.cs" />

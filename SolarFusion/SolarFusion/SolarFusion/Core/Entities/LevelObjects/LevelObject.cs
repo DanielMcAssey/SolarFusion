@@ -10,6 +10,7 @@ namespace SolarFusion.Core
         None = 0,
         Solid = 1,
         NonSolid = 2,
+        Crate = 4,
         Default = 65536,
     }
 

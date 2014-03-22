@@ -154,14 +154,11 @@ namespace SolarFusion.Core
                 case PowerUpType.EnergyBall:
                     powerup = new PowerUp_EnergyBall(id, virtualContent, position);
                     break;
-                case PowerUpType.Crate:
-                    powerup = new PowerUp_Crate(id, virtualContent, position);
-                    break;
-                case PowerUpType.Dynamite:
-                    powerup = new PowerUp_Dynamite(id, virtualContent, position);
-                    break;
                 case PowerUpType.Crystal:
                     powerup = new PowerUp_Crystal(id, virtualContent, position);
+                    break;
+                case PowerUpType.Warp:
+                    powerup = new PowerUp_Warp(id, virtualContent, position);
                     break;
                 default:
                     powerup = new PowerUp_EnergyBall(id, virtualContent, position);
@@ -203,8 +200,14 @@ namespace SolarFusion.Core
                 case LevelObjectType.Solid:
                     levelobject = new LevelObject_Solid(id, virtualContent, position);
                     break;
+                case LevelObjectType.NonSolid:
+                    levelobject = new LevelObject_NonSolid(id, virtualContent, position);
+                    break;
+                case LevelObjectType.Crate:
+                    levelobject = new LevelObject_Crate(id, virtualContent, position);
+                    break;
                 default:
-                    levelobject = new LevelObject_Solid(id, virtualContent, position);
+                    levelobject = new LevelObject_Crate(id, virtualContent, position);
                     break;
             }
 

@@ -11,9 +11,8 @@ namespace SolarFusion.Core
     {
         None = 0,
         EnergyBall = 1,
-        Crate = 2,
-        Dynamite = 4,
-        Crystal = 8,
+        Crystal = 2,
+        Warp = 4,
         Default = 65536,
     }
 

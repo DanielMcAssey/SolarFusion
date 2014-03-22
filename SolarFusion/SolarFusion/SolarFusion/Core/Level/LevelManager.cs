@@ -35,6 +35,10 @@ namespace SolarFusion.Level
         private uint _current_level_id = 0;
         private PlayerIndex? mControllingPlayer;
         private bool isScrolling = false;
+        private Vector2 mPositionOffset = Vector2.Zero;
+        private List<Rectangle> mStartScroll;
+        private List<Rectangle> mEndScroll;
+        private List<Rectangle> mEndAreas;
 
         // Effects
         private CrepuscularRays _effect_sun = null;
@@ -71,7 +75,14 @@ namespace SolarFusion.Level
         {
             this._obj_map = this._obj_contentmanager.Load<LevelTilemap>("Levels/level_" + _LevelID.ToString() + "/level"); //Load level data from selected level.
             this._obj_map.LoadContent(this._obj_contentmanager);
+            this._obj_player = _activePlayer; //Assign player.
+            this._obj_entitymanager = _objManager; //Assign entity manager
             this._current_level_id = _LevelID;
+            this.mPositionOffset = new Vector2(0, 8);
+
+            this.mStartScroll = new List<Rectangle>();
+            this.mEndScroll = new List<Rectangle>();
+            this.mEndAreas = new List<Rectangle>();
 
             // Load Level Objects
             for (int i = 0; i < this._obj_map.tmGameEntityGroupCount; i++) //Loop over the amount of objects in the level and load them.
@@ -79,35 +90,40 @@ namespace SolarFusion.Level
                 for (int j = 0; j < this._obj_map.tmGameEntityGroups[i].GameEntityData.Count(); j++)
                 {
                     GameEntity goData = this._obj_map.tmGameEntityGroups[i].GameEntityData[j];
-                    Vector2 position = new Vector2(goData.entPosition.Center.X, goData.entPosition.Center.Y);
+                    Vector2 position = new Vector2(goData.entPosition.Center.X, goData.entPosition.Center.Y + this.mPositionOffset.Y);
                     GameObjects go;
-
-                    this._obj_player = _activePlayer; //Assign instances to local class variables.
-                    this._obj_entitymanager = _objManager;
                     switch (goData.entCategory) //Swtich by object category.
                     {
                         case "PlayerStart":
-                            Vector2 newPos = new Vector2(position.X, position.Y + ((this._obj_player.Height / 2) / 2));
+                            Vector2 newPos = new Vector2(position.X, position.Y - (this.mPositionOffset.Y - 10));
                             this._obj_player.Position = newPos;
-                            this._obj_player.floorHeight = position.Y + ((this._obj_player.Height / 2) / 2);
+                            this._obj_player.floorHeight = newPos.Y;
                             this._obj_player.isSingleplayer = true;
                             this._obj_player.LayerDepth = this._obj_map.tmGameEntityGroups[i].LayerDepth;
                             break;
-                        case "Powerup": //NEED TO FIX
-                            //go = this._obj_entitymanager.CreatePowerup((PowerUpType)Enum.Parse(typeof(PowerUpType), goData.entType, true), position);
-                            //this._obj_map.tmGameEntityGroups[i].GameEntityData[j].entID = go.ID;
-                            //go.LayerDepth = this._obj_map.tmGameEntityGroups[i].LayerDepth;
+                        case "Powerup":
+                            go = this._obj_entitymanager.CreatePowerup((PowerUpType)Enum.Parse(typeof(PowerUpType), goData.entType, true), position);
+                            this._obj_map.tmGameEntityGroups[i].GameEntityData[j].entID = go.ID;
+                            go.LayerDepth = this._obj_map.tmGameEntityGroups[i].LayerDepth;
                             break;
-                        case "Enemy": //NEED TO FIX
-                            //go = this._obj_entitymanager.CreateEnemy((EnemyType)Enum.Parse(typeof(EnemyType), goData.entType, true), position);
-                            //this._obj_map.tmGameEntityGroups[i].GameEntityData[j].entID = go.ID;
-                            //go.LayerDepth = this._obj_map.tmGameEntityGroups[i].LayerDepth;
+                        case "Enemy":
+                            go = this._obj_entitymanager.CreateEnemy((EnemyType)Enum.Parse(typeof(EnemyType), goData.entType, true), position);
+                            this._obj_map.tmGameEntityGroups[i].GameEntityData[j].entID = go.ID;
+                            go.LayerDepth = this._obj_map.tmGameEntityGroups[i].LayerDepth;
                             break;
                         case "LevelObject":
                             go = this._obj_entitymanager.CreateLevelObject((LevelObjectType)Enum.Parse(typeof(LevelObjectType), goData.entType, true), position);
                             this._obj_map.tmGameEntityGroups[i].GameEntityData[j].entID = go.ID;
-                            go.defaultBounds = goData.entPosition;
                             go.LayerDepth = this._obj_map.tmGameEntityGroups[i].LayerDepth;
+                            break;
+                        case "StartScroll":
+                            this.mStartScroll.Add(new Rectangle((int)goData.entPosition.X, goData.entPosition.Y, goData.entPosition.Width, goData.entPosition.Height));
+                            break;
+                        case "EndScroll":
+                            this.mEndScroll.Add(new Rectangle((int)goData.entPosition.X, goData.entPosition.Y, goData.entPosition.Width, goData.entPosition.Height));
+                            break;
+                        case "End_Area":
+                            this.mEndAreas.Add(new Rectangle((int)goData.entPosition.X, goData.entPosition.Y, goData.entPosition.Width, goData.entPosition.Height));
                             break;
                     }
                 }
@@ -126,9 +142,6 @@ namespace SolarFusion.Level
             this._obj_camera.Speed = 60f;
             this._obj_entitymanager.camera = this._obj_camera;
             this._obj_gui.Load(this._obj_contentmanager);
-
-
-            this.isScrolling = true;
         }
 
         public void UnloadLevel()
@@ -145,7 +158,6 @@ namespace SolarFusion.Level
         {
             float timeDiff = (float)_gameTime.ElapsedGameTime.TotalSeconds;
             this._effect_sun.LightSource = this._effect_sun_pos;
-            this._obj_entitymanager.Update(_gameTime);
 
             if ((this._obj_camera.Position.X + (this._obj_viewport.Width / 2)) >= ((this._obj_map.tmWidth * this._obj_map.tmTileWidth) - 10))
                 this.isScrolling = false; //If player reaches the end of the map, stop the scrolling.
@@ -154,6 +166,15 @@ namespace SolarFusion.Level
             {
                 float scrollDelta = (float)_gameTime.ElapsedGameTime.TotalSeconds * this._obj_camera.Speed; //Gets delta to increment camera position.
                 this._obj_camera.Position += new Vector2(scrollDelta, 0); //Increments the camera speed.
+                for (int i = 0; i < this.mEndScroll.Count; i++)
+                    if (this._obj_player.Bounds.Intersects(this.mEndScroll[i]))
+                        this.isScrolling = false;
+            }
+            else
+            {
+                for (int i = 0; i < this.mStartScroll.Count; i++) //Checks through all the positions to start scrolling, and if the play hits it, the game starts scrolling.
+                    if (this._obj_player.Bounds.Intersects(this.mStartScroll[i]))
+                        this.isScrolling = true;
             }
 
             foreach (uint goID in this._obj_entitymanager.dynamicObjects) //Checks all the dynamic objects in the level, and loops through updating them.
@@ -219,6 +240,41 @@ namespace SolarFusion.Level
             foreach (uint goID in this._obj_entitymanager.QueryRegion(deleteBounds)) //Checks if any objects are in the bounds, and loops through deleting them.
                 this._obj_entitymanager.DestroyObject(goID); //Delets the object if its in the bounds.
 
+            foreach (uint goID in this._obj_entitymanager.QueryRegion(this._obj_player.Bounds)) //Collision detection for player, checks the player if its colliding with anything.
+            {
+                GameObjects go = this._obj_entitymanager.GetObject(goID); //Gets the object
+                if (go.Hidden == false) //Checks its not hidden.
+                {
+                    if (this._obj_player.Bounds.Intersects(go.Bounds))
+                    {
+                        switch (go.ObjectType)
+                        {
+                            case ObjectType.Enemy:
+                                this._obj_player.PlayerHealth -= go.Score; //Removes health equal to the damage that the enemy does.
+                                break;
+                            case ObjectType.PowerUp:
+                                PowerUp tmpPowerUp = (PowerUp)this._obj_entitymanager.GetObject(goID);
+                                switch (tmpPowerUp.Type)
+                                {
+                                    case PowerUpType.Crystal:
+
+                                        break;
+                                    case PowerUpType.EnergyBall:
+                                        this._obj_player.Score += go.Score;
+                                        go.Hidden = true;
+                                        break;
+                                    case PowerUpType.Warp:
+                                        //Complete level
+                                        this._obj_player.isHidden = true;
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+
+            this._obj_entitymanager.Update(_gameTime);
             this._obj_player.Update(_gameTime);
             this._obj_gui.Update(_gameTime);
         }
@@ -228,7 +284,7 @@ namespace SolarFusion.Level
             //Create a mask for the occlusion ray
             this._obj_graphics.SetRenderTarget(this._obj_scene);
             this._obj_graphics.Clear(Color.White);
-            _sb.Begin(SpriteSortMode.BackToFront, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            _sb.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
             this.DrawLevel(_sb);
             this._obj_player.Draw(_sb);
             _sb.End();
@@ -237,12 +293,20 @@ namespace SolarFusion.Level
             //Apply Post Processing Effects
             this._obj_ppmanager.Draw(_sb, this._obj_scene);
 
+            Rectangle bounds = new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2f)) - 100, 0, (((this._obj_viewport.Width / this._obj_map.tmTileWidth) * this._obj_map.tmTileWidth) + 300), this._obj_map.tmHeight * this._obj_map.tmTileHeight); //Calculates what objects need to be drawn.
             //Draw Scene in Colour
             this._obj_graphics.SetRenderTarget(this._obj_scene);
             this._obj_graphics.Clear(this._effect_sky_color); //Background Colour
-            _sb.Begin(SpriteSortMode.BackToFront, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            _sb.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
             this.DrawLevel(_sb);
             this._obj_player.Draw(_sb);
+            this._obj_gui.Draw(_sb);
+            foreach (uint goID in _obj_entitymanager.QueryRegion(bounds)) //Checks what objects are in the calculated boundry.
+            {
+                GameObjects go = _obj_entitymanager.GetObject(goID);
+                if (go.Hidden == false)
+                    go.Draw(_sb); //Draws The Object.
+            }
             _sb.End();
             this._obj_graphics.SetRenderTarget(null);
             this._obj_graphics.Clear(Color.Black);
@@ -252,28 +316,17 @@ namespace SolarFusion.Level
             _sb.Draw(this._obj_ppmanager.mScene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
             _sb.Draw(this._obj_scene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
             _sb.End();
-
-            _sb.Begin();
-            this._obj_gui.Draw(_sb);
-            _sb.End();
         }
 
         private void DrawLevel(SpriteBatch _sb)
         {
             int minY = (int)(this._obj_camera.Position.Y - (this._obj_viewport.Height / 2f)) / this._obj_map.tmTileHeight;
             int minX = (int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2f)) / this._obj_map.tmTileWidth;
-
-            if (minY < 0)
-                minY = 0;
-
-            if (minX < 0)
-                minX = 0;
-
+            if (minY < 0) minY = 0;
+            if (minX < 0) minX = 0;
             int maxX = minX + (this._obj_viewport.Width / this._obj_map.tmTileWidth) + 2;
             int maxY = this._obj_map.tmHeight;
-
-            if (maxX >= this._obj_map.tmWidth)
-                maxX = this._obj_map.tmWidth;
+            if (maxX >= this._obj_map.tmWidth) maxX = this._obj_map.tmWidth;
 
             for (int i = 0; i < this._obj_map.tmLayerCount; i++) //Draws on layer by layer basis.
             {
@@ -291,15 +344,6 @@ namespace SolarFusion.Level
                         }
                     }
                 }
-            }
-
-            Rectangle bounds = new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2f)) - 100, 0, (((this._obj_viewport.Width / this._obj_map.tmTileWidth) * this._obj_map.tmTileWidth) + 300), this._obj_map.tmHeight * this._obj_map.tmTileHeight); //Calculates what objects need to be drawn.
-            foreach (uint goID in _obj_entitymanager.QueryRegion(bounds)) //Checks what objects are in the calculated boundry.
-            {
-                GameObjects go = _obj_entitymanager.GetObject(goID);
-
-                if (go.Hidden == false)
-                    go.Draw(_sb); //Draws The Object.
             }
         }
     }
