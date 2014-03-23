@@ -33,8 +33,13 @@ namespace SolarFusion.Level
         private GameGUI _obj_gui = null;
 
         private uint _current_level_id = 0;
+        private bool isStartWarp = false;
+        private bool isEndWarp = false;
+        private float mWarpTime = 0f;
         private PlayerIndex? mControllingPlayer;
         private bool isScrolling = false;
+        private Texture2D mDebugRectangle;
+        private bool mDebugEnabled = false;
         private Vector2 mPositionOffset = Vector2.Zero;
         private List<Rectangle> mStartScroll;
         private List<Rectangle> mEndScroll;
@@ -76,13 +81,16 @@ namespace SolarFusion.Level
             this._obj_map = this._obj_contentmanager.Load<LevelTilemap>("Levels/level_" + _LevelID.ToString() + "/level"); //Load level data from selected level.
             this._obj_map.LoadContent(this._obj_contentmanager);
             this._obj_player = _activePlayer; //Assign player.
+            this._obj_player.PlayerAnimation.Origin = new Vector2(this._obj_player.PlayerAnimation.Origin.X, this._obj_player.PlayerAnimation.Origin.Y * 2);
             this._obj_entitymanager = _objManager; //Assign entity manager
             this._current_level_id = _LevelID;
-            this.mPositionOffset = new Vector2(0, 8);
-
+            this.mDebugRectangle = this._obj_contentmanager.Load<Texture2D>("Sprites/Misc/Static/debug_pixel");
+            this.mPositionOffset = new Vector2(0, 25);
+            this.mDebugEnabled = false;
             this.mStartScroll = new List<Rectangle>();
             this.mEndScroll = new List<Rectangle>();
             this.mEndAreas = new List<Rectangle>();
+            Blast.Load(this._obj_contentmanager); //Load Weapon Ammo
 
             // Load Level Objects
             for (int i = 0; i < this._obj_map.tmGameEntityGroupCount; i++) //Loop over the amount of objects in the level and load them.
@@ -95,9 +103,8 @@ namespace SolarFusion.Level
                     switch (goData.entCategory) //Swtich by object category.
                     {
                         case "PlayerStart":
-                            Vector2 newPos = new Vector2(position.X, position.Y - (this.mPositionOffset.Y - 10));
-                            this._obj_player.Position = newPos;
-                            this._obj_player.floorHeight = newPos.Y;
+                            this._obj_player.Position = position;
+                            this._obj_player.floorHeight = position.Y;
                             this._obj_player.isSingleplayer = true;
                             this._obj_player.LayerDepth = this._obj_map.tmGameEntityGroups[i].LayerDepth;
                             break;
@@ -105,6 +112,12 @@ namespace SolarFusion.Level
                             go = this._obj_entitymanager.CreatePowerup((PowerUpType)Enum.Parse(typeof(PowerUpType), goData.entType, true), position);
                             this._obj_map.tmGameEntityGroups[i].GameEntityData[j].entID = go.ID;
                             go.LayerDepth = this._obj_map.tmGameEntityGroups[i].LayerDepth;
+                            if (go.ObjectType == ObjectType.PowerUp)
+                            {
+                                PowerUp tmpPowerUp = (PowerUp)go;
+                                if (tmpPowerUp.Type == PowerUpType.Warp)
+                                    go.Hidden = true;
+                            }
                             break;
                         case "Enemy":
                             go = this._obj_entitymanager.CreateEnemy((EnemyType)Enum.Parse(typeof(EnemyType), goData.entType, true), position);
@@ -199,7 +212,6 @@ namespace SolarFusion.Level
                     if (go.ObjectType == ObjectType.Enemy)
                     {
                         AI bot = (AI)this._obj_entitymanager.GetObject(goID); //Gets the AI object
-
                         switch (bot.moveDirection) //Switches the bots current direction, and moves that way.
                         {
                             case MoveDirection.Left:
@@ -234,6 +246,41 @@ namespace SolarFusion.Level
                     go.Update(_gameTime); //Updates the object.
                     this._obj_entitymanager.UpdateGameObject(goID); //Updates the object within the object manager.
                 }
+
+                if (go.ObjectType == ObjectType.PowerUp)
+                {
+                    PowerUp tmpPowerUp = (PowerUp)go; //Gets the PowerUp Object
+                    if (tmpPowerUp.Type == PowerUpType.Warp)
+                    {
+                        if (this.isStartWarp)
+                        {
+                            if (tmpPowerUp.Hidden != false || tmpPowerUp.animation.CurrentAnimation != "start")
+                            {
+                                tmpPowerUp.Hidden = false;
+                                tmpPowerUp.animation.Frame = 0;
+                                tmpPowerUp.animation.CurrentAnimation = "start";
+                            }
+                            this.mWarpTime += (float)_gameTime.ElapsedGameTime.TotalSeconds;
+                            if (this.mWarpTime >= 1.2f)
+                            {
+                                this.isStartWarp = false;
+                                this.mWarpTime = 0f;
+                                tmpPowerUp.animation.CurrentAnimation = "idle";
+                            }
+                        }
+                        else if (this.isEndWarp)
+                        {
+                            this.mWarpTime += (float)_gameTime.ElapsedGameTime.TotalSeconds;
+                            if (this.mWarpTime >= 1f)
+                            {
+                                //Load screen
+                                this.isEndWarp = false;
+                                this.mWarpTime = 0f;
+                                tmpPowerUp.Hidden = true;
+                            }
+                        }
+                    }
+                }
             }
 
             Rectangle deleteBounds = new Rectangle((int)((this._obj_camera.Position.X - (this._obj_viewport.Width / 2f)) - 50), 0, -4480, this._obj_map.tmHeight * this._obj_map.tmTileHeight); //Sets bounds for deleting objects.
@@ -257,15 +304,21 @@ namespace SolarFusion.Level
                                 switch (tmpPowerUp.Type)
                                 {
                                     case PowerUpType.Crystal:
-
+                                        this._obj_player.isGemCollected = true;
+                                        this.isStartWarp = true;
+                                        this.mWarpTime = 0f;
+                                        go.Hidden = true;
                                         break;
                                     case PowerUpType.EnergyBall:
                                         this._obj_player.Score += go.Score;
                                         go.Hidden = true;
                                         break;
                                     case PowerUpType.Warp:
-                                        //Complete level
+                                        this.isEndWarp = true;
                                         this._obj_player.isHidden = true;
+                                        this.mWarpTime = 0f;
+                                        tmpPowerUp.animation.Frame = 0;
+                                        tmpPowerUp.animation.CurrentAnimation = "end";
                                         break;
                                 }
                                 break;
@@ -299,13 +352,16 @@ namespace SolarFusion.Level
             this._obj_graphics.Clear(this._effect_sky_color); //Background Colour
             _sb.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
             this.DrawLevel(_sb);
-            this._obj_player.Draw(_sb);
-            this._obj_gui.Draw(_sb);
-            foreach (uint goID in _obj_entitymanager.QueryRegion(bounds)) //Checks what objects are in the calculated boundry.
+            foreach (uint goID in this._obj_entitymanager.QueryRegion(bounds)) //Checks what objects are in the calculated boundry.
             {
-                GameObjects go = _obj_entitymanager.GetObject(goID);
+                GameObjects go = this._obj_entitymanager.GetObject(goID);
                 if (go.Hidden == false)
+                {
+                    if (this.mDebugEnabled) //Debug Command
+                        _sb.Draw(this.mDebugRectangle, go.Bounds, Color.Blue * 0.5f);
+
                     go.Draw(_sb); //Draws The Object.
+                }
             }
             _sb.End();
             this._obj_graphics.SetRenderTarget(null);
@@ -315,6 +371,11 @@ namespace SolarFusion.Level
             _sb.Begin(SpriteSortMode.BackToFront, BlendState.Additive, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
             _sb.Draw(this._obj_ppmanager.mScene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
             _sb.Draw(this._obj_scene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
+            _sb.End();
+
+            _sb.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            this._obj_player.Draw(_sb);
+            this._obj_gui.Draw(_sb);
             _sb.End();
         }
 

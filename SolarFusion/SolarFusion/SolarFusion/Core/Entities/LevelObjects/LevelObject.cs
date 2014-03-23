@@ -16,10 +16,10 @@ namespace SolarFusion.Core
 
     public abstract class LevelObject : GameObjects
     {
-        protected Rectangle bounds;
+        public AnimatedSprite animation;
         public override Rectangle Bounds
         {
-            get { return new Rectangle((int)this.defaultBounds.X, (int)this.defaultBounds.Y, this.defaultBounds.Width, this.defaultBounds.Height); }
+            get { return new Rectangle((int)(animation.Position.X - ((animation.AnimationWidth * animation.Scale) / 2f)), (int)(animation.Position.Y - ((animation.AnimationHeight * animation.Scale) / 2f)), (int)(animation.AnimationWidth * animation.Scale), (int)(animation.AnimationHeight * animation.Scale)); }
         }
 
         protected LevelObjectType type;
@@ -27,9 +27,15 @@ namespace SolarFusion.Core
         {
             get { return type; }
         }
-
         public LevelObject(uint id) : base(id) { }
-        public override void Update(GameTime gameTime) { }
-        public override void Draw(SpriteBatch spriteBatch) { }
+
+        public override void Update(GameTime gameTime)
+        {
+            animation.Update(gameTime);
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            animation.Draw(spriteBatch, 1f);
+        }
     }
 }

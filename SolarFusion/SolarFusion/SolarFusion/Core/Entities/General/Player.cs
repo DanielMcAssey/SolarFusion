@@ -15,6 +15,7 @@ namespace SolarFusion.Core
         public bool isMultiplayer = false;
         public bool isHidden = false;
         public bool inControl = false;
+        public bool isGemCollected = false;
         AnimatedSprite playerAnimation;
         public string CharacterName = "";
         public float moveSpeed = 1f;
@@ -29,10 +30,11 @@ namespace SolarFusion.Core
         public float originalFloorHeight = 0f;
         Vector2 position = Vector2.Zero;
         public bool isJumping = false;
-        private EntityManager mObjectManager;
+        private EntityManager _obj_entitymanager;
         private float Health = 100.0f;
         public bool isOnTop = false;
         public bool addGravity = false;
+        private List<Blast> mWeaponAmmo;
 
         public Vector2 Position
         {
@@ -80,7 +82,8 @@ namespace SolarFusion.Core
             moveSpeed = speed;
             jumpHeight = jHeight;
             jumpSpeed = jSpeed;
-            mObjectManager = objManager;
+            this._obj_entitymanager = objManager;
+            this.mWeaponAmmo = new List<Blast>();
         }
 
         public void moveLeft()
@@ -131,6 +134,29 @@ namespace SolarFusion.Core
                     isJumping = true;
                     moveDirection = MoveDirection.Jump;
                     playerAnimation.CurrentAnimation = "idle";
+                }
+            }
+        }
+
+        public void fire()
+        {
+            if (this.mWeaponAmmo != null)
+            {
+                if (this.Score >= 2)
+                {
+                    switch (this.moveDirection)
+                    {
+                        case MoveDirection.Left:
+                            this.mWeaponAmmo.Add(new Blast(new Vector2(this.Position.X - 30, this.Position.Y - (this.PlayerAnimation.AnimationHeight / 2f)), 2f, -250f, 1.5f));
+                            break;
+                        case MoveDirection.Right:
+                            this.mWeaponAmmo.Add(new Blast(new Vector2(this.Position.X + 30, this.Position.Y - (this.PlayerAnimation.AnimationHeight / 2f)), 2f, 250f, -1.5f));
+                            break;
+                        default:
+                            this.mWeaponAmmo.Add(new Blast(new Vector2(this.Position.X + 30, this.Position.Y - (this.PlayerAnimation.AnimationHeight / 2f)), 2f, 250f, -1.5f));
+                            break;
+                    }
+                    this.Score -= 2;
                 }
             }
         }
@@ -187,6 +213,32 @@ namespace SolarFusion.Core
                 }
             }
 
+            for (int i = 0; i < this.mWeaponAmmo.Count; i++)
+            {
+                this.mWeaponAmmo[i].Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+                if (this.mWeaponAmmo[i].ForDeletion)
+                {
+                    this.mWeaponAmmo.Remove(this.mWeaponAmmo[i]);
+                    break;
+                }
+
+                Rectangle collidedObjects = new Rectangle((int)(this.mWeaponAmmo[i].Position.X - (Blast.Texture.Width / 2f)), (int)(this.mWeaponAmmo[i].Position.Y - (Blast.Texture.Height / 2f)), Blast.Texture.Width, Blast.Texture.Height); //Sets bounds for detecting objects.
+                foreach (uint goID in this._obj_entitymanager.QueryRegion(collidedObjects)) //Checks if any objects are in the bounds, and loops through them.
+                {
+                    GameObjects go = this._obj_entitymanager.GetObject(goID);
+                    switch (go.ObjectType)
+                    {
+                        case Core.ObjectType.LevelObject:
+                            this.mWeaponAmmo.Remove(this.mWeaponAmmo[i]);
+                            break;
+                        case Core.ObjectType.Enemy:
+                            this.mWeaponAmmo.Remove(this.mWeaponAmmo[i]);
+                            this._obj_entitymanager.DestroyObject(goID);
+                            break;
+                    }
+                }
+            }
+
             if (playerAnimation != null)
             {
                 playerAnimation.Position = position;
@@ -201,6 +253,10 @@ namespace SolarFusion.Core
                 if (isHidden == false)
                 {
                     playerAnimation.Draw(spriteBatch, 1f);
+                    foreach (Blast localAmmo in this.mWeaponAmmo)
+                    {
+                        localAmmo.Draw(spriteBatch);
+                    }
                 }
             }
         }

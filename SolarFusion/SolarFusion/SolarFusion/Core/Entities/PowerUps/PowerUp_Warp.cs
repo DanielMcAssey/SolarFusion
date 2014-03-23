@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 using Microsoft.Xna.Framework;
@@ -18,7 +16,7 @@ namespace SolarFusion.Core
             this.animation = new AnimatedSprite(tmpTexture, 8, 3);
 
             this.animation.AddAnimation("idle", 1, 8, 15);
-            this.animation.AddAnimation("end", 2, 7, 3);
+            this.animation.AddAnimation("end", 2, 7, 6);
             this.animation.AddAnimation("start", 3, 4, 3);
             this.animation.Position = position;
             this.animation.Scale = 1f;

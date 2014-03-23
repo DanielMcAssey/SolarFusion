@@ -37,7 +37,8 @@ namespace SolarFusion.Input
             this.AddGamePadInput("PLAY_MOVE_LEFT", SysConfig.INPUT_GAMEPAD_LEFT_STICK, false);
             this.AddGamePadInput("PLAY_MOVE_RIGHT", SysConfig.INPUT_GAMEPAD_RIGHT_DPAD, false);
             this.AddGamePadInput("PLAY_MOVE_RIGHT", SysConfig.INPUT_GAMEPAD_RIGHT_STICK, false);
-            this.AddGamePadInput("PLAY_MOVE_JUMP", SysConfig.INPUT_GAMEPAD_JUMP, false);
+            this.AddGamePadInput("PLAY_MOVE_JUMP", SysConfig.INPUT_GAMEPAD_JUMP, true);
+            this.AddGamePadInput("PLAY_WEAPON_FIRE", SysConfig.INPUT_GAMEPAD_FIRE, true);
 
             //Add Keyboard Input
             this.AddKeyboardInput("NAV_UP", SysConfig.INPUT_KEYBOARD_UP, true);
@@ -53,7 +54,8 @@ namespace SolarFusion.Input
 
             this.AddKeyboardInput("PLAY_MOVE_LEFT", SysConfig.INPUT_KEYBOARD_LEFT, false);
             this.AddKeyboardInput("PLAY_MOVE_RIGHT", SysConfig.INPUT_KEYBOARD_RIGHT, false);
-            this.AddKeyboardInput("PLAY_MOVE_JUMP", SysConfig.INPUT_KEYBOARD_JUMP, false);
+            this.AddKeyboardInput("PLAY_MOVE_JUMP", SysConfig.INPUT_KEYBOARD_JUMP, true);
+            this.AddKeyboardInput("PLAY_WEAPON_FIRE", SysConfig.INPUT_KEYBOARD_FIRE, true);
         }
 
         public InputHelper NewInput(string action)

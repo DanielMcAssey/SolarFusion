@@ -58,11 +58,6 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="GameThumbnail.png">
-      <XnaPlatformSpecific>true</XnaPlatformSpecific>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Core\.NET\HashSet.cs" />
     <Compile Include="Core\Camera\Camera2D.cs" />
     <Compile Include="Core\Config\ConfigManager.cs" />
@@ -71,6 +66,7 @@
     <Compile Include="Core\Entities\AI\Enemy_MercBot.cs" />
     <Compile Include="Core\Entities\EntityManager.cs" />
     <Compile Include="Core\Entities\GameObjects.cs" />
+    <Compile Include="Core\Entities\General\Blast.cs" />
     <Compile Include="Core\Entities\General\Player.cs" />
     <Compile Include="Core\Entities\LevelObjects\LevelObject.cs" />
     <Compile Include="Core\Entities\LevelObjects\LevelObject_Crate.cs" />
@@ -160,12 +156,6 @@
       <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Screen\DefaultScreens\" />
-    <Folder Include="Screen\GUIScreens\" />
-    <Folder Include="Screen\System\Components\" />
-    <Folder Include="Screen\System\Events\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework" />

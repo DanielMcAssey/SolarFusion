@@ -41,7 +41,7 @@
    <property name="LayerDepth" value="0.7"/>
    <property name="ScrollingSpeed" value="20"/>
   </properties>
-  <object name="PlayerStart" type="Location" x="86" y="516" width="86" height="62"/>
+  <object name="PlayerStart" type="Location" x="86" y="516" width="86" height="86"/>
   <object name="StartScroll" type="Location" x="430" y="0" width="86" height="602"/>
   <object name="End_Area" type="Location" x="6966" y="172" width="1032" height="430"/>
   <object name="Powerup" type="EnergyBall" x="1376" y="516" width="86" height="86"/>

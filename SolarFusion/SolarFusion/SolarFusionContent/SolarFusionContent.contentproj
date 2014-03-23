@@ -58,9 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />
-    <Folder Include="Sprites\Misc\Static\" />
     <Folder Include="Sprites\Misc\UI\Other\" />
-    <Folder Include="Sprites\Objects\Static\crate\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -1131,6 +1129,20 @@
   <ItemGroup>
     <Compile Include="Sprites\Enemies\mercbot\spritesheet.png">
       <Name>spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Objects\Static\crate\sprite.png">
+      <Name>sprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\Static\debug_pixel.png">
+      <Name>debug_pixel</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
