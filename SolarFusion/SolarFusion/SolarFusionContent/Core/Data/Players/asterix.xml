@@ -31,8 +31,7 @@
       </Item>
     </playerAnimationsFPS>
     <moveSpeed>1.8</moveSpeed>
-    <jumpSpeed>280</jumpSpeed>
-    <jumpHeight>100</jumpHeight>
+    <jumpSpeed>80</jumpSpeed>
     <hiddenCharacter>false</hiddenCharacter>
   </Asset>
 </XnaContent>

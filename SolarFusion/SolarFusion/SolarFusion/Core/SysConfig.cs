@@ -11,8 +11,8 @@ namespace SolarFusion.Core
     public class SysConfig
     {
         //General Configuration
-        public const string CONFIG_GAME_BUILD = "0.8-alpha-branch";
-        public const string CONFIG_GAME_BUILD_TYPE = "Alpha";
+        public const string CONFIG_GAME_BUILD = "1.0-beta-branch";
+        public const string CONFIG_GAME_BUILD_TYPE = "BETA";
         public const string CONFIG_GAME_NAME_CLEAN = "Jumpista";
         public const string CONFIG_GAME_NAME = CONFIG_GAME_NAME_CLEAN + " - " + CONFIG_GAME_BUILD_TYPE + " Build (" + CONFIG_GAME_BUILD + ")";
 

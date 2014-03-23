@@ -159,7 +159,7 @@ namespace SolarFusion.Core.Screen
                 characterSprites[i].Scale = players[i].playerScale * 3f;
                 characterSprites[i].OriginalScale = players[i].playerScale;
                 characterSprites[i].CurrentAnimation = players[i].defaultAnimation;
-                playerObjects[i] = new Player(_playerID, characterSprites[i], characterSprites[i].Position, players[i].moveSpeed, players[i].jumpHeight, players[i].jumpSpeed, this._obj_entitymanager);
+                playerObjects[i] = new Player(_playerID, characterSprites[i], characterSprites[i].Position, players[i].moveSpeed, players[i].jumpSpeed, this._obj_entitymanager);
                 playerObjects[i].CharacterName = players[i].playerName;
             }
 

@@ -25,6 +25,7 @@ namespace SolarFusion.Core
         public List<uint> dynamicObjects;
         public List<uint> projectileObjects;
         public Camera2D camera;
+        protected Vector2 mGravity;
 
         //Collision Detection
         Dictionary<uint, BoundingBoxes> boundingBoxes;
@@ -32,10 +33,18 @@ namespace SolarFusion.Core
         HashSet<CollisionPair> horizontalOverlaps;
         HashSet<CollisionPair> collisions;
 
+        #region "Properties"
+        public Vector2 Gravity
+        {
+            get { return this.mGravity; }
+        }
+        #endregion
+
         public EntityManager(ContentManager _content)
         {
             this.virtualContent = _content; //Gets the ContentManager passed.
             gameObjects = new Dictionary<uint, GameObjects>();
+            this.mGravity = new Vector2(0f, -198.0f);
 
             createdGameObjects = new Queue<GameObjects>();
             destroyedGameObjects = new Queue<GameObjects>();
@@ -70,10 +79,8 @@ namespace SolarFusion.Core
             while (createdGameObjects.Count > 0)
             {
                 GameObjects go = createdGameObjects.Dequeue();
-                if (go is AI || go is PowerUp || go is LevelObject)
-                {
+                if (go is AI || go is PowerUp || go is LevelObject || go is Blast || go is Player)
                     dynamicObjects.Add(go.ID);
-                }
 
                 AddGameObject(go);
             }
@@ -81,7 +88,7 @@ namespace SolarFusion.Core
             while (destroyedGameObjects.Count > 0)
             {
                 GameObjects go = destroyedGameObjects.Dequeue();
-                if (go is AI || go is PowerUp || go is LevelObject)
+                if (go is AI || go is PowerUp || go is LevelObject || go is Blast || go is Player)
                 {
                     dynamicObjects.Remove(go.ID);
                 }
@@ -115,19 +122,9 @@ namespace SolarFusion.Core
         public uint[] QueryRegion(Rectangle bounds)
         {
             HashSet<uint> queryMatches = new HashSet<uint>(); //Create a new HashSet to compare matches
-
-            Bound left = new Bound(null, bounds.Left, BoundType.Min); //Creates a new bound for left.
-            int minHorizontalIndex = horizontalAxis.BinarySearch(left); //Searches the axis for the bound and sets it as the minimum amount..
-            if (minHorizontalIndex < 0) //If its less than zero
-                minHorizontalIndex = ~minHorizontalIndex; //NOT the number
-
-            Bound right = new Bound(null, bounds.Right, BoundType.Max);
-            int maxHorizontalIndex = horizontalAxis.BinarySearch(right);
-            if (maxHorizontalIndex < 0)
-                maxHorizontalIndex = ~maxHorizontalIndex;
-
-            for (int i = minHorizontalIndex; i < maxHorizontalIndex; i++)
-                queryMatches.Add(horizontalAxis[i].Box.GameObjectID);
+            foreach (uint goID in this.dynamicObjects)
+                if (bounds.Intersects(this.GetObject(goID).Bounds))
+                    queryMatches.Add(goID);
 
             return queryMatches.ToArray();
         }
@@ -188,6 +185,18 @@ namespace SolarFusion.Core
             enemy.ObjectType = ObjectType.Enemy;
             QueueGameObjectForCreation(enemy);
             return enemy;
+        }
+
+        public Blast CreateBullet(Blast _bullet)
+        {
+            QueueGameObjectForCreation(_bullet);
+            return _bullet;
+        }
+
+        public Player CreatePlayer(Player _player)
+        {
+            QueueGameObjectForCreation(_player);
+            return _player;
         }
 
         public LevelObject CreateLevelObject(LevelObjectType levelObjectType, Vector2 position)

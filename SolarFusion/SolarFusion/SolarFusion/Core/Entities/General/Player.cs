@@ -11,45 +11,54 @@ namespace SolarFusion.Core
 {
     public class Player : GameObjects
     {
+        protected EntityManager _obj_entitymanager;
+
         public bool isSingleplayer = false;
         public bool isMultiplayer = false;
-        public bool isHidden = false;
         public bool inControl = false;
         public bool isGemCollected = false;
-        AnimatedSprite playerAnimation;
-        public string CharacterName = "";
-        public float moveSpeed = 1f;
-        public float jumpSpeed = 1f;
-        public float jumpHeight = 10f;
-        public float maxHeight = 0f;
-        public float jumpDistance = 0f;
-        public float originalJumpSpeed = 0f;
-        public int jumpDirection = 0;
-        public MoveDirection moveDirection = MoveDirection.Idle;
-        public float floorHeight = 0f;
-        public float originalFloorHeight = 0f;
-        Vector2 position = Vector2.Zero;
         public bool isJumping = false;
-        private EntityManager _obj_entitymanager;
-        private float Health = 100.0f;
-        public bool isOnTop = false;
-        public bool addGravity = false;
-        private List<Blast> mWeaponAmmo;
+        public bool isUpdateGravity = false;
+
+        protected string mCharacterName = "";
+        protected float mMoveSpeed = 1f;
+        protected MoveDirection mMoveDirection = MoveDirection.Idle;
+        protected float mFloorHeight = 0f;
+        protected float mOriginalFloorHeight = 0f;
+
+        protected Vector2 mPosition = Vector2.Zero;
+        protected Vector2 mVelocity = Vector2.Zero;
+        protected AnimatedSprite mAnimation;
+        protected float mHealth = 100.0f;
+        protected float mJumpSpeed = 1f;
+
+        #region "Properties"
+        public String CharacterName
+        {
+            get { return this.mCharacterName; }
+            set { this.mCharacterName = value; }
+        }
 
         public Vector2 Position
         {
-            get { return position; }
-            set { position = value; playerAnimation.Position = position; }
+            get { return this.mPosition; }
+            set { this.mPosition = value; this.mAnimation.Position = this.mPosition; }
+        }
+
+        public Vector2 Velocity
+        {
+            get { return this.mVelocity; }
+            set { this.mVelocity = value; }
         }
 
         public int Width
         {
-            get { return playerAnimation.AnimationWidth; }
+            get { return this.mAnimation.AnimationWidth; }
         }
 
         public int Height
         {
-            get { return playerAnimation.AnimationHeight; }
+            get { return this.mAnimation.AnimationHeight; }
         }
 
         public int PlayerScore
@@ -59,206 +68,146 @@ namespace SolarFusion.Core
 
         public float PlayerHealth
         {
-            get { return this.Health; }
-            set { this.Health = value; }
+            get { return this.mHealth; }
+            set { this.mHealth = value; }
+        }
+
+        public float JumpHeight
+        {
+            get { return this.mFloorHeight; }
+        }
+
+        public float OriginalJumpHeight
+        {
+            get { return this.mOriginalFloorHeight; }
         }
 
         public AnimatedSprite PlayerAnimation
         {
-            get { return this.playerAnimation; }
-            set { this.playerAnimation = value; }
+            get { return this.mAnimation; }
+            set { this.mAnimation = value; }
         }
 
         public override Rectangle Bounds
         {
-            get { return new Rectangle((int)(Position.X - ((playerAnimation.AnimationWidth * playerAnimation.Scale) / 2f)), (int)(Position.Y - ((playerAnimation.AnimationHeight * playerAnimation.Scale) / 2f)), (int)(playerAnimation.AnimationWidth * playerAnimation.Scale), (int)(playerAnimation.AnimationHeight * playerAnimation.Scale)); }
+            get { return new Rectangle((int)(Position.X - ((this.mAnimation.AnimationWidth * this.mAnimation.Scale) / 2f)), (int)(Position.Y - (this.mAnimation.AnimationHeight * this.mAnimation.Scale)), (int)(this.mAnimation.AnimationWidth * this.mAnimation.Scale), (int)(this.mAnimation.AnimationHeight * this.mAnimation.Scale)); }
         }
+        #endregion
 
-        public Player(uint id, AnimatedSprite spriteAnimation, Vector2 startPosition, float speed, float jHeight, float jSpeed, EntityManager objManager)
+        public Player(uint id, AnimatedSprite _animation, Vector2 _position, float _speed, float _jumpSpeed, EntityManager _entityManager)
             : base(id)
         {
-            playerAnimation = spriteAnimation;
-            position = startPosition;
-            moveSpeed = speed;
-            jumpHeight = jHeight;
-            jumpSpeed = jSpeed;
-            this._obj_entitymanager = objManager;
-            this.mWeaponAmmo = new List<Blast>();
+            this._obj_entitymanager = _entityManager;
+            this.mAnimation = _animation;
+            this.mPosition = _position;
+            this.mMoveSpeed = _speed;
+            this.mJumpSpeed = _jumpSpeed;
+            this.ObjectType = ObjectType.Player;
+        }
+
+        public void SetFloorHeight(float _floorHeight)
+        {
+            if (this.mOriginalFloorHeight == 0f)
+                this.mOriginalFloorHeight = _floorHeight;
+
+            this.mFloorHeight = _floorHeight;
         }
 
         public void moveLeft()
         {
-            if (playerAnimation != null)
+            if (this.mAnimation != null)
             {
                 if (isJumping == false)
-                    moveDirection = MoveDirection.Left;
+                    this.mMoveDirection = MoveDirection.Left;
 
-                position.X -= moveSpeed;
-                playerAnimation.CurrentAnimation = "left";
+                this.mPosition.X -= this.mMoveSpeed;
+                this.mAnimation.CurrentAnimation = "left";
             }
         }
 
         public void moveRight()
         {
-            if (playerAnimation != null)
+            if (this.mAnimation != null)
             {
-                if (isJumping == false && isOnTop == false)
-                    moveDirection = MoveDirection.Right;
+                if (this.isJumping == false)
+                    this.mMoveDirection = MoveDirection.Right;
 
-                position.X += moveSpeed;
-                playerAnimation.CurrentAnimation = "right";
+                this.mPosition.X += this.mMoveSpeed;
+                this.mAnimation.CurrentAnimation = "right";
             }
         }
 
         public void moveIdle()
         {
-            if (playerAnimation != null)
+            if (this.mAnimation != null)
             {
-                if (isJumping == false && isOnTop == false)
-                {
-                    moveDirection = MoveDirection.Idle;
-                }
+                if (this.isJumping == false)
+                    this.mMoveDirection = MoveDirection.Idle;
 
-                playerAnimation.CurrentAnimation = "idle";
-            }
-        }
-
-        public void jump()
-        {
-            if (playerAnimation != null)
-            {
-                if (position.Y == floorHeight && isJumping == false)
-                {
-                    originalJumpSpeed = jumpSpeed;
-                    maxHeight = position.Y - jumpHeight;
-                    isJumping = true;
-                    moveDirection = MoveDirection.Jump;
-                    playerAnimation.CurrentAnimation = "idle";
-                }
+                this.mAnimation.CurrentAnimation = "idle";
             }
         }
 
         public void fire()
         {
-            if (this.mWeaponAmmo != null)
+            if (this.Score >= 2)
             {
-                if (this.Score >= 2)
+                switch (this.mMoveDirection)
                 {
-                    switch (this.moveDirection)
-                    {
-                        case MoveDirection.Left:
-                            this.mWeaponAmmo.Add(new Blast(new Vector2(this.Position.X - 30, this.Position.Y - (this.PlayerAnimation.AnimationHeight / 2f)), 2f, -250f, 1.5f));
-                            break;
-                        case MoveDirection.Right:
-                            this.mWeaponAmmo.Add(new Blast(new Vector2(this.Position.X + 30, this.Position.Y - (this.PlayerAnimation.AnimationHeight / 2f)), 2f, 250f, -1.5f));
-                            break;
-                        default:
-                            this.mWeaponAmmo.Add(new Blast(new Vector2(this.Position.X + 30, this.Position.Y - (this.PlayerAnimation.AnimationHeight / 2f)), 2f, 250f, -1.5f));
-                            break;
-                    }
-                    this.Score -= 2;
+                    case MoveDirection.Left:
+                        this._obj_entitymanager.CreateBullet(new Blast(this._obj_entitymanager.NextID(), new Vector2(this.Position.X - 30, this.Position.Y - (this.PlayerAnimation.AnimationHeight / 2f)), 2f, -250f, 1.5f));
+                        break;
+                    case MoveDirection.Right:
+                        this._obj_entitymanager.CreateBullet(new Blast(this._obj_entitymanager.NextID(), new Vector2(this.Position.X + 30, this.Position.Y - (this.PlayerAnimation.AnimationHeight / 2f)), 2f, 250f, -1.5f));
+                        break;
+                    default:
+                        this._obj_entitymanager.CreateBullet(new Blast(this._obj_entitymanager.NextID(), new Vector2(this.Position.X + 30, this.Position.Y - (this.PlayerAnimation.AnimationHeight / 2f)), 2f, 250f, -1.5f));
+                        break;
                 }
+                this.Score -= 2;
             }
+        }
+
+        public void jump()
+        {
+            if (this.mAnimation != null)
+                if (this.isJumping == false) //Only allow 1 Jump
+                {
+                    this.mPosition.Y -= this.mJumpSpeed;
+                    this.isJumping = true;
+                    this.mAnimation.CurrentAnimation = "idle";
+                }
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (isJumping)
+            if (this.mPosition.Y >= this.mFloorHeight && (this.isJumping || this.isUpdateGravity))
             {
-                jumpDistance = (float)gameTime.ElapsedGameTime.TotalSeconds * jumpSpeed;
-
-                if (jumpDirection == 0)
-                {
-                    //Slow Up Speed
-                }
-                else
-                {
-                    jumpSpeed = jumpSpeed * 1.2f;
-                }
-
-                if (position.Y <= maxHeight || jumpDirection == 1)
-                {
-                    if (jumpDirection != 1)
-                    {
-                        jumpDirection = 1; //Falling Jump Direction
-                    }
-                    position.Y += jumpDistance;
-                }
-                else
-                {
-                    position.Y -= jumpDistance;
-                }
-
-                if (position.Y >= floorHeight)
-                {
-                    position.Y = floorHeight;
-                    isJumping = false;
-                    jumpDirection = 0;
-                    jumpSpeed = originalJumpSpeed;
-                }
+                this.isJumping = false;
+                this.mPosition.Y = this.mFloorHeight;
+                this.mVelocity.Y = 0f;
             }
 
-            if (addGravity == true)
+            if (this.isJumping || this.isUpdateGravity)
             {
-                jumpDistance = (float)gameTime.ElapsedGameTime.TotalSeconds * jumpSpeed;
-                jumpSpeed = jumpSpeed * 1.2f;
-                position.Y += jumpDistance;
-
-                if (position.Y >= floorHeight)
-                {
-                    position.Y = floorHeight;
-                    addGravity = false;
-                    jumpDirection = 0;
-                    jumpSpeed = originalJumpSpeed;
-                }
+                this.mVelocity += this._obj_entitymanager.Gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.mPosition -= this.mVelocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.isUpdateGravity = false;
             }
 
-            for (int i = 0; i < this.mWeaponAmmo.Count; i++)
+            //Update Animation
+            if (this.mAnimation != null)
             {
-                this.mWeaponAmmo[i].Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-                if (this.mWeaponAmmo[i].ForDeletion)
-                {
-                    this.mWeaponAmmo.Remove(this.mWeaponAmmo[i]);
-                    break;
-                }
-
-                Rectangle collidedObjects = new Rectangle((int)(this.mWeaponAmmo[i].Position.X - (Blast.Texture.Width / 2f)), (int)(this.mWeaponAmmo[i].Position.Y - (Blast.Texture.Height / 2f)), Blast.Texture.Width, Blast.Texture.Height); //Sets bounds for detecting objects.
-                foreach (uint goID in this._obj_entitymanager.QueryRegion(collidedObjects)) //Checks if any objects are in the bounds, and loops through them.
-                {
-                    GameObjects go = this._obj_entitymanager.GetObject(goID);
-                    switch (go.ObjectType)
-                    {
-                        case Core.ObjectType.LevelObject:
-                            this.mWeaponAmmo.Remove(this.mWeaponAmmo[i]);
-                            break;
-                        case Core.ObjectType.Enemy:
-                            this.mWeaponAmmo.Remove(this.mWeaponAmmo[i]);
-                            this._obj_entitymanager.DestroyObject(goID);
-                            break;
-                    }
-                }
-            }
-
-            if (playerAnimation != null)
-            {
-                playerAnimation.Position = position;
-                playerAnimation.Update(gameTime);
+                this.mAnimation.Position = this.mPosition;
+                this.mAnimation.Update(gameTime);
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (playerAnimation != null)
-            {
-                if (isHidden == false)
-                {
-                    playerAnimation.Draw(spriteBatch, 1f);
-                    foreach (Blast localAmmo in this.mWeaponAmmo)
-                    {
-                        localAmmo.Draw(spriteBatch);
-                    }
-                }
-            }
+            if (this.mAnimation != null)
+                if (this.Hidden == false)
+                    this.mAnimation.Draw(spriteBatch, 1f);
         }
     }
 }

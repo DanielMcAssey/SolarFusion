@@ -10,10 +10,11 @@ namespace SolarFusion.Core
     public enum ObjectType
     {
         Player = 0,
-        Enemy = 1,
-        PowerUp = 2,
-        LevelObject = 3,
-        Other = 4,
+        Enemy,
+        PowerUp,
+        LevelObject,
+        Bullet,
+        Other,
     }
 
     public enum MoveDirection
@@ -29,7 +30,7 @@ namespace SolarFusion.Core
         public readonly uint ID;
         public ObjectType ObjectType = ObjectType.Other;
         public float LayerDepth;
-        public int Score = 1;
+        public int Score = 0;
         public abstract Rectangle Bounds { get; }
         public bool Hidden = false;
         public Rectangle defaultBounds;

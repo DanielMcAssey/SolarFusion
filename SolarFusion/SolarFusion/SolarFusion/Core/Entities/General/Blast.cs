@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SolarFusion.Core
 {
-    class Blast
+    public class Blast : GameObjects
     {
         protected static Texture2D mBlastTexture;
         protected static Vector2 mBlastTextureOrigin;
@@ -33,12 +33,19 @@ namespace SolarFusion.Core
             get { return mBlastTexture; }
         }
 
-        public Blast(Vector2 _position, float _maxLife, float _speed, float _rotation)
+        public override Rectangle Bounds
+        {
+            get { return new Rectangle((int)(this.mPosition.X - (mBlastTexture.Width / 2f)), (int)(this.mPosition.Y - (mBlastTexture.Height / 2f)), Blast.Texture.Width, Blast.Texture.Height); }
+        }
+
+        public Blast(uint id, Vector2 _position, float _maxLife, float _speed, float _rotation)
+            : base(id)
         {
             this.mPosition = _position;
             this.mMaxLife = _maxLife;
             this.mSpeed = _speed;
             this.mRotation = _rotation;
+            this.ObjectType = ObjectType.Bullet;
         }
 
         public static void Load(ContentManager _content)
@@ -48,20 +55,20 @@ namespace SolarFusion.Core
             mScale = 1f;
         }
 
-        public void Update(float _elapsedTime)
+        public override void Update(GameTime gameTime)
         {
             if (!this.mDelete)
             {
-                this.mPosition.X += this.mSpeed * _elapsedTime;
-                this.mMaxLife -= _elapsedTime;
+                this.mPosition.X += this.mSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.mMaxLife -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (this.mMaxLife <= 0)
                     this.mDelete = true;
             }
         }
 
-        public void Draw(SpriteBatch _sb)
+        public override void Draw(SpriteBatch _sb)
         {
-            if (!this.mDelete)
+            if (!this.mDelete || !this.Hidden)
                 _sb.Draw(mBlastTexture, this.mPosition, null, Color.White, this.mRotation, mBlastTextureOrigin, mScale, SpriteEffects.None, 0f);
         }
     }

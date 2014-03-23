@@ -31,7 +31,7 @@ namespace SolarFusion.Core.Screen
         {
             base.loadContent();
             this.BGColour = Color.Black;
-            this._obj_levelmanager = new LevelManager(this.GlobalContentManager, this.ScreenManager.GraphicsDevice, this.GlobalInput, this.ControllingPlayer);
+            this._obj_levelmanager = new LevelManager(this.GlobalContentManager, this.ScreenManager.GraphicsDevice, this.GlobalInput, this.ControllingPlayer, this.ScreenManager, this.ScreenManager.DefaultGUIFont);
             this._obj_levelmanager.LoadLevel(1, this._obj_activeplayer, this._obj_entitymanager); //Load Level
             this.BGColour = Color.Blue;
         }

@@ -137,6 +137,7 @@
     <Compile Include="Core\PostProcessing\Engine\LightSourceMask.cs" />
     <Compile Include="Core\PostProcessing\PostProcessingManager.cs" />
     <Compile Include="Core\PostProcessing\ScreenQuad.cs" />
+    <Compile Include="Core\Screen\DefaultScreens\ScreenEnding.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenMsgBox.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenPause.cs" />
     <Compile Include="Core\Screen\GameScreens\ScreenCharSelect.cs" />

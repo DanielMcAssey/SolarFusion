@@ -20,6 +20,7 @@ namespace SolarFusion.Level
 {
     public class LevelManager
     {
+        private ScreenManager _obj_screenmanager = null;
         private InputManager _obj_input = null;
         private ContentManager _obj_contentmanager = null;
         private GraphicsDevice _obj_graphics = null;
@@ -65,14 +66,15 @@ namespace SolarFusion.Level
         #endregion
         // !Properties
 
-        public LevelManager(ContentManager _contentmanager, GraphicsDevice _graphics, InputManager _input, PlayerIndex? _controllingPlayer)
+        public LevelManager(ContentManager _contentmanager, GraphicsDevice _graphics, InputManager _input, PlayerIndex? _controllingPlayer, ScreenManager _screenManager, SpriteFont _font)
         {
             this._obj_contentmanager = _contentmanager;
             this._obj_viewport = _graphics.Viewport;
             this._obj_graphics = _graphics;
             this._obj_input = _input;
             this._obj_ppmanager = new PostProcessingManager(this._obj_graphics);
-            this._obj_gui = new GameGUI(this._obj_graphics);
+            this._obj_gui = new GameGUI(this._obj_graphics, _font);
+            this._obj_screenmanager = _screenManager;
             this.mControllingPlayer = _controllingPlayer;
         }
 
@@ -83,6 +85,7 @@ namespace SolarFusion.Level
             this._obj_player = _activePlayer; //Assign player.
             this._obj_player.PlayerAnimation.Origin = new Vector2(this._obj_player.PlayerAnimation.Origin.X, this._obj_player.PlayerAnimation.Origin.Y * 2);
             this._obj_entitymanager = _objManager; //Assign entity manager
+            this._obj_entitymanager.CreatePlayer(this._obj_player);
             this._current_level_id = _LevelID;
             this.mDebugRectangle = this._obj_contentmanager.Load<Texture2D>("Sprites/Misc/Static/debug_pixel");
             this.mPositionOffset = new Vector2(0, 25);
@@ -104,7 +107,7 @@ namespace SolarFusion.Level
                     {
                         case "PlayerStart":
                             this._obj_player.Position = position;
-                            this._obj_player.floorHeight = position.Y;
+                            this._obj_player.SetFloorHeight(position.Y);
                             this._obj_player.isSingleplayer = true;
                             this._obj_player.LayerDepth = this._obj_map.tmGameEntityGroups[i].LayerDepth;
                             break;
@@ -159,6 +162,7 @@ namespace SolarFusion.Level
 
         public void UnloadLevel()
         {
+            this._obj_screenmanager = null;
             this._obj_camera = null;
             this._obj_map = null;
             this._obj_entitymanager = null;
@@ -209,39 +213,63 @@ namespace SolarFusion.Level
 
                 if (go.Hidden == false) //Make sure the object isnt hidden.
                 {
-                    if (go.ObjectType == ObjectType.Enemy)
+                    switch (go.ObjectType)
                     {
-                        AI bot = (AI)this._obj_entitymanager.GetObject(goID); //Gets the AI object
-                        switch (bot.moveDirection) //Switches the bots current direction, and moves that way.
-                        {
-                            case MoveDirection.Left:
-                                bot.moveLeft();
-                                break;
-                            case MoveDirection.Right:
-                                bot.moveRight();
-                                break;
-                        }
-
-                        foreach (uint goID1 in this._obj_entitymanager.QueryRegion(go.Bounds)) //Collision detection for player, checks the player if its colliding with anything.
-                        {
-                            GameObjects go1 = this._obj_entitymanager.GetObject(goID1); //Gets the
-
-                            if (go1.ObjectType == ObjectType.LevelObject)
+                        case ObjectType.Enemy:
+                            AI bot = (AI)this._obj_entitymanager.GetObject(goID); //Gets the AI object
+                            switch (bot.moveDirection) //Switches the bots current direction, and moves that way.
                             {
-                                if (go.Bounds.Intersects(go1.Bounds))
+                                case MoveDirection.Left:
+                                    bot.moveLeft();
+                                    break;
+                                case MoveDirection.Right:
+                                    bot.moveRight();
+                                    break;
+                            }
+
+                            foreach (uint goID1 in this._obj_entitymanager.QueryRegion(go.Bounds)) //Collision detection for player, checks the player if its colliding with anything.
+                            {
+                                GameObjects go1 = this._obj_entitymanager.GetObject(goID1); //Gets the
+
+                                if (go1.ObjectType == ObjectType.LevelObject)
                                 {
-                                    switch (bot.moveDirection) //Checks bot direction.
+                                    if (go.Bounds.Intersects(go1.Bounds))
                                     {
-                                        case MoveDirection.Right: //AI Direction is right so, we change it to left.
-                                            bot.moveDirection = MoveDirection.Left;
-                                            break;
-                                        case MoveDirection.Left:
-                                            bot.moveDirection = MoveDirection.Right;
-                                            break;
+                                        switch (bot.moveDirection) //Checks bot direction.
+                                        {
+                                            case MoveDirection.Right: //AI Direction is right so, we change it to left.
+                                                bot.moveDirection = MoveDirection.Left;
+                                                break;
+                                            case MoveDirection.Left:
+                                                bot.moveDirection = MoveDirection.Right;
+                                                break;
+                                        }
                                     }
                                 }
                             }
-                        }
+                            break;
+                        case ObjectType.Bullet:
+                            Blast bullet = (Blast)this._obj_entitymanager.GetObject(goID);
+                            if (bullet.ForDeletion)
+                            {
+                                this._obj_entitymanager.DestroyObject(goID);
+                                break;
+                            }
+                            foreach (uint goID1 in this._obj_entitymanager.QueryRegion(go.Bounds))
+                            {
+                                GameObjects go1 = this._obj_entitymanager.GetObject(goID1); //Gets the
+                                switch (go1.ObjectType)
+                                {
+                                    case ObjectType.LevelObject:
+                                        this._obj_entitymanager.DestroyObject(goID);
+                                        break;
+                                    case ObjectType.Enemy:
+                                        this._obj_entitymanager.DestroyObject(goID1);
+                                        this._obj_entitymanager.DestroyObject(goID);
+                                        break;
+                                }
+                            }
+                            break;
                     }
                     go.Update(_gameTime); //Updates the object.
                     this._obj_entitymanager.UpdateGameObject(goID); //Updates the object within the object manager.
@@ -273,14 +301,20 @@ namespace SolarFusion.Level
                             this.mWarpTime += (float)_gameTime.ElapsedGameTime.TotalSeconds;
                             if (this.mWarpTime >= 1f)
                             {
-                                //Load screen
                                 this.isEndWarp = false;
                                 this.mWarpTime = 0f;
                                 tmpPowerUp.Hidden = true;
+                                this._obj_screenmanager.addScreen(new ScreenEnding("CONGRATULATIONS, YOU ESCAPED!", EndingType.Win), this.mControllingPlayer);
                             }
                         }
                     }
                 }
+            }
+
+            if (this._obj_player.PlayerHealth <= 0)
+            {
+                this._obj_player.Hidden = true;
+                this._obj_screenmanager.addScreen(new ScreenEnding("YOU DIED!", EndingType.Loss), this.mControllingPlayer);
             }
 
             Rectangle deleteBounds = new Rectangle((int)((this._obj_camera.Position.X - (this._obj_viewport.Width / 2f)) - 50), 0, -4480, this._obj_map.tmHeight * this._obj_map.tmTileHeight); //Sets bounds for deleting objects.
@@ -315,11 +349,26 @@ namespace SolarFusion.Level
                                         break;
                                     case PowerUpType.Warp:
                                         this.isEndWarp = true;
-                                        this._obj_player.isHidden = true;
+                                        this._obj_player.Hidden = true;
                                         this.mWarpTime = 0f;
                                         tmpPowerUp.animation.Frame = 0;
                                         tmpPowerUp.animation.CurrentAnimation = "end";
                                         break;
+                                }
+                                break;
+                            case ObjectType.LevelObject:
+                                LevelObject tmpLevelObject = (LevelObject)this._obj_entitymanager.GetObject(goID);
+                                if (this._obj_player.Position.Y <= ((tmpLevelObject.animation.Position.Y - (tmpLevelObject.Bounds.Height / 2f)) + 5))
+                                {
+                                    this._obj_player.Position = new Vector2(this._obj_player.Position.X, ((tmpLevelObject.animation.Position.Y - (tmpLevelObject.Bounds.Height / 2f))));
+                                    this._obj_player.SetFloorHeight(((tmpLevelObject.animation.Position.Y - (tmpLevelObject.Bounds.Height / 2f))));
+                                }
+                                else
+                                {
+                                    if (this._obj_player.Position.X < tmpLevelObject.animation.Position.X)
+                                        this._obj_player.Position = new Vector2((tmpLevelObject.animation.Position.X - ((tmpLevelObject.Bounds.Width / 2f) + (this._obj_player.Width / 2f))), this._obj_player.Position.Y);
+                                    else if (this._obj_player.Position.X > tmpLevelObject.animation.Position.X)
+                                        this._obj_player.Position = new Vector2((tmpLevelObject.animation.Position.X + ((tmpLevelObject.Bounds.Width / 2f) + (this._obj_player.Width / 2f))), this._obj_player.Position.Y);
                                 }
                                 break;
                         }
@@ -329,7 +378,23 @@ namespace SolarFusion.Level
 
             this._obj_entitymanager.Update(_gameTime);
             this._obj_player.Update(_gameTime);
-            this._obj_gui.Update(_gameTime);
+            this._obj_player.SetFloorHeight(this._obj_player.OriginalJumpHeight);
+            this._obj_player.isUpdateGravity = true;
+
+            if (this._obj_player.PlayerScore < 2)
+                this._obj_gui.Ammo = 0;
+            else
+                this._obj_gui.Ammo = this._obj_player.PlayerScore / 2;
+           
+            this._obj_gui.Crystal = this._obj_player.isGemCollected;
+
+            if (this._obj_player.PlayerHealth >= 0)
+                this._obj_gui.Health = this._obj_player.PlayerHealth;
+            else
+                this._obj_gui.Health = 0;
+            
+            this._obj_gui.Points = this._obj_player.PlayerScore;
+            this._obj_gui.Update(_gameTime, this._obj_camera);
         }
 
         public void Draw(SpriteBatch _sb)

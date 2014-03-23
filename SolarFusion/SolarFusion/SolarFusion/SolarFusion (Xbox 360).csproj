@@ -94,6 +94,7 @@
     <Compile Include="Core\Screen\DefaultScreens\ScreenMsgBox.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenPause.cs" />
     <Compile Include="Core\Screen\GameScreens\ScreenCharSelect.cs" />
+    <Compile Include="Core\Screen\DefaultScreens\ScreenEnding.cs" />
     <Compile Include="Core\Screen\GameScreens\ScreenGame.cs" />
     <Compile Include="Core\Screen\GUIScreens\ScreenCredits.cs" />
     <Compile Include="Core\Screen\GUIScreens\ScreenMenuRoot.cs" />

@@ -22,7 +22,6 @@ namespace GameData
         //Settings
         public float moveSpeed = 1f;
         public float jumpSpeed = 1f;
-        public float jumpHeight = 10f;
 
         public bool hiddenCharacter = false;
     }
