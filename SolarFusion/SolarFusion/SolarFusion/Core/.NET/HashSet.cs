@@ -5,61 +5,61 @@ using System.Collections.Generic;
 namespace Containers
 {
     /// <summary>
-    /// HashSet for Xbox360.
+    /// HashSet for Xbox 360 functionality.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class HashSet<T> : ICollection<T>
     {
-        private Dictionary<T, short> MyDict;
+        private Dictionary<T, short> mDict;
 
         public HashSet()
         {
-            MyDict = new Dictionary<T, short>();
+            this.mDict = new Dictionary<T, short>();
         }
 
-        public HashSet(IEnumerable enumer)
+        public HashSet(HashSet<T> from)
         {
-            MyDict = new Dictionary<T, short>();
-            foreach (T item in enumer)
-            {
-                MyDict.Add(item, 0);
-            }
+            this.mDict = new Dictionary<T, short>();
+            foreach (T n in from)
+                this.mDict.Add(n, 0);
         }
-        // Methods
+
+        #region "Methods"
         public void Add(T item)
         {
-            // We don't care for the value in dictionary, Keys matter.
-            MyDict.Add(item, 0);
+            if(!this.Contains(item))
+                this.mDict.Add(item, 0);
         }
 
         public void Clear()
         {
-            MyDict.Clear();
+            this.mDict.Clear();
         }
 
         public bool Contains(T item)
         {
-            return MyDict.ContainsKey(item);
+            return this.mDict.ContainsKey(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            foreach (var _item in this.mDict.Keys)
+                array[arrayIndex++] = _item;
         }
 
         public bool Remove(T item)
         {
-            return MyDict.Remove(item);
+            return this.mDict.Remove(item);
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.mDict.Keys.GetEnumerator();
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.mDict.Keys.GetEnumerator();
         }
 
         public void UnionWith(IEnumerable<T> other)
@@ -68,21 +68,23 @@ namespace Containers
             {
                 try
                 {
-                    MyDict.Add(item, 0);
+                    this.mDict.Add(item, 0);
                 }
                 catch (ArgumentException) { }
             }
         }
+        #endregion
 
-        // Properties
+        #region "Properties"
         public int Count
         {
-            get { return MyDict.Keys.Count; }
+            get { return this.mDict.Keys.Count; }
         }
 
         public bool IsReadOnly
         {
             get { return false; }
         }
+        #endregion
     }
 }

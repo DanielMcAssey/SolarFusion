@@ -13,7 +13,7 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
-    <XnaProfile>Reach</XnaProfile>
+    <XnaProfile>HiDef</XnaProfile>
     <XnaCrossPlatformGroupID>23e9d59e-715f-4c16-a7a1-fe6bdd4e1388</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Core\Game.ico</ApplicationIcon>
@@ -117,24 +117,35 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\Entities\GameObjects.cs" />
+    <Compile Include="Core\Entities\General\Blast.cs" />
     <Compile Include="Core\Entities\General\Player.cs" />
     <Compile Include="Core\Entities\LevelObjects\LevelObject.cs" />
+    <Compile Include="Core\Entities\LevelObjects\LevelObject_Crate.cs" />
+    <Compile Include="Core\Entities\LevelObjects\LevelObject_NonSolid.cs" />
     <Compile Include="Core\Entities\LevelObjects\LevelObject_Solid.cs" />
     <Compile Include="Core\Entities\PowerUps\PowerUp.cs" />
-    <Compile Include="Core\Entities\PowerUps\PowerUp_Crate.cs" />
     <Compile Include="Core\Entities\PowerUps\PowerUp_Crystal.cs" />
-    <Compile Include="Core\Entities\PowerUps\PowerUp_Dynamite.cs" />
     <Compile Include="Core\Entities\PowerUps\PowerUp_EnergyBall.cs" />
+    <Compile Include="Core\Entities\PowerUps\PowerUp_Warp.cs" />
     <Compile Include="Core\Logic\Bound.cs" />
     <Compile Include="Core\Logic\BoundingBoxes.cs" />
     <Compile Include="Core\Logic\CollisionPair.cs" />
+    <Compile Include="Core\PostProcessing\BasePostProcess.cs" />
+    <Compile Include="Core\PostProcessing\BasePostProcessEffect.cs" />
+    <Compile Include="Core\PostProcessing\Effects\CrepuscularRays.cs" />
+    <Compile Include="Core\PostProcessing\Engine\LightRay.cs" />
+    <Compile Include="Core\PostProcessing\Engine\LightSourceMask.cs" />
+    <Compile Include="Core\PostProcessing\PostProcessingManager.cs" />
+    <Compile Include="Core\PostProcessing\ScreenQuad.cs" />
+    <Compile Include="Core\Screen\DefaultScreens\ScreenEnding.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenMsgBox.cs" />
     <Compile Include="Core\Screen\DefaultScreens\ScreenPause.cs" />
     <Compile Include="Core\Screen\GameScreens\ScreenCharSelect.cs" />
     <Compile Include="Core\Screen\GameScreens\ScreenGame.cs" />
     <Compile Include="Core\Screen\GUIScreens\ScreenCredits.cs" />
-    <Compile Include="Core\Screen\GUIScreens\ScreenOptions.cs" />
+    <Compile Include="Core\Screen\GUIScreens\ScreenStart.cs" />
     <Compile Include="Core\Screen\System\AppScreen.cs" />
+    <Compile Include="Core\Screen\System\Components\GameGUI.cs" />
     <Compile Include="Core\Screen\System\Components\MenuItemCharacterSelect.cs" />
     <Compile Include="Core\Screen\System\Components\MenuItemSlider.cs" />
     <Compile Include="Core\Sprites\AnimatedSprite.cs" />
@@ -198,7 +209,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

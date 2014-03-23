@@ -35,7 +35,7 @@ namespace SolarFusion
             }
             catch (Exception ex)
             {
-                Environment.Exit(0);
+                this.Exit();
             }
 
             try
@@ -54,8 +54,8 @@ namespace SolarFusion
                 this._obj_config.WIN32_CreateNewFile();
 #elif XBOX
                 this._obj_config.X360_CreateNewFile();
-                this._obj_config.Settings.VIDEO_RES_WIDTH = 1280;
-                this._obj_config.Settings.VIDEO_RES_HEIGHT = 720;
+                this._obj_config.Settings.VIDEO_RES_WIDTH = this._obj_graphics.GraphicsDevice.DisplayMode.Width; // Use Full Possible Resolution
+                this._obj_config.Settings.VIDEO_RES_HEIGHT = this._obj_graphics.GraphicsDevice.DisplayMode.Height;
                 this._obj_config.Settings.VIDEO_FULLSCREEN = true;
                 this._obj_config.Settings.VIDEO_ANTIALIASING = true;
                 this._obj_config.Settings.VIDEO_VSYNC = true;
@@ -74,7 +74,7 @@ namespace SolarFusion
             this.Components.Add(this._obj_screenmanager);
 
             this._obj_screenmanager.addScreen(new ScreenBG(), null);
-            this._obj_screenmanager.addScreen(new ScreenMenuRoot(), PlayerIndex.One);
+            this._obj_screenmanager.addScreen(new ScreenStart(), PlayerIndex.One);
         }
 
         /// <summary>

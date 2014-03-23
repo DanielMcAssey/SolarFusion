@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="GameData.PlayerData">
+    <playerName>Asterix</playerName>
+    <playerRef>asterix</playerRef>
+    <defaultAnimation>idle</defaultAnimation>
+    <playerScale>1</playerScale>
+    <maxFrameCount>10</maxFrameCount>
+    <playerAnimations>
+      <Item>right</Item>
+      <Item>left</Item>
+      <Item>idle</Item>
+    </playerAnimations>
+    <playerAnimationFrameCount>
+      <Item>10</Item>
+      <Item>10</Item>
+      <Item>3</Item>
+    </playerAnimationFrameCount>
+    <playerAnimationsFPS>
+      <Item>
+        <Key>right</Key>
+        <Value>15</Value>
+      </Item>
+      <Item>
+        <Key>left</Key>
+        <Value>15</Value>
+      </Item>
+      <Item>
+        <Key>idle</Key>
+        <Value>1</Value>
+      </Item>
+    </playerAnimationsFPS>
+    <moveSpeed>1.8</moveSpeed>
+    <jumpSpeed>80</jumpSpeed>
+    <hiddenCharacter>false</hiddenCharacter>
+  </Asset>
+</XnaContent>

@@ -25,8 +25,9 @@ namespace SolarFusion.Core.Screen
         /// Constructor.
         /// </summary>
         public ScreenPause()
-            : base("- PAUSED -", false, null, false, 1f)
+            : base("PAUSED", Color.White, false, null, false, 1f)
         {
+            this._is_popup = true;
             this._message_alpha = DEFAULT_ALPHA;
         }
 
@@ -63,7 +64,7 @@ namespace SolarFusion.Core.Screen
         /// <param name="e"></param>
         void EventTriggerGoToMain(object sender, EventPlayer e)
         {
-            const string tmessage = "Are you sure you want to exit the simulation?";
+            const string tmessage = "Are you sure you want to exit the game?";
             ScreenMsgBox tmsgboxconfirmquit = new ScreenMsgBox(SysConfig.ASSET_CONFIG_MSGBOX_BG, tmessage);
             tmsgboxconfirmquit.onAccepted += EventTriggerConfirmGoToMain;
             ScreenManager.addScreen(tmsgboxconfirmquit, ControllingPlayer);

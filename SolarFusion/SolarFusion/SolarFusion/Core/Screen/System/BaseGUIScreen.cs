@@ -416,6 +416,7 @@ namespace SolarFusion.Core.Screen
         /// </summary>
         protected virtual void DefaultTriggerMenuBack(object psender, EventPlayer pargs)
         {
+            this._game_paused = false;
             this.OnCancel(pargs.PlayerIndex);
         }
 

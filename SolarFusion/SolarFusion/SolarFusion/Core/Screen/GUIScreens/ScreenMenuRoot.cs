@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-
 namespace SolarFusion.Core.Screen
 {
     class ScreenMenuRoot : BaseGUIScreen
@@ -20,17 +19,14 @@ namespace SolarFusion.Core.Screen
         public override void loadContent()
         {
             MenuItemBasic mi_play = new MenuItemBasic("PLAY", this.GlobalContentManager);
-            MenuItemBasic mi_options = new MenuItemBasic("OPTIONS", this.GlobalContentManager);
             MenuItemBasic mi_credits = new MenuItemBasic("CREDITS", this.GlobalContentManager);
             MenuItemBasic mi_exit = new MenuItemBasic("EXIT", this.GlobalContentManager);
 
             mi_play.OnSelected += EventTriggerGoToCharSelect;
-            mi_options.OnSelected += EventTriggerGoToOptions;
             mi_credits.OnSelected += EventTriggerGoToCredits;
             mi_exit.OnSelected += DefaultTriggerMenuBack;
 
             this._list_menuitems.Add(mi_play);
-            this._list_menuitems.Add(mi_options);
             this._list_menuitems.Add(mi_credits);
             this._list_menuitems.Add(mi_exit);
 
@@ -55,14 +51,6 @@ namespace SolarFusion.Core.Screen
         void EventTriggerGoToCharSelect(object sender, EventPlayer e)
         {
             ScreenManager.addScreen(new ScreenCharSelect(), e.PlayerIndex);
-        }
-
-        /// <summary>
-        /// Event Handler to Go to the Options Screen.
-        /// </summary>
-        void EventTriggerGoToOptions(object sender, EventPlayer e)
-        {
-            ScreenManager.addScreen(new ScreenOptions(), e.PlayerIndex);
         }
 
         /// <summary>

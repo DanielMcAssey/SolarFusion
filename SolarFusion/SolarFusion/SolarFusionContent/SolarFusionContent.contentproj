@@ -57,12 +57,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Audio\" />
-    <Folder Include="Core\Data\" />
-    <Folder Include="Core\Shaders\" />
-    <Folder Include="Sprites\Misc\Static\" />
-    <Folder Include="Sprites\Objects\Animated\" />
-    <Folder Include="Sprites\Objects\Static\" />
+    <Compile Include="Sprites\Objects\Static\crystal\sprite.png">
+      <Name>sprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -85,13 +84,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\Characters\characters.xml">
-      <Name>characters</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="System\UI\Fonts\font_DEBUG.spritefont">
@@ -437,7 +429,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Characters\Jumpista\spritesheet.png">
+    <Compile Include="Sprites\Characters\dr_jumpista\spritesheet.png">
       <Name>spritesheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -1034,6 +1026,133 @@
   <ItemGroup>
     <Compile Include="System\UI\Logos\static_dimensionalwave.png">
       <Name>static_dimensionalwave</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Textures\sun_flare.png">
+      <Name>sun_flare</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Shaders\PostProcessing\BrightPass.fx">
+      <Name>BrightPass</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Core\Shaders\PostProcessing\LightSourceMask.fx">
+      <Name>LightSourceMask</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Core\Shaders\PostProcessing\LigthRays.fx">
+      <Name>LigthRays</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Core\Shaders\PostProcessing\SceneBlend.fx">
+      <Name>SceneBlend</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Shaders\PostProcessing\PPVertexShader.fxh">
+      <Name>PPVertexShader</Name>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Data\players.xml">
+      <Name>players</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Data\Players\dr_jumpista.xml">
+      <Name>dr_jumpista</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Data\Players\asterix.xml">
+      <Name>asterix</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\Animated\anim_loading.png">
+      <Name>anim_loading</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Characters\asterix\spritesheet.png">
+      <Name>spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Objects\Animated\warp\spritesheet.png">
+      <Name>spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Objects\Animated\crystal\spritesheet.png">
+      <Name>spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Objects\Static\blast\sprite.png">
+      <Name>sprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Objects\Static\energy_ball\sprite.png">
+      <Name>sprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Enemies\mercbot\spritesheet.png">
+      <Name>spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Objects\Static\crate\sprite.png">
+      <Name>sprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\Static\debug_pixel.png">
+      <Name>debug_pixel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Misc\UI\GUI\life.png">
+      <Name>life</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

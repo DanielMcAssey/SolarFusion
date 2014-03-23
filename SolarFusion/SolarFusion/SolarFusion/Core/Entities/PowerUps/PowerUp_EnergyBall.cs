@@ -14,17 +14,15 @@ namespace SolarFusion.Core
         public PowerUp_EnergyBall(uint id, ContentManager virtualContent, Vector2 position)
             : base(id)
         {
-            Texture2D tmpTexture = virtualContent.Load<Texture2D>("Sprites/Objects/Animated/powerup_energyball");
-            this.animation = new AnimatedSprite(tmpTexture, 12, 1);
-
-            this.animation.AddAnimation("idle", 1, 12, 15);
-            this.animation.Position = position;
-            this.animation.Origin = new Vector2((tmpTexture.Width / 12f) / 2f, tmpTexture.Height / 2f);
-            this.animation.Scale = 0.5f;
+            Texture2D tmpTexture = virtualContent.Load<Texture2D>("Sprites/Objects/Static/energy_ball/sprite");
+            this.animation = new AnimatedSprite(tmpTexture, 1, 1);
+            this.animation.AddAnimation("idle", 1, 1, 1);
+            this.animation.Position = new Vector2(position.X, position.Y - 15);
+            this.animation.Origin = new Vector2(tmpTexture.Width / 2f, tmpTexture.Height / 2f);
+            this.animation.Scale = 1f;
             this.animation.CurrentAnimation = "idle";
-            this.Score = 10;
+            this.Score = 1;
             this.type = PowerUpType.EnergyBall;
-            this.animation.Loop = true;
         }
     }
 }

@@ -14,7 +14,6 @@ namespace SolarFusion.Core
         public LevelObject_Solid(uint id, ContentManager virtualContent, Vector2 position)
             : base(id)
         {
-
         }
     }
 }

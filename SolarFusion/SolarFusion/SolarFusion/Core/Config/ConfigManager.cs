@@ -135,7 +135,7 @@ namespace SolarFusion.Core
                         X360_CreateNewFile(); // Creates a new file.
                     }
                 }
-                catch (InvalidOperationException ex01) // Error reading and deserializing the file, so creates a new one.
+                catch (InvalidOperationException ex) // Error reading and deserializing the file, so creates a new one.
                 {
                     if (_stream != null)
                         _stream.Close(); // Closes the stream if it exists.

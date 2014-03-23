@@ -30,7 +30,11 @@ namespace SolarFusion.Core
             set { animation.Position = value; }
         }
 
-        public AI(uint id) : base(id) { }
+        public AI(uint id)
+            : base(id)
+        {
+            this.Score = 1;
+        }
 
         public override void Update(GameTime gameTime)
         {

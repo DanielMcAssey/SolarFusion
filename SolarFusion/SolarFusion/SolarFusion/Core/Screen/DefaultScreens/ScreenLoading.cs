@@ -126,6 +126,7 @@ namespace SolarFusion.Core.Screen
         /// </summary>
         public override void render()
         {
+            this.ScreenManager.GraphicsDevice.Clear(Color.Black);
             if ((this.CurrentScreenMode == ScreenMode.MODE_ACTIVE) && (this.ScreenManager.getScreens().Length == 1))
             {
                 this._prev_screens_clean = true;
