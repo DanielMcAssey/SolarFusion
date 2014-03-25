@@ -82,11 +82,16 @@ namespace SolarFusion.Core.Screen
 
         public override void render()
         {
+            // Draw the selected entry in yellow, otherwise white.
+            Color tmenuimgclr = Color.White;
+
+            // Modify the alpha to fade text out during transitions.
+            tmenuimgclr *= this.CurrentTransitionAlpha;
+
             base.render();
             this.ScreenManager.SpriteBatch.Begin();
-
             for (int i = 0; i < this.mCreditList.Count; i++)
-                this.ScreenManager.SpriteBatch.DrawString(this.ScreenManager.DefaultGUIFont, this.mCreditList[i].FullString, this.mCreditList[i].TextPosition, Color.White, 0f, this.mCreditList[i].TextOrigin, this.mTextScale, SpriteEffects.None, 0f);
+                this.ScreenManager.SpriteBatch.DrawString(this.ScreenManager.DefaultGUIFont, this.mCreditList[i].FullString, this.mCreditList[i].TextPosition, tmenuimgclr, 0f, this.mCreditList[i].TextOrigin, this.mTextScale, SpriteEffects.None, 0f);
 
             this.ScreenManager.SpriteBatch.End();
         }

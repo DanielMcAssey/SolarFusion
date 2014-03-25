@@ -1095,13 +1095,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Characters\asterix\spritesheet.png">
-      <Name>spritesheet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sprites\Objects\Animated\warp\spritesheet.png">
       <Name>spritesheet</Name>
       <Importer>TextureImporter</Importer>
@@ -1153,6 +1146,14 @@
   <ItemGroup>
     <Compile Include="Sprites\Misc\UI\GUI\life.png">
       <Name>life</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Sprites\Characters\asterix\spritesheet.png">
+      <Name>spritesheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -68,6 +68,9 @@ namespace SolarFusion.Core.Screen
             if (this.GlobalInput.IsPressed("PLAY_WEAPON_FIRE", this.ControllingPlayer)) //If player presses the jump button (Spacebar/A)
                 this._obj_activeplayer.fire();
 
+            if (this.GlobalInput.IsPressed("GLOBAL_DEBUG", this.ControllingPlayer)) //If player presses the jump button (Spacebar/A)
+                this._obj_levelmanager.Debug = !this._obj_levelmanager.Debug;
+
             base.update();
         }
 

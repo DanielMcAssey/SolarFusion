@@ -30,8 +30,9 @@ namespace SolarFusion.Input
             this.AddGamePadInput("NAV_SELECT", SysConfig.INPUT_GAMEPAD_SELECT, true);
             this.AddGamePadInput("NAV_CANCEL", SysConfig.INPUT_GAMEPAD_CANCEL, true);
 
-            this.AddGamePadInput("GLOBAL_START", SysConfig.INPUT_GAMEPAD_START, false);
-            this.AddGamePadInput("GAME_PAUSE", SysConfig.INPUT_GAMEPAD_START, false);
+            this.AddGamePadInput("GLOBAL_START", SysConfig.INPUT_GAMEPAD_START, true);
+            this.AddGamePadInput("GLOBAL_DEBUG", SysConfig.INPUT_GAMEPAD_DEBUG, true);
+            this.AddGamePadInput("GAME_PAUSE", SysConfig.INPUT_GAMEPAD_START, true);
 
             this.AddGamePadInput("PLAY_MOVE_LEFT", SysConfig.INPUT_GAMEPAD_LEFT_DPAD, false);
             this.AddGamePadInput("PLAY_MOVE_LEFT", SysConfig.INPUT_GAMEPAD_LEFT_STICK, false);
@@ -49,8 +50,9 @@ namespace SolarFusion.Input
             this.AddKeyboardInput("NAV_SELECT", SysConfig.INPUT_KEYBOARD_SELECT, true);
             this.AddKeyboardInput("NAV_CANCEL", SysConfig.INPUT_KEYBOARD_CANCEL, true);
 
-            this.AddKeyboardInput("GLOBAL_START", SysConfig.INPUT_KEYBOARD_START, false);
-            this.AddKeyboardInput("GAME_PAUSE", SysConfig.INPUT_KEYBOARD_CANCEL, false);
+            this.AddKeyboardInput("GLOBAL_START", SysConfig.INPUT_KEYBOARD_START, true);
+            this.AddKeyboardInput("GLOBAL_DEBUG", SysConfig.INPUT_KEYBOARD_DEBUG, true);
+            this.AddKeyboardInput("GAME_PAUSE", SysConfig.INPUT_KEYBOARD_CANCEL, true);
 
             this.AddKeyboardInput("PLAY_MOVE_LEFT", SysConfig.INPUT_KEYBOARD_LEFT, false);
             this.AddKeyboardInput("PLAY_MOVE_RIGHT", SysConfig.INPUT_KEYBOARD_RIGHT, false);

@@ -56,18 +56,16 @@ namespace SolarFusion.Input
         public void AddKeyboardInput(Keys keyPressed, bool isReleased)
         {
             if (mKeyboard.ContainsKey(keyPressed))
-            {
                 return;
-            }
+
             mKeyboard.Add(keyPressed, isReleased);
         }
 
         public void AddGamepadInput(Buttons buttonPressed, bool isReleased)
         {
             if (mGamepad.ContainsKey(buttonPressed))
-            {
                 return;
-            }
+
             mGamepad.Add(buttonPressed, isReleased);
         }
 
@@ -78,16 +76,12 @@ namespace SolarFusion.Input
                 if (mKeyboard[aKey] == true)
                 {
                     if (CurrentKeyboardState.IsKeyDown(aKey) == true && PreviousKeyboardState.IsKeyDown(aKey) == false)
-                    {
                         return true;
-                    }
                 }
                 else
                 {
                     if (CurrentKeyboardState.IsKeyDown(aKey))
-                    {
                         return true;
-                    }
                 }
             }
 
@@ -96,16 +90,12 @@ namespace SolarFusion.Input
                 if (mGamepad[aButton] == true)
                 {
                     if (CurrentGamePadState[playerIndex].IsButtonDown(aButton) == true && PreviousGamePadState[playerIndex].IsButtonDown(aButton) == false)
-                    {
                         return true;
-                    }
                 }
                 else
                 {
                     if (CurrentGamePadState[playerIndex].IsButtonDown(aButton))
-                    {
                         return true;
-                    }
                 }
             }
 
