@@ -64,6 +64,7 @@ namespace SolarFusion.Core
 
         public const Buttons INPUT_GAMEPAD_JUMP = Buttons.A;
         public const Buttons INPUT_GAMEPAD_FIRE = Buttons.RightShoulder;
+        public const Buttons INPUT_GAMEPAD_DEBUG = Buttons.RightStick;
 
         //Default Keyboard Controls
         public const Keys INPUT_KEYBOARD_UP = Keys.Up;
@@ -77,5 +78,6 @@ namespace SolarFusion.Core
 
         public const Keys INPUT_KEYBOARD_JUMP = Keys.Space;
         public const Keys INPUT_KEYBOARD_FIRE = Keys.X;
+        public const Keys INPUT_KEYBOARD_DEBUG = Keys.F2;
     }
 }

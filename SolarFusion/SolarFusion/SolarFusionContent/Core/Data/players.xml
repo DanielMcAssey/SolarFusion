@@ -2,6 +2,6 @@
 <XnaContent>
   <Asset Type="System.String[]">
     <Item>dr_jumpista</Item>
-    <!-- <Item>asterix</Item> -->
+    <Item>asterix</Item>
   </Asset>
 </XnaContent>

@@ -7,27 +7,27 @@
     <playerScale>1</playerScale>
     <maxFrameCount>10</maxFrameCount>
     <playerAnimations>
-      <Item>right</Item>
       <Item>left</Item>
+      <Item>right</Item>
       <Item>idle</Item>
     </playerAnimations>
     <playerAnimationFrameCount>
       <Item>10</Item>
       <Item>10</Item>
-      <Item>3</Item>
+      <Item>8</Item>
     </playerAnimationFrameCount>
     <playerAnimationsFPS>
       <Item>
-        <Key>right</Key>
-        <Value>15</Value>
+        <Key>left</Key>
+        <Value>5</Value>
       </Item>
       <Item>
-        <Key>left</Key>
-        <Value>15</Value>
+        <Key>right</Key>
+        <Value>5</Value>
       </Item>
       <Item>
         <Key>idle</Key>
-        <Value>1</Value>
+        <Value>3</Value>
       </Item>
     </playerAnimationsFPS>
     <moveSpeed>1.8</moveSpeed>

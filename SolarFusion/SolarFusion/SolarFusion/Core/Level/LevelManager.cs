@@ -63,6 +63,12 @@ namespace SolarFusion.Level
         {
             get { return this._obj_map; }
         }
+
+        public bool Debug
+        {
+            get { return this.mDebugEnabled; }
+            set { this.mDebugEnabled = value; }
+        }
         #endregion
         // !Properties
 
