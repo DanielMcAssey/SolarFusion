@@ -25,7 +25,6 @@ namespace SolarFusion.Core.Screen
         Texture2D           _obj_tex_blank          = null;
         bool                _is_init                = false;
 
-
         public ScreenManager(Game mGame)
             : base(mGame)
         {
