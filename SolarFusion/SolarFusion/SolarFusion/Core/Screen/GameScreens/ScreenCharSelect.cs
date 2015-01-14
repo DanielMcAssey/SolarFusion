@@ -68,7 +68,7 @@ namespace SolarFusion.Core.Screen
 
             if (this.mPlayerSelectIndex < this._obj_availablePlayers.Length && this._obj_availablePlayers[this.mPlayerSelectIndex] != null)
             {
-                this.ScreenManager.SpriteBatch.Begin();
+                this.ScreenManager.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
                 this._obj_availablePlayers[this.mPlayerSelectIndex].Draw(this.ScreenManager.SpriteBatch);
                 this.ScreenManager.SpriteBatch.End();
             }

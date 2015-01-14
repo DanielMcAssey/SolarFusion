@@ -11,18 +11,10 @@ namespace SolarFusion.Core
     public class SysConfig
     {
         //General Configuration
-        public const string CONFIG_GAME_BUILD = "1.0-beta-branch";
-        public const string CONFIG_GAME_BUILD_TYPE = "BETA";
+        public const string CONFIG_GAME_BUILD = "0.1.1-proto-branch";
+        public const string CONFIG_GAME_BUILD_TYPE = "PROTOTYPE";
         public const string CONFIG_GAME_NAME_CLEAN = "Jumpista";
         public const string CONFIG_GAME_NAME = CONFIG_GAME_NAME_CLEAN + " - " + CONFIG_GAME_BUILD_TYPE + " Build (" + CONFIG_GAME_BUILD + ")";
-
-        //Debug Settings
-        public const string CONFIG_DEBUG_TEAMCITY_BUILD_CONFIG = "xna_4-[Win32|X360]";
-        public const string CONFIG_DEBUG_TEAMCITY_BUILD_AGENT_SERVER = "glokon-s03";
-        public const string CONFIG_DEBUG_TEAMCITY_KEY = "HwF0r58n8VmVPWoR8G3c9S9qWWB117NL";
-        public const string CONFIG_DEBUG_JIRA = "jira.blackholedev.net";
-        public const string CONFIG_DEBUG_JIRA_METHOD = "POST";
-        public const string CONFIG_DEBUG_JIRA_KEY = "pAG7zeZ16AY1Ht3924QsC1rup8T3x8pC";
 
         //Directory Mappings
         public const string CONFIG_CONTENT_ROOT = "Content";

@@ -67,7 +67,13 @@ namespace SolarFusion.Level
         public bool Debug
         {
             get { return this.mDebugEnabled; }
-            set { this.mDebugEnabled = value; }
+            set { 
+#if DEBUG
+                this.mDebugEnabled = value;
+#else
+                this.mDebugEnabled = false;
+#endif
+            }
         }
         #endregion
         // !Properties
@@ -408,7 +414,7 @@ namespace SolarFusion.Level
             //Create a mask for the occlusion ray
             this._obj_graphics.SetRenderTarget(this._obj_scene);
             this._obj_graphics.Clear(Color.White);
-            _sb.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            _sb.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, null, null, null, this._obj_camera.calculateTransform());
             this.DrawLevel(_sb);
             this._obj_player.Draw(_sb);
             _sb.End();
@@ -421,7 +427,7 @@ namespace SolarFusion.Level
             //Draw Scene in Colour
             this._obj_graphics.SetRenderTarget(this._obj_scene);
             this._obj_graphics.Clear(this._effect_sky_color); //Background Colour
-            _sb.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            _sb.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, null, null, null, this._obj_camera.calculateTransform());
             this.DrawLevel(_sb);
             foreach (uint goID in this._obj_entitymanager.QueryRegion(bounds)) //Checks what objects are in the calculated boundry.
             {
@@ -439,12 +445,12 @@ namespace SolarFusion.Level
             this._obj_graphics.Clear(Color.Black);
 
             //Draw the post processing effects
-            _sb.Begin(SpriteSortMode.BackToFront, BlendState.Additive, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            _sb.Begin(SpriteSortMode.BackToFront, BlendState.Additive, SamplerState.PointClamp, null, null, null, this._obj_camera.calculateTransform());
             _sb.Draw(this._obj_ppmanager.mScene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
             _sb.Draw(this._obj_scene, new Rectangle((int)(this._obj_camera.Position.X - (this._obj_viewport.Width / 2)), 0, this._obj_graphics.Viewport.Width, this._obj_graphics.Viewport.Height), Color.White);
             _sb.End();
 
-            _sb.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, this._obj_camera.calculateTransform());
+            _sb.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, this._obj_camera.calculateTransform());
             this._obj_player.Draw(_sb);
             this._obj_gui.Draw(_sb);
             _sb.End();
